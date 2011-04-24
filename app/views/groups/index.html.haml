@@ -1,0 +1,10 @@
+%h3 Groups
+%table
+  %tr
+    %th Group name
+  - for group in @groups
+    %tr
+      %td= h group.group_name
+      %td= link_to 'Members', group
+      %td= link_to 'Edit', edit_group_path(group)
+      %td= link_to 'Delete', group, :confirm => 'Are you sure?', :method => :delete

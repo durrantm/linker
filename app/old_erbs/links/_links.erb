@@ -1,0 +1,9 @@
+  <span class="spaced">
+    <%= link_to('New Link', new_link_path) %>
+  </span>
+  <span class="spaced">
+    <%= session[:row_shading] == 'true' ? (link_to 'Group Shading Off', :row_shading => 'false') : link_to('Group Shading On', :row_shading => 'true') %>
+  </span>
+  <span class="spaced">
+    <%= session[:full_details] == 'true' ? (link_to 'Summary', :full_details => 'false') : link_to('Full Details', :full_details => 'true') %>
+  </span>

@@ -1,0 +1,152 @@
+/*
+Template name: Contaminated
+Extensively added to and Updated (extensively) by: 
+Michael Durrant 10/22/2010
+Initial Author: Viktor Persson
+Author URI: http://arcsin.se/
+Release date: 2007-01-04
+Description: A trash style website template
+This template is licensed under a Creative Commons Attribution 2.5 License:
+http://templates.arcsin.se/license/
+*/
+
+/* standard elements */
+html {min-height: 100%;}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+th {
+	text-align: left; }
+
+td {padding: 0 5px 0 0;
+	text-align: left; }
+
+ul {padding: 14px}
+
+a {color: #FF3;}
+a:hover {color: #AA3;}
+
+body {
+	background: #111 url(img/bg.jpg) repeat-x; 
+	color: #DDD;
+	font: normal 90% "Trebuchet MS",Verdana,sans-serif;
+	margin-left: 1.2em;
+}
+
+fieldset { margin-right: 4em; }
+
+
+p,code,ul {padding-bottom: 1.2em;}
+
+h1 {
+	font: normal 3.2em Impact,Tahoma,sans-serif;
+	margin-left: 2.5em;
+	margin-bottom: 14px;
+}
+h2 {color: red; font: normal 1.2em Impact,sans-serif; margin-bottom: 8px; padding-bottom: 11px; letter-spacing: 1px;}
+
+h3 {background: url(img/stripes.gif;) repeat-x left bottom; margin-right: 2em; color: #CCC; font: normal 2em Impact,sans-serif; margin-bottom: 8px; padding-bottom: 11px; letter-spacing: 1px;}
+h4 {background: url(img/stripes.gif;) fixed; color: #eee;}
+
+
+blockquote {
+	color: #CCA;
+	display: block;
+	font-weight: bold;
+	padding-left: 28px;
+}
+
+h1,h2 {padding-top: 6px;}
+
+li .handle {
+  font-size: 12px;
+  cursor: move;
+  color: #777;
+}
+
+/* misc */
+.spaced {
+  padding-right: 20px;
+}
+.clearer {
+	clear: both;
+	font-size: 0;
+}
+.errorExplanation {
+	color: red;
+}
+.left {float: left;}
+.right {float: right;}
+
+/* structure */
+.wrapper {
+	font-size: 1.3em;
+	margin: 0 auto;
+	width: 780px;
+}
+.container {background: url(img/header.gif) no-repeat center top;}
+
+/* title */
+.title {
+	font: normal 3em Tahoma,sans-serif;
+	text-decoration: line-through;
+}
+.olive {color: #CCA;}
+
+/* sub navigation */
+.sidenav {
+	background: url(img/sidenav.gif) no-repeat right top;
+	padding-top: 126px;
+	float: right;
+	width: 210px;
+}
+.sidenav h2 {
+	color: #9A3;
+	font-size: 1.4em;
+	line-height: 30px;
+	margin: 0;
+}
+.sidenav ul {padding: 0.5em 0 0 0.5em;}
+.sidenav li {list-style: none;}
+.sidenav li a {
+	font-size: 1.1em;
+	line-height: 1.5em;
+	color: #777;
+	text-decoration: none;
+}
+.sidenav li a:hover {color: #8DCA3F;}
+
+/* content */
+.content {
+	float: left;
+	margin: 10px 0;
+	padding-top: 32px;
+	width: 531px;
+}
+.content .descr {
+	color: #8DC63F;
+	margin-bottom: 6px;
+}
+.content li {margin-left: 18px;}
+
+/* footer */
+.footer_links a {color: #BB0;}
+.footer {
+	border-top: 1px dashed #333;
+	color: #777;
+	font: normal 0.9em sans-serif;
+}
+.footer a {
+	color: #784;
+	text-decoration: none;
+}
+.footer a:hover {
+	color: #AA3;
+	text-decoration: underline;
+}
+.footer .left, .footer .right {padding: 10px 0;}
+.footer .right, .footer .right a {color: #555;}
+.footer .right a:hover {color: #999;}

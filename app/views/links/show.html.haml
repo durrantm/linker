@@ -1,0 +1,21 @@
+%p
+  %b Url address:
+  = h @link.url_address
+%p
+  %b Version Number:
+  = h @link.version_number
+%p
+  %b Alt text:
+  = h @link.alt_text
+%p
+  %b Content Date:
+  = h !@link.content_date.nil? ? @link.content_date.strftime('%F') : ''
+%p
+  %b Group:
+  = h @link.group.group_name
+%p
+  %br
+  %span.footer_links
+    = link_to 'Edit', edit_link_path(@link)
+    |
+    \#{link_to 'Delete', @link, :confirm => 'Are you sure?', :method => :delete}

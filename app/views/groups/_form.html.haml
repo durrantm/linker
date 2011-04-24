@@ -1,0 +1,12 @@
+- form_for(@group) do |f|
+  = f.error_messages
+  %p
+    = f.label :group_name
+    %br/
+    = f.text_field :group_name
+  %p
+    = f.label :group_description
+    %br/
+    = f.text_field :group_description
+  %p
+    = f.submit "Save"

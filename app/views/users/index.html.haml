@@ -1,0 +1,12 @@
+%h3 Users
+%table
+  %tr
+    %th Username
+  - for user in @users
+    %tr
+      %td= h user.username
+      %td= link_to 'Show', user
+      %td= link_to 'Edit', edit_user_path(user)
+      %td= link_to 'Remove', user, :confirm => 'Are you sure?', :method => :delete
+%br/
+= link_to 'Add user', new_user_path

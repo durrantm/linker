@@ -1,0 +1,2 @@
+      exists  db/migrate
+      create  db/migrate/20101024032957_change_column.rb

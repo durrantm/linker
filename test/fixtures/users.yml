@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+<% def auto_increment
+  @id ||= 0; @id += 1
+  end %>
+
+first_new_user:
+  id: <%= auto_increment %>
+  username: smith
+  pwd_hashed: dummy
+  salt: dummy
+
+second_new_user:
+  id: <%= auto_increment %>
+  username: brown
+  pwd_hashed: dummy
+  salt: dummy
+
+repeat_first_user:
+  id: <%= auto_increment %>
+  username: smith
+  pwd_hashed: dummy
+  salt: dummy
+
+blank_user:
+  id: <%= auto_increment %>
+  username:
+  pwd_hashed: dummy
+  salt: dummy

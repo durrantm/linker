@@ -1,0 +1,14 @@
+<% form_tag(search_path, :method => "get") do %>
+    <% if params[:search_text] %>
+        <% if params[:search_text].empty? %>
+            <%= text_field_tag('search_text', :class => 'hint', :value => 'Enter search text')  %>
+        <% else  %>
+            <%= text_field_tag('search_text', params[:search_text] ) %>
+        <% end %>
+    <% else %>
+        <%= text_field_tag('search_text', :class => 'hint', :value => 'Enter search text' ) %>
+    <% end %>
+    <%= submit_tag("Search") %>
+<% end %>
+<br />
+

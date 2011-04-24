@@ -1,0 +1,28 @@
+%p
+  %b Name:.
+  = h @group.group_name
+  %br/
+  %b Description:.
+  = h @group.group_description
+Members:
+%br/
+%br/
+- if @members.count.zero?
+  %br>/
+  No members(links) in this category!
+- else
+  %ul#urlys
+    - @members.each do |loop|
+      - content_tag_for :li, loop do
+        - construct_hyperlink(loop.url_address, loop.alt_text)
+        = sanitize @address_url
+        \- #{h @new_link_alt_text}            &nbsp;&nbsp;#{link_to 'details', link_path(loop), {"title" => loop.alt_text}}            &nbsp;&nbsp;#{link_to 'edit', edit_link_path(loop), {"title" => loop.alt_text}}
+= link_to 'Add New Link', new_link_path, :group_id => @group.id, "title" => 'Add a New Link'
+%br/
+- if @members.count > 1
+  / Only report on total and allow drag-drop for sortable for 2 or more!
+  = sortable_element('urlys', :url => order_links_groups_path)
+  %br/
+  Drag any member up or down to change its priority!
+  %br/
+  (Only saved if logged in).

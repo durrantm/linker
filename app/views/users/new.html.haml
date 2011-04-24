@@ -1,0 +1,21 @@
+%h3 New user
+- form_for(@user) do |f|
+  = f.error_messages
+  %fieldset
+    %legend
+      Details.
+    %p
+      = f.label :username
+      %br/
+      = f.text_field :username
+    %p
+      = f.label :password, 'Password'
+      %br/
+      = f.password_field :password, :size => 40
+    %p
+      = f.label :password_confirmation, 'Confirm'
+      %br/
+      = f.password_field :password_confirmation, :size => 40
+    %p
+      = f.submit "Create"
+= link_to 'Back', users_path

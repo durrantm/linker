@@ -1,0 +1,28 @@
+<% simple_form_for(@link) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.input :url_address, :label => 'URL Address:<br />', :input_html => { :size => 40, :maxlength => 140 }, :required => true %>
+  </p>
+  <p>
+    <%= f.input :alt_text, :label => 'Alt text:<br/>', :input_html => { :size => 25, :maxlength => 70 }, :required => false %>
+  </p>
+    <p>
+      <%= f.input :version_number, :label => 'Version Number:<br/>', :input_html => { :size => 6,  :maxlength => 25 }, :required => false %>
+    </p>
+    <p>Group:<br />
+      <%= f.association :group, :prompt => "Choose a Group*", :required => false, :label => '&nbsp;' %>
+    </p>
+    <p>
+      <% if @link.content_date %>
+        Date:&nbsp;<%= @link.content_date.strftime('%m/%d/%Y') %><br />
+        <%= f.calendar_date_select :content_date, :time => false, :embedded => true %>
+      <% else %>
+        By default, today's date is used (helps to 'age' links).<br />
+        If the content has an older date, please change the date:<br />
+        <%= f.calendar_date_select :content_date, :value => Date.today, :time => false, :embedded => true %>
+      <% end %>
+  </p>
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>
