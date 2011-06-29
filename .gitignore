@@ -1,1 +1,11 @@
 /app/views/links/index2html.haml
+/log/development.log
+/.idea/encodings.xml
+/.idea/.generators
+/.idea/misc.xml
+/.idea/.name
+/.idea/linker.iml
+/.idea/modules.xml
+/.idea/.rakeTasks
+/.idea/vcs.xml
+/.idea/workspace.xml
