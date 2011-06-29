@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :groups, :collection => { :order_links => :post }
 
-  map.resources :links
+  map.resources :links, :collection => {:groups => :get }#, :member => {:searcher => :get}
 
   map.search 'search', :controller => 'links', :action => 'index'
 
