@@ -8,25 +8,17 @@ class LinksController < ApplicationController
     @s = ""
     if params[:search_text]
       @s = params[:search_text]
-      @links = Link.find(:all, :order => 'group_id, position', :conditions =>
-          ['url_address LIKE ? or alt_text LIKE ? or version_number LIKE ?',
-          "%"+@s+"%", "%"+@s+"%", "%"+@s+"%"]) # Just use links table and sort by group_id for now.
-    else  # do the simple case without conditions, but join to groups table for group name alpha sorting.
-      @links = Link.find_by_sql("select * from groups g, links l where g.id = l.group_id order by g.group_name, l.position")
+      @links = Link.all(:joins => :group, :order => 'groups.group_name, links.position', :conditions =>
+          ['url_address LIKE ? or alt_text LIKE ? or version_number LIKE ?',"%"+@s+"%", "%"+@s+"%", "%"+@s+"%"])
+    else
+      @links = Link.all(:joins => :group, :order => 'groups.group_name, links.position')
     end
-    # ordering: group_id to group items by their group and
-    # position for the user ordering
-=begin
-    session[:row_shading] = (params[:row_shading] == 'true') ? 'true' : 'false' if params[:row_shading]
-    session[:row_shading] = 'false' unless session[:row_shading]
-    session[:full_details] = (params[:full_details] == 'true') ? 'true' : 'false' if params[:full_details]
-    session[:full_details] = 'false' unless session[:full_details]
-=end # compatced the above 4 into the below two.
+    # ordering: group_id to group items by their group and position for the user ordering
     session[:row_shading] = (params[:row_shading] == 'true') ? 'true' : 'false' rescue 'false'
     session[:full_details] = (params[:full_details] == 'true') ? 'true' : 'false' rescue 'false'
     respond_to do |format|
       format.html # index.html.erb
-#      format.xml  { render :xml => @links }
+      format.xml  { render :xml => @links }
     end
   end
 
