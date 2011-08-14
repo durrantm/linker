@@ -1,47 +1,44 @@
 / Links:
-%span#main
-  - tbl_width = session[:full_details] == "true" ? 1200 : 700
-  %table{:width => tbl_width}
+%h3 Advanced Search
+-form_tag(search_path, :method => "get") do
+  %table{:border=>'10px'}
     %tr
-      %td{:colspan => "6"}
-        .nav_links
-          = render :partial => 'links'
-        = render :partial => 'search'
+      %td
+        Groups:
+        %br
+        - @groups.each do |group|
+          = check_box_tag('groups[]', group.id, 1)
+          = group.group_name
+          %br
+      %td
+        Search Text:
+        %br
+        &nbsp;
+        = text_field_tag('search_text_1', params[:search_text] )
+        %br
+        &nbsp;
+        and
+        = radio_button_tag "join_operator", 'and', :default
+        or
+        = radio_button_tag "join_operator", 'or'
+        %br
+        &nbsp;
+        = text_field_tag('search_text_2', params[:search_text] )
+        %br
+        %br
+        = 'From: '
+        = select_tag "from", options_for_select(@years)
+        %br
+        = 'To: &nbsp;&nbsp;&nbsp;&nbsp;'
+        = select_tag "to", options_for_select(@years.reverse!)
+        %br
+        Version
+        = select_tag "version_comparison", options_for_select(['>=',' >',' =','<=',' <','<>'])
+        = text_field_tag(:version, '0', :size => '4')
+        %br
+        %br
     %tr
-      %td{:colspan => "5"} &nbsp;
-    %tr
-      %th Group
-      %th URL
-      %th Ver.
-      %th Date
-      %th Alt Text
-      %th &nbsp;
-    - cur_group, row_bg_color = '', "111111"
-    / - row_bg_color needed in case session[:row_shading] not set
-    / Had to build address manually due to issues with link_to and url_for. Refactored this somewhat but still want to address that.
-    - for link in @links
-      / Moved the construct code to a helper.   Anything is better than the view!
-      - construct_hyperlink(link.url_address, link.alt_text)
-      - if link.group.group_name != cur_group
-        - cur_group = link.group.group_name
-        - display_group = cur_group
-        - if session[:row_shading] == 'true'
-          / Set the row shading color
-          - row_bg_color= (row_bg_color == "111111" ? "221122" : row_bg_color == "221122" ? "331133" : "111111")
-        / Otherwise it's the same group name
-      - else
-        - display_group = ''
-      %tr{:bgcolor => "##{row_bg_color}"}
-        %td= display_group
-        %td
-          %span#mainLink
-            = sanitize @address_url
-        %td= link.version_number
-        %td
-          = session[:full_details] == 'true' ? link.content_date.strftime('%m/%d/%Y') : link.content_date.to_s.gsub('00:00:00 UTC','')[0,4] if link.content_date
-        %td= h @new_link_alt_text
-        %td
-          = link_to 'Details', link, {"title" => link.alt_text}
-        / Moved edit and delete to details page mdd 10/27/2010
-%br/
-%span.mainLinks= render :partial => 'links'
+      %td{:colspan=>'2'}
+        %div{:align=>'center'}
+          = submit_tag("Advanced Search")
+          &nbsp;&nbsp;&nbsp;&nbsp;

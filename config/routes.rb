@@ -7,6 +7,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.search 'search', :controller => 'links', :action => 'index'
 
+  map.advanced_search 'advanced_search', :controller => 'links', :action => 'advanced_search'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
