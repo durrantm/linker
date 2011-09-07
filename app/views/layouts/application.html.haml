@@ -12,6 +12,7 @@
 %body
   #banner
     %h1= link_to 'Linker', :controller => 'links'
+    %h2= RAILS_ENV != 'production' ? RAILS_ENV : ''
   #columns
     #side
       .alink= link_to 'Links', links_path
