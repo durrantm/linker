@@ -1,7 +1,36 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
-# Examples:
-#   
-#   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
-#   Major.create(:name => 'Daley', :city => cities.first)
+User.create(:username => 'durrantm', :password => 'test123', :password_confirmation => 'test123')
+User.create(:username => 'readonly', :password => 'test123', :password_confirmation => 'test123')
+#
+@group1 = Group.create(:group_name => 'Charting')
+@group2 = Group.create(:group_name => 'Cheat Sheets')
+@group3 = Group.create(:group_name => 'Codes, Data, Stats')
+@group4 = Group.create(:group_name => 'Concepts')
+@group5 = Group.create(:group_name => 'Databases')
+@group6 = Group.create(:group_name => 'Editors')
+@group7 = Group.create(:group_name => 'Git')
+@group8 = Group.create(:group_name => 'HTML & CSS')
+@group9 = Group.create(:group_name => 'Icons & Images')
+@group10 = Group.create(:group_name => 'jQuery')
+@group11 = Group.create(:group_name => 'Linux/UNIX')
+@group12 = Group.create(:group_name => 'Media')
+@group13 = Group.create(:group_name => 'Performance')
+@group14 = Group.create(:group_name => 'Rails')
+@group15 = Group.create(:group_name => 'Rails Testing')
+@group16 = Group.create(:group_name => 'Rails Forms')
+@group17 = Group.create(:group_name => 'Rails Models')
+@group18 = Group.create(:group_name => 'Rails Views')
+@group19 = Group.create(:group_name => 'rorMD Apps')
+@group20 = Group.create(:group_name => 'Ruby')
+@group21 = Group.create(:group_name => 'Source Control')
+@group22 = Group.create(:group_name => 'Standards')
+@group23 = Group.create(:group_name => 'Tools')
+@group24 = Group.create(:group_name => 'Tutorials')
+@group25 = Group.create(:group_name => 'Valuable Acronyms')
+#
+Link.create(:url_address => 'http;//www.rormd.com/blogger', :group => @group1 )
+Link.create(:url_address => 'http;//www.rormd.com/logger', :group => @group1 )
+Link.create(:url_address => 'http;//www.rormd.com/swapper', :group => @group1 )
+#
