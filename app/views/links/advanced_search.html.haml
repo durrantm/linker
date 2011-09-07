@@ -32,9 +32,16 @@
         = 'To: &nbsp;&nbsp;&nbsp;&nbsp;'
         = select_tag "to", options_for_select(@years.reverse!)
         %br
+        Include Blank Dates?
+        = check_box_tag('include_blank_dates', '', 1)
+        %br
+        %br
         Version
         = select_tag "version_comparison", options_for_select(['>=',' >',' =','<=',' <','<>'])
         = text_field_tag(:version, '0', :size => '4')
+        %br
+        Include Blank Versions?
+        = check_box_tag('include_blank_version', '', 1)
         %br
         %br
     %tr

@@ -13,7 +13,7 @@ class LinksController < ApplicationController
 #    @s = ""
 #    @now=DateTime.now
     @from = params[:from]? ('01/01/'+params[:from]).to_date : '01/01/1991'.to_date
-    @to = params[:to]? ('31/12/'+params[:to]).to_date : ('31/12/' + DateTime.now.year.to_s).to_date
+    @to = params[:to]? params[:to]+'/12/31' : '2099/12/31' # + DateTime.now.year + 100.years#  .year)+100.to_s).to_date
     if params[:search_text_1]
       @srch = params[:search_text_1]
       if params[:search_text_2] # An advanced search
@@ -28,19 +28,26 @@ class LinksController < ApplicationController
         end
         #
         @srch_2 = params[:search_text_2] # May be null
-        @version = (params[:version].is_a?(Integer))? params[:version].to_i : 0 # May be 0
-        @version_comparison = '(version_number ' + params[:version_comparison] + ' ' + @version.to_s + ' or version_number is NULL) '
+        @version = (params[:version].to_f) #.is_a?(Integer))? params[:version].to_i : 0 # May be 0
+        @version_comparison = '(version_number ' + params[:version_comparison] + ' ' + @version.to_s
+        if params[:include_blank_version]  # If not checked doesn't pass.'
+          @version_comparison+= " or version_number is NULL or version_number = '' )"
+        else
+          @version_comparison+= " and version_number is not NULL and version_number <> '' )"
+        end
+        @date_comparison = ' and ((content_date is NULL) or (content_date > ' + @from.to_s + '))'   #+ ' and content_date <= ' + @to.to_s + '))'
+
         case params[:join_operator].downcase
           when /and/
             @conditions =
-              [@version_comparison + @groups_comparison + ' and ((content_date >= ? and content_date <= ?) or content_date is NULL) and ' +
-              '(url_address LIKE ? or alt_text LIKE ?) and (url_address LIKE ? or alt_text LIKE ?)',
-              @from, @to, "%"+@srch+"%", "%"+@srch+"%", "%"+@srch_2+"%", "%"+@srch_2+"%"]
+              [@version_comparison + @groups_comparison + @date_comparison +
+              ' and ((url_address LIKE ? or alt_text LIKE ?) and (url_address LIKE ? or alt_text LIKE ?))',
+              "%"+@srch+"%", "%"+@srch+"%", "%"+@srch_2+"%", "%"+@srch_2+"%"]
           when /or/
             @conditions =
-              [@version_comparison + @groups_comparison +  ' and ((content_date >= ? and content_date <= ?) or content_date is NULL) and ' +
-              '((url_address LIKE ? or alt_text LIKE ?) or (url_address LIKE ? or alt_text LIKE ?))',
-               @from, @to, "%"+@srch+"%", "%"+@srch+"%", "%"+@srch_2+"%", "%"+@srch_2+"%"]
+              [@version_comparison + @groups_comparison + @date_comparison +
+              ' and ((url_address LIKE ? or alt_text LIKE ?) or (url_address LIKE ? or alt_text LIKE ?))',
+              "%"+@srch+"%", "%"+@srch+"%", "%"+@srch_2+"%", "%"+@srch_2+"%"]
         end
       else # Just a simple search
         @conditions = ['(url_address LIKE ? or alt_text LIKE ? or version_number LIKE ?)', "%"+@srch+"%", "%"+@srch+"%", "%"+@srch+"%"]
