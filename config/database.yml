@@ -3,8 +3,8 @@
 development:
   adapter: mysql
   database: linker_development
-  username: root
-  password: utahutah
+  username: ******
+  password: ******
   pool: 5
   timeout: 5000
 
@@ -14,8 +14,8 @@ development:
 test:
   adapter: mysql
   database: linker_test
-  username: root
-  password: utahutah
+  username: ******
+  password: ******
   pool: 5
   timeout: 5000
 
