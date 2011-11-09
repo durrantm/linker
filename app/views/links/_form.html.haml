@@ -1,5 +1,14 @@
 - simple_form_for(@link) do |f|
-  = f.error_messages
+  -if @link.errors.any?
+    %div#error_explanation
+      %h2
+        =pluralize(@link.errors.count, "error")+' '
+        prohibited this link from being saved:
+      %ul
+      -@link.errors.full_messages.each do |msg|
+        %li
+          =msg 
+  =# f.error_messages
   %p
     = f.input :url_address, :label => 'URL Address<br/>', :input_html => { :size => 40, :maxlength => 140 }, :required => false# Affects Label only
     %br/

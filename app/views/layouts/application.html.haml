@@ -4,8 +4,14 @@
   = stylesheet_link_tag 'contam/default.scss'
   = stylesheet_link_tag 'main.css'
   -### went other route so not using #= stylesheet_link_tag '../javascripts/jquery.datepick.css'
+  = javascript_include_tag "prototype"
   = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"
   = javascript_include_tag "jQueryUI/js/jquery-ui-1.8.11.custom.min.js"
+  %script
+    // this allows jquery to be called along with scriptaculous and YUI without any conflicts
+    // the only difference is all jquery functions should be called with $j instead of $
+    // e.g. $j('#div_id').stuff instead of $('#div_id').stuff
+    var $j = jQuery.noConflict();
   = javascript_include_tag :defaults
   = calendar_date_select_includes "silver"
   %link(rel="shortcut icon" href="/linker/images/link.ico" mce_href="http://www.rormd.com" type="image/vnd.microsoft.icon")
