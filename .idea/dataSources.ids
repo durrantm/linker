@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Rails linker: development" product="" version="" jdbc-version="" driver-version="" uuid="202b5ce3-9d16-4eef-9a7a-b4eec83df7f5">
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://127.0.0.1/linker_development</jdbc-url>
+    <user-name>root</user-name>
+    <user-password>dfdfdfdedfcbdfc2dfdfdfdedfcbdfc2</user-password>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/.RubyMine32/config/jdbc-drivers/mysql-connector-license.txt</url>
+      </library>
+      <library>
+        <url>file://$USER_HOME$/.RubyMine32/config/jdbc-drivers/mysql-connector-java-5.1.16-bin.jar</url>
+      </library>
+    </libraries>
+  </data-source>
+  <data-source source="LOCAL" name="Rails linker: test" product="" version="" jdbc-version="" driver-version="" uuid="f4478488-1ce0-4983-ad77-e40811d163b3">
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://127.0.0.1/linker_test</jdbc-url>
+    <user-name>root</user-name>
+    <user-password>dfdfdfdedfcbdfc2dfdfdfdedfcbdfc2</user-password>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/.RubyMine32/config/jdbc-drivers/mysql-connector-license.txt</url>
+      </library>
+      <library>
+        <url>file://$USER_HOME$/.RubyMine32/config/jdbc-drivers/mysql-connector-java-5.1.16-bin.jar</url>
+      </library>
+    </libraries>
+  </data-source>
+</component>
