@@ -49,6 +49,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.18)
     mysql2 (0.2.18)
+    pg (0.13.2)
     polyglot (0.3.3)
     rack (1.2.5)
     rack-mount (0.6.14)
@@ -89,5 +90,6 @@ DEPENDENCIES
   calendar_date_select!
   haml
   mysql2 (~> 0.2.11)
+  pg
   rails (= 3.0.10)
   simple_form

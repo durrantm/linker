@@ -5,8 +5,13 @@ gem 'rails', '3.0.10'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2', '~> 0.2.11'
+group :development, :test do
+  gem 'mysql2', '~> 0.2.11'
+end
 
+group :production do
+  gem "pg" # Used for Production.
+end
 
 gem "acts_as_list"
 gem "simple_form"
