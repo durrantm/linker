@@ -1,6 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 # 
+User.create(:username => 'temp_admin', :password => 'delete_me')
 Group.create(:id=>1, :group_name=>'Rails', :group_description=>'The main RoR Sites', :created_at=>'2010-10-26 14:19:11', :updated_at=>'2010-12-13  04:32:05')
 Group.create(:id=>2, :group_name=>'Databases-SQL', :group_description=>'Oracle, SQL Server, mySQL, PostgreSQL', :created_at=>'2010-10-26 14:19:36', :updated_at=>'2011-11-26 12:19:00')
 Group.create(:id=>3, :group_name=>'Linux/UNIX', :group_description=>'Red Hat, Ubuntu and other UNIX varieties', :created_at=>'2010-10-26 14:19:43', :updated_at=>'2010-12-08 03:01:20')
