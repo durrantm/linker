@@ -14,8 +14,6 @@
   %b Group:
   = h @link.group.group_name
 %p
-  %br
-  %span.footer_links
-    = link_to 'Edit', edit_link_path(@link)
-    |
-    \#{link_to 'Delete', @link, :confirm => 'Are you sure?', :method => :delete}
+  = link_to 'Edit', edit_link_path(@link)
+  = '|'
+  = link_to 'Delete', link_path(@link), :confirm => 'Are you sure?', :method => :delete
