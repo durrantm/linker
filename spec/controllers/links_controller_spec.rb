@@ -61,9 +61,9 @@ describe LinksController do
     describe "POST #create" do
       
       context "with valid attributes" do
-        pending "creates a new link" do
+        it "creates a new link" do
           expect{
-            post :create, link: FactoryGirl.attributes_for(:link), group: FactoryGirl.attributes_for(:group)
+            post :create, link: FactoryGirl.attributes_for(:link)
           }.to change(Link,:count).by(1)
         end
 
