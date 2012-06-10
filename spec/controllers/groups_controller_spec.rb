@@ -67,7 +67,7 @@ describe GroupsController do
         end
 
         it "redirects to the new group" do
-          a = post :create, group: FactoryGirl.attributes_for(:group)
+          post :create, group: FactoryGirl.attributes_for(:group)
           response.should redirect_to Group.unscoped.last
         end
       end
