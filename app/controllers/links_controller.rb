@@ -10,10 +10,8 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.xml
   def index
-#    @s = ""
-#    @now=DateTime.now
     @from = params[:from]? ('01/01/'+params[:from]).to_date : '01/01/1991'.to_date
-    @to = params[:to]? params[:to]+'/12/31' : '2099/12/31' # + DateTime.now.year + 100.years#  .year)+100.to_s).to_date
+    @to = params[:to]? params[:to]+'/12/31' : '2099/12/31' 
     if params[:search_text_1]
       @srch = params[:search_text_1]
       if params[:search_text_2] # An advanced search
@@ -120,7 +118,7 @@ class LinksController < ApplicationController
     respond_to do |format|
       if @link.update_attributes(params[:link])
         flash[:notice] = 'Link was successfully updated.'
-        format.html { redirect_to(@link) }
+        format.html { redirect_to(@link.group) }
         format.xml  { head :ok }
       else
         @groups = Group.find(:all)
