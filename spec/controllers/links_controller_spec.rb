@@ -61,16 +61,23 @@ describe LinksController do
     describe "POST #create" do
       
       context "with valid attributes" do
-        pending "creates a new link" do
+
+        def do_post #( format = 'html' )
+          attributes = FactoryGirl.build(:link).attributes.merge( :group_id => @group.id )
+          post :create, :link => attributes, :format => 'html'
+        end
+
+        it "creates a new link" do
           expect{
-            post :create, link: FactoryGirl.attributes_for(:link), group: FactoryGirl.attributes_for(:group)
+            do_post
           }.to change(Link,:count).by(1)
         end
 
-        pending "redirects to the new link" do
-          p = post :create, link: FactoryGirl.attributes_for(:link)
-          response.should redirect_to p #Link.unscoped.last
+        it "redirects to the new link" do
+          do_post
+          response.should redirect_to( assigns[:link] )
         end
+
       end
 
       context "with invalid attributes" do
