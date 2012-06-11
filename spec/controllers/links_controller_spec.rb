@@ -8,6 +8,7 @@ describe LinksController do
       @link = FactoryGirl.create(:link, group: @group)
       user = FactoryGirl.create(:user, username: 'mdd', password: 'aaa', password_confirmation: 'aaa')
       session[:user_id] = user.id
+      current_user = user
     end
     
     describe 'GET #index' do    
@@ -58,19 +59,32 @@ describe LinksController do
       end
     end
   
-    describe "POST #create" do
+    describe "Link POST #create" do
       
       context "with valid attributes" do
-        it "creates a new link" do
-          expect{
-            post :create, link: FactoryGirl.attributes_for(:link)
-          }.to change(Link,:count).by(1)
+
+        def do_post 
+          attributes = FactoryGirl.build(:link).attributes.merge( :group_id => @group.id )
+          post :create, :link => attributes 
         end
 
-        pending "redirects to the new link" do
-          p = post :create, link: FactoryGirl.attributes_for(:link)
-          response.should redirect_to p #Link.unscoped.last
+        it "creates a new link" do
+          expect{
+            do_post
+            }.to change(Link, :count).by(1)
         end
+
+        it "redirects to the new link" do
+            do_post
+            response.should redirect_to( assigns[:link])
+        end
+
+#        it "redirects to the new link" do
+#          post :create, link: FactoryGirl.create(:link, :group => @group)
+#          response.should redirect_to( assigns[:link]) 
+#          response.should redirect_to @link # Link.unscoped.last
+#          response.should redirect_to Link.unscoped.last # render_template :show
+#        end
       end
 
       context "with invalid attributes" do
