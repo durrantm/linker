@@ -103,8 +103,9 @@ class LinksController < ApplicationController
         format.html { redirect_to(@link) }
         format.xml  { render :xml => @link, :status => :created, :location => @link }
       else
-        @selected_group = params[:group_id]
-        format.html { render :action => "new" }
+        # @selected_group = params[:group_id] # Check if it is used.
+        # @group_id = params[:group_id]
+        format.html { render :action => "new"}
         format.xml  { render :xml => @link.errors, :status => :unprocessable_entity }
       end
     end
