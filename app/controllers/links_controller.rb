@@ -12,9 +12,9 @@ class LinksController < ApplicationController
   def index
     @from = params[:from]? ('01/01/'+params[:from]).to_date : '01/01/1991'.to_date
     @to = params[:to]? params[:to]+'/12/31' : '2099/12/31' 
-    if params[:search_text_1]
-      @srch = params[:search_text_1]
-      if params[:search_text_2] # An advanced search
+    if params[:search_text_1st_phrase]
+      @srch = params[:search_text_1st_phrase]
+      if params[:search_text_2nd_phrase] # Implies an advanced search
         #
         # groups...
         @groups_comparison = ' and group_id in (-1'
@@ -25,7 +25,7 @@ class LinksController < ApplicationController
           @groups_comparison+= ')'
         end
         #
-        @srch_2 = params[:search_text_2] # May be null
+        @srch_2 = params[:search_text_2nd_phrase] # May be null
         @version = (params[:version].to_f) #.is_a?(Integer))? params[:version].to_i : 0 # May be 0
         @version_comparison = '(version_number ' + params[:version_comparison] + ' ' + @version.to_s
         if params[:include_blank_version]  # If not checked doesn't pass.'

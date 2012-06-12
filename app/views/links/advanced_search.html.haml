@@ -14,7 +14,7 @@
         Search Text:
         %br
         &nbsp;
-        = text_field_tag('search_text_1', params[:search_text] )
+        = text_field_tag('search_text_1st_phrase', params[:search_text] )
         %br
         &nbsp;
         and
@@ -23,7 +23,7 @@
         = radio_button_tag "join_operator", 'or'
         %br
         &nbsp;
-        = text_field_tag('search_text_2', params[:search_text] )
+        = text_field_tag('search_text_2nd_phrase', params[:search_text] )
         %br
         %br
         = 'From: '
