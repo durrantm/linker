@@ -19,7 +19,10 @@
     = f.input :version_number, :label => 'Version Number<br/>', :input_html => { :size => 6,  :maxlength => 25 }, :required => false# Affects Label only
     %br/
     %br/
-    = f.association :group, :prompt => "Choose a Group", :label => 'Group:<br>', :required => false# Affects Label only
+    -if params[:group_id]
+      = f.hidden_field :group_id, :value => params[:group_id]
+    -else
+      = f.association :group, :prompt => "Choose a Group", :label => 'Group:<br>', :required => false# Affects Label only
     %br/
     - if @link.content_date
       %br/
