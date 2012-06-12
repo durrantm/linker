@@ -17,7 +17,7 @@ Members:
         - construct_hyperlink(loop.url_address, loop.alt_text)
         = sanitize @address_url
         \- #{h @new_link_alt_text}            &nbsp;&nbsp;#{link_to 'details', link_path(loop), {"title" => loop.alt_text}}            &nbsp;&nbsp;#{link_to 'edit', edit_link_path(loop), {"title" => loop.alt_text}}
-= link_to 'Add New Link', new_link_path, :group_id => @group.id, "title" => 'Add a New Link'
+= link_to "Add New Link for #{@group.group_name}", new_group_link_path(@group) #, "title" => 'Add a New Link'
 %br/
 - if @members.count > 1
   / Only report on total and allow drag-drop for sortable for 2 or more!
