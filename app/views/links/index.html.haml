@@ -32,7 +32,8 @@
       - else
         - display_group = ''
       %tr{:bgcolor => "##{row_bg_color}"}
-        %td= display_group
+        %td
+          = link_to display_group, link.group, {"title" => link.group.group_description}
         %td
           %span#mainLink
             = sanitize @address_url
