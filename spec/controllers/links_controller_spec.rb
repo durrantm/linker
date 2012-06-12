@@ -112,7 +112,7 @@ describe LinksController do
 
         it "redirects to the updated link" do
           put :update, id: @link, link: FactoryGirl.attributes_for(:link)
-          response.should redirect_to @link
+          response.should redirect_to @group # @link
         end
       end
 
