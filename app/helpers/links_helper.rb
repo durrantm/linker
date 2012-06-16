@@ -9,4 +9,8 @@ module LinksHelper
     @new_link_alt_text= link_alt_text.length > @alt_text_max_length  ? (link_alt_text[0..(@alt_text_max_length-1)] + '...') : link_alt_text
     return @address_url, @new_link_alt_text
   end
+
+  def group_name_for_link_form_title(group_id)
+    'for the '+Group.find(group_id).group_name + ' group.'
+  end
 end

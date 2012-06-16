@@ -79,7 +79,12 @@ class LinksController < ApplicationController
   def new
     @link = Link.new
     @groups = Group.find(:all, :order => 'group_name')
-
+    @group_name = 
+      if params[:group_id]
+        'for the '+Group.find(params[:group_id]).group_name + ' group.'
+      else
+        ''
+      end
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @link }
@@ -90,6 +95,12 @@ class LinksController < ApplicationController
   def edit
     @link = Link.find(params[:id])
     @groups = Group.find(:all, :order => 'group_name')
+    @group_name = 
+      if params[:group_id]
+        'for the '+Group.find(params[:group_id]).group_name + ' group.'
+      else
+        ''
+      end
   end
 
   # POST /links
