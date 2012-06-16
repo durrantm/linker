@@ -20,7 +20,7 @@
 %body
   #banner
     %h1= link_to 'Linker', :controller => 'links'
-    %h2= ::Rails.env.downcase != 'production' ? RAILS_ENV : ''
+    %h2= ::Rails.env.downcase != 'production' ? ::Rails.env.downcase.capitalize : ''
   #columns
     #side
       .alink= link_to 'Links', links_path
