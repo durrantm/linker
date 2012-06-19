@@ -1,5 +1,4 @@
-.bundle
 db/*.sqlite3
 log/*.log
 tmp/
-/.gitignore.rails2
+.bundle
