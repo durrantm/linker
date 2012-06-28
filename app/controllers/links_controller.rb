@@ -53,7 +53,7 @@ class LinksController < ApplicationController
     else
       @conditions = ''
     end
-    @links = Link.all(:joins => :group, :order => 'groups.group_name, links.position', :conditions => @conditions)
+    @links = Link.all(:joins => :group, :include => :group, :order => 'groups.group_name, links.position', :conditions => @conditions)
 
     session[:row_shading] = (params[:row_shading] == 'true') ? 'true' : 'false' rescue 'false'
     session[:full_details] = (params[:full_details] == 'true') ? 'true' : 'false' rescue 'false'
