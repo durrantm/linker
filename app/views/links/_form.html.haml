@@ -13,21 +13,20 @@
     = f.input :url_address, :label => 'URL Address<br/>', :input_html => { :size => 40, :maxlength => 140 }, :required => false# Affects Label only
     %br/
     %br/
-    = f.input :alt_text, :label => 'Alt text<br/>', :input_html => { :size => 25, :maxlength => 70 }, :required => false# Affects Label only
+    = f.input :alt_text, :label => 'Alt text<br/>', :input_html => { :size => 25, :maxlength => 70 }, :required => false
     %br/
     %br/
-    = f.input :version_number, :label => 'Version Number<br/>', :input_html => { :size => 6,  :maxlength => 25 }, :required => false# Affects Label only
+    = f.input :version_number, :label => 'Version Number<br/>', :input_html => { :size => 6,  :maxlength => 25 }, :required => false
     %br/
     %br/
     -if params[:group_id]
       = f.hidden_field :group_id, :value => params[:group_id]
     -else
-      = f.association :group, :prompt => "Choose a Group", :label => 'Group:<br>', :required => false# Affects Label only
+      = f.association :group, :prompt => "Choose a Group", :label => 'Group:<br>', :required => false
     %br/
     - if @link.content_date
       %br/
-      Date:&nbsp;#{@link.content_date.strftime('%m/%d/%Y')}
-      = f.calendar_date_select :content_date, :time => false, :embedded => true
+      = f.text_field :content_date, id: 'datepicker', size: 10
       %br/
     - else
       By default, today's date is used (helps to 'age' links).
@@ -35,6 +34,6 @@
       If the content has an older date, please change the date:
       %br/
       %br/
-      = f.calendar_date_select :content_date, :value => Date.today, :time => false, :embedded => true
+      = f.text_field :content_date, id: 'datepicker', size:10, default: Date.new
   %p
     = f.submit "Save"
