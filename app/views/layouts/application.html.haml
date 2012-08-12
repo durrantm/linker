@@ -15,9 +15,14 @@
     });
 
     $(function() {
-    //$('#link_url_address').focus(); 
     $("input[type='text']:first").focus(); 
-    -# global for now
+    });
+
+    $(function (){
+    var dateInput = $("#datepicker");
+    var format = 'yy-mm-dd';
+    dateInput.datepicker({dateFormat: format});
+    dateInput.datepicker('setDate', $.datepicker.parseDate(format, dateInput.val()));
     });
 
   = csrf_meta_tag
