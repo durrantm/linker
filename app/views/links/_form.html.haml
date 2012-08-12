@@ -10,7 +10,7 @@
           =msg 
   =# f.error_messages
   %p
-    = f.input :url_address, :label => 'URL Address<br/>', :input_html => { :size => 40, :maxlength => 140 }, :required => false# Affects Label only
+    = f.text_field :url_address, :label => 'URL Address<br/>', :input_html => { :size => 40, :maxlength => 140 }, :required => false# Affects Label only
     %br/
     %br/
     = f.input :alt_text, :label => 'Alt text<br/>', :input_html => { :size => 25, :maxlength => 70 }, :required => false
@@ -34,6 +34,6 @@
       If the content has an older date, please change the date:
       %br/
       %br/
-      = f.text_field :content_date, id: 'datepicker', size:10, default: Date.new
+      = f.text_field :content_date, id: 'datepicker', size:10
   %p
     = f.submit "Save"
