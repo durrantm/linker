@@ -5,10 +5,10 @@
 //#= require focus_on_first_field
 
 // jQueryUI Date Picker:
-$(function (){
+$(xxx-function (){
         $(".datepick").datepicker({ dateFormat: 'yy-mm-dd'});
 });
-$(function (){
+$(xxx-function (){
 	$('input:first').focus;
 });
 
