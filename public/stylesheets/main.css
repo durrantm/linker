@@ -30,7 +30,7 @@
 .nav_links { float: left}
 .underline_hyperlinks a { text-decoration: underline }
 /* END:mainlayout */
-/* For row shading */
+/* For row shading (by group) for better contrast in html tables of data */
 .bg_row_1 { background-color: #112233; }
 .bg_row_2 { background-color: #445566; }
 .bg_row_3 { background-color: #778899; }
