@@ -1,5 +1,5 @@
-%head
-  %title="Linker: "+controller.action_name + ' ' + controller.controller_name.singularize
+%readyhead
+  %readytitle="Linker: "+controller.action_name + ' ' + controller.controller_name.singularize
   = stylesheet_link_tag 'contam/default.scss'
   = stylesheet_link_tag 'main.css'
   = stylesheet_link_tag 'jquery-ui-1.8.22.custom.css'
@@ -8,21 +8,38 @@
   = javascript_include_tag "jquery-1.7.2.min.js"
   = javascript_include_tag "jquery-ui-1.8.22.custom.min.js"
   =# javascript_include_tag :defaults
+
+  -if action_name =~ /new|edit/ # TODO Did this due a js conflict not yet resolved mdd
+    %script
+      $(function() {
+      $( "#datepicker" ).datepicker();
+      });
+      $(function (){
+      var dateInput = $("#datepicker");
+      var format = 'yy-mm-dd';
+      dateInput.datepicker({dateFormat: format});
+      dateInput.datepicker('setDate', $.datepicker.parseDate(format, dateInput.val()));
+      });
+
   %script
-    $(function() {
-    $( "#datepicker" ).datepicker(); 
-    -# global for now
-    });
 
     $(function() {
-    $("input[type='text']:first").focus(); 
+    $("input[type='text']:first").focus();
     });
-
-    $(function (){
-    var dateInput = $("#datepicker");
-    var format = 'yy-mm-dd';
-    dateInput.datepicker({dateFormat: format});
-    dateInput.datepicker('setDate', $.datepicker.parseDate(format, dateInput.val()));
+    $(function(){
+    $("a#row_colors_on").click(function(){
+    $(".row_color_group_1").addClass("color_group_1");
+    $(".row_color_group_2").addClass("color_group_2");
+    $(".row_color_group_3").addClass("color_group_3");
+    event.preventDefault();
+    });
+    });
+    $(function(){
+    $("a#row_colors_off").click(function(){
+    $(".row_color_group_1").removeClass("color_group_1");
+    $(".row_color_group_2").removeClass("color_group_2");
+    $(".row_color_group_3").removeClass("color_group_3");
+    });
     });
 
   = csrf_meta_tag
