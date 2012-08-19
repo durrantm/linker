@@ -6,7 +6,7 @@
       %td{:colspan => "6"}
         .nav_links
           = render :partial => 'links'
-        = render :partial => 'search'
+          = render :partial => 'search'
     %tr
       %td{:colspan => "5"} &nbsp;
     %tr
@@ -16,22 +16,17 @@
       %th Date
       %th Alt Text
       %th &nbsp;
-    - cur_group, row_bg_color, row_bg_color_class = '', "111111", 'bg_row_1'
-    / - row_bg_color needed in case session[:row_shading] not set
     / Had to build address manually due to issues with link_to and url_for. Refactored this somewhat but still want to address that.
+    - row_bg_color_group = 'row_color_group_1'
     - for link in @links
-      / Moved the construct code to a helper.   Anything is better than the view!
       - construct_hyperlink(link.url_address, link.alt_text)
-      - if link.group.group_name != cur_group
+      - if link.group.group_name != (cur_group ||= '')
         - cur_group = link.group.group_name
         - display_group = cur_group
-        - if session[:row_shading] == 'true'
-          -# Create helper set_row_bg_color(current_row_bg_color_class)
-          - row_bg_color_class= (row_bg_color_class == "bg_row_1" ? "bg_row_2" : row_bg_color_class == "bg_row_2" ? "bg_row_3" : "bg_row_1")
-        / Otherwise it's the same group name
+        - row_bg_color_group = (row_bg_color_group == 'row_color_group_1' ? 'row_color_group_2' : row_bg_color_group == 'row_color_group_2' ? 'row_color_group_3' : 'row_color_group_1')
       - else
         - display_group = ''
-      %tr{:class => row_bg_color_class}
+      %tr{:class => "#{row_bg_color_group}"}
         %td
           = link_to display_group, link.group, {"title" => link.group.group_description}
         %td
