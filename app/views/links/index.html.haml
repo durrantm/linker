@@ -21,7 +21,7 @@
       - construct_hyperlink(link.url_address, link.alt_text)
       - if link.group.group_name != (current_group ||= '')
         - display_group = current_group = link.group.group_name
-        - row_bg_color_group = rotate_rows_color_group(row_bg_color_group)
+        - row_bg_color_group = rotate_rows_color_group
       - else
         - display_group = ''
       %tr{:class => "#{row_bg_color_group}"}
