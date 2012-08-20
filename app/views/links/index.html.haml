@@ -16,14 +16,12 @@
       %th Date
       %th Alt Text
       %th &nbsp;
-    / Had to build address manually due to issues with link_to and url_for. Refactored this somewhat but still want to address that.
     - row_bg_color_group = 'row_color_group_1'
     - for link in @links
       - construct_hyperlink(link.url_address, link.alt_text)
-      - if link.group.group_name != (cur_group ||= '')
-        - cur_group = link.group.group_name
-        - display_group = cur_group
-        - row_bg_color_group = (row_bg_color_group == 'row_color_group_1' ? 'row_color_group_2' : row_bg_color_group == 'row_color_group_2' ? 'row_color_group_3' : 'row_color_group_1')
+      - if link.group.group_name != (current_group ||= '')
+        - display_group = current_group = link.group.group_name
+        - row_bg_color_group = rotate_rows_color_group(row_bg_color_group)
       - else
         - display_group = ''
       %tr{:class => "#{row_bg_color_group}"}
