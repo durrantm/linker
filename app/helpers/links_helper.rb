@@ -13,4 +13,15 @@ module LinksHelper
   def group_name_for_link_form_title(group_id)
     'for the '+Group.find(group_id).group_name + ' group.'
   end
+
+  def rotate_rows_color_group(current_group)
+    if current_group == 'row_color_group_1'
+      'row_color_group_2'
+    elsif current_group == 'row_color_group_2'
+      'row_color_group_3'
+    else 'row_color_group_1'
+    end
+  end
+
+
 end
