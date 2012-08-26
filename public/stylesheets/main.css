@@ -31,6 +31,6 @@
 .underline_hyperlinks a { text-decoration: underline }
 /* END:mainlayout */
 /* For row shading (by group) for better contrast in html tables of data */
-.color_group_1 { background-color: #111111; }
+.color_group_1 { background-color: #133333; }
 .color_group_2 { background-color: #122222; }
-.color_group_3 { background-color: #133333; }
+.color_group_3 { background-color: #111111; }
