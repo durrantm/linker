@@ -14,7 +14,7 @@ gem "acts_as_list"
 gem "simple_form"
 #gem "calendar_date_select"
 gem "haml"
-gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git' #, :branch => 'rails3test'
+#gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git' #, :branch => 'rails3test'
 
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
