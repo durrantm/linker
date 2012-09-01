@@ -4,6 +4,7 @@ gem 'rails', '3.1.8'
 
 group :development, :test do
   gem 'mysql2'#, '~> 0.2.11'
+  gem 'thin'
 end
 
 group :production do
