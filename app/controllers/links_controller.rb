@@ -2,43 +2,29 @@ class LinksController < ApplicationController
 
   before_filter :authorize, :except => [:index, :show, :advanced_search]
 
-  def advanced_search  # This is the search form
+  def advanced_search
     @groups = Group.all
     @years = ((Date.today.year - 20)..Date.today.year).to_a
   end
 
   # GET /links
   def index
-    @from = params[:from]? ('01/01/'+params[:from]).to_date : '01/01/1991'.to_date
-    @to = params[:to]? params[:to]+'/12/31' : '2099/12/31' 
-    if params[:search_text_1st_phrase]
-      @srch = params[:search_text_1st_phrase]
-      if params[:search_text_2nd_phrase] # Implies an advanced search
-        #
-        # groups...
-        @groups_comparison = ' and group_id in (-1'
-        if params[:groups]
-          params[:groups].each do |group_id|
-            @groups_comparison+= ','+group_id
-          end
-          @groups_comparison+= ')'
-        end
-        #
+    @from = PrepareSearch.start_date(params[:from] ||= '1991')
+    @to = PrepareSearch.end_date(params[:to] ||= '2299')
 
-        @srch_2 = params[:search_text_2nd_phrase]
-        @version = (params[:version].to_f)
-        @version_comparison = '(version_number ' + params[:version_comparison] + ' ' + @version.to_s
-        if params[:include_blank_version]  # If not checked doesn't pass.'
-          @version_comparison+= " or version_number is NULL or version_number = '' )"
-        else
-          @version_comparison+= " and version_number is not NULL and version_number <> '' )"
-        end
-        @date_comparison = ' and ((content_date is NULL) or (content_date > ' + @from.to_s + '))'
+    if params[:search_text_1st_phrase] # both simple and advanced search use this field.
+      @words_1 = params[:search_text_1st_phrase]
+      if params[:commit].downcase == 'advanced search'
         @join_operator = params[:join_operator].downcase
-
-       # @conditions = construct_advanced_search_string(params[:groups], @srch, @srch2, params[:version].to_f, params[:version_comparison], params[:include_blank_version], @from, @date_comparison, @join_operator)
+        @words_2 = params[:search_text_2nd_phrase]
+        @text_search = PrepareSearch.text_search(@words_1, @join_operator, @words_2)
+        @groups_comparison = PrepareSearch.groups(params[:groups])
+        @version_information = { :version => params[:version], :version_comparison => params[:version_comparison], :include_blank_version => params[:include_blank_version] }
+        @version_comparison = PrepareSearch.versions(@version_information) 
+        @date_comparison = PrepareSearch.dates(@from, @to)
+        @conditions = '1=1' + @groups_comparison+ @version_comparison+ @date_comparison + @text_search
       else
-        @conditions = ['(url_address LIKE ? or alt_text LIKE ? or version_number LIKE ?)', "%"+@srch+"%", "%"+@srch+"%", "%"+@srch+"%"]
+        @conditions = PrepareSearch.basic_search(@words_1)
       end
     else
       @conditions = ''
@@ -46,17 +32,10 @@ class LinksController < ApplicationController
     @links = Link.all(:joins => :group, :include => :group, :order => 'groups.group_name, links.position', :conditions => @conditions)
     session[:full_details] = (params[:full_details] == 'true') ? 'true' : 'false' rescue 'false'
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
     end
   end
 
-# make private ! Also Make a new object for this!
-  def construct_advanced_search_string(groups, srch, srch2, version, version_comparison, include_blank_version, from, date_comparison, join_operator)
-    # TODO wip
-  end
-
-
-  # GET /links/1
   def show
     @link = Link.find(params[:id])
     respond_to do |format|
@@ -64,7 +43,6 @@ class LinksController < ApplicationController
     end
   end
 
-  # GET /links/new
   def new
     @link = Link.new
     @groups = Group.find(:all, :order => 'group_name')
@@ -75,11 +53,10 @@ class LinksController < ApplicationController
         ''
       end
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
     end
   end
 
-  # GET /links/1/edit
   def edit
     @link = Link.find(params[:id])
     @groups = Group.find(:all, :order => 'group_name')
@@ -91,7 +68,6 @@ class LinksController < ApplicationController
       end
   end
 
-  # POST /links
   def create
     @link = Link.new(params[:link])
 
@@ -105,7 +81,6 @@ class LinksController < ApplicationController
     end
   end
 
-  # PUT /links/1
   def update
     @link = Link.find(params[:id])
 
@@ -120,7 +95,6 @@ class LinksController < ApplicationController
     end
   end
 
-  # DELETE /links/1
   def destroy
     @link = Link.find(params[:id])
     @link.destroy
