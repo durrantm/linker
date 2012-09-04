@@ -2,10 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.8'
 
-group :development, :test do
-  gem 'mysql2'#, '~> 0.2.11'
-end
-
 group :production do
   gem "pg" # Used for Production for heroku.
 end
@@ -17,7 +13,9 @@ gem "haml"
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :development, :test do
+  gem 'mysql2'
   gem 'capybara'
   gem "rspec-rails", "~> 2.0"
   gem "factory_girl_rails", "~> 3.0"
+  gem "shoulda-matchers"
 end
