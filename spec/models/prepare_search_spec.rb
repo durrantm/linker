@@ -5,7 +5,7 @@ describe "Prepare Search methods" do
   describe "PrepareSearch#start_date" do
 
     subject { PrepareSearch.start_date('2000') }
-    it { should == DateTime.new(2000) }
+    it { should == DateTime.new(2000,1,1) }
 
   end
 
@@ -25,7 +25,10 @@ describe "Prepare Search methods" do
 
   describe "PrepareSearch#versions" do
 
-    subject { PrepareSearch.versions({:version => 0, :version_comparison => '>=', :include_blank_version => true} ) }
+    before(:each) do 
+      @versions= {:version => 0, :version_comparison => '>=', :include_blank_version => true}
+    end
+    subject { PrepareSearch.versions(@versions) } 
     it { should == " and (version_number >= 0.0 or version_number is NULL or version_number = '' )" }
 
   end
