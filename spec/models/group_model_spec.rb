@@ -2,10 +2,9 @@ require 'spec_helper'
 
 describe Group do
 
-  before(:each) do
-    @group = FactoryGirl.create(:group)
-  end
-  subject { @group }
+  let(:group) { FactoryGirl.create(:group) }
+
+  subject { group }
   it { should be_valid }
   it { should have_attribute :group_name }
   it { should have_attribute :group_description }

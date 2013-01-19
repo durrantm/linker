@@ -2,11 +2,9 @@ require 'spec_helper'
 
 describe Link do
 
-  before(:each) do
-    @group = FactoryGirl.create(:group)
-    @link = FactoryGirl.create(:link, :group => @group)
-  end
-  subject { @link }
+  let(:link) { FactoryGirl.create(:link)}
+
+  subject { link }
   it { should be_valid }
   it { should have_attribute :group_id }
   it { should have_attribute :url_address}
@@ -17,4 +15,5 @@ describe Link do
   it { should validate_presence_of :url_address}
   it { should validate_presence_of :group_id}
   it { should ensure_length_of(:version_number).is_at_most(10) }
+
 end
