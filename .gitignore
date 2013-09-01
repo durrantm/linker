@@ -2,3 +2,4 @@ test.log
 log/*.log
 tmp/
 .bundle
+tags
