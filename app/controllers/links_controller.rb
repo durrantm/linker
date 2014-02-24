@@ -20,7 +20,7 @@ class LinksController < ApplicationController
         @text_search = PrepareSearch.text_search(@words_1, @join_operator, @words_2)
         @groups_comparison = PrepareSearch.groups(params[:groups])
         @version_information = { :version => params[:version], :version_comparison => params[:version_comparison], :include_blank_version => params[:include_blank_version] }
-        @version_comparison = PrepareSearch.versions(@version_information) 
+        @version_comparison = PrepareSearch.versions(@version_information)
         @date_comparison = PrepareSearch.dates(@from, @to)
         @conditions = '1=1' + @groups_comparison+ @version_comparison+ @date_comparison + @text_search
       else
@@ -45,8 +45,8 @@ class LinksController < ApplicationController
 
   def new
     @link = Link.new
-    @groups = Group.find(:all, :order => 'group_name')
-    @group_name = 
+    @groups = Group.all.collect { |g| [g.group_name, g.id] }
+    @group_name =
       if params[:group_id]
         'for the '+Group.find(params[:group_id]).group_name + ' group.'
       else
@@ -59,8 +59,8 @@ class LinksController < ApplicationController
 
   def edit
     @link = Link.find(params[:id])
-    @groups = Group.find(:all, :order => 'group_name')
-    @group_name = 
+    @groups = Group.all.collect { |g| [g.group_name, g.id] }
+    @group_name =
       if params[:group_id]
         'for the '+Group.find(params[:group_id]).group_name + ' group.'
       else
