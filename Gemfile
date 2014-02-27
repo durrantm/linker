@@ -15,6 +15,7 @@ group :production do
   #gem 'mysql2'
 end
 
+gem 'american_date'
 gem 'jquery-rails'
 gem "acts_as_list"
 gem "simple_form"
