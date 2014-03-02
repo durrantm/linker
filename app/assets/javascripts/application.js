@@ -7,4 +7,5 @@
 //= require default_on_first_input_field
 //= require row_shading
 //= require sortable_hook
+//= date-picker
 //= require_tree .
