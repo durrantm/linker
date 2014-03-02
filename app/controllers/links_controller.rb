@@ -76,6 +76,7 @@ class LinksController < ApplicationController
         flash[:notice] = 'Link was successfully created.'
         format.html { redirect_to(@link) }
       else
+        @groups = Group.find(:all)
         format.html { render :action => "new"}
       end
     end
