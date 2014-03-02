@@ -13,7 +13,7 @@ Members:
   %br/
   %br/
 - else
-  %ul#urlys
+  %ul#sortable
     - @members.each do |loop|
       = content_tag_for :li, loop do
         - construct_hyperlink(loop.url_address, loop.alt_text)

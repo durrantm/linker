@@ -11,7 +11,7 @@
       $(function() {
       $( "#datepicker" ).datepicker();
       });
-      $(function (){
+      $(function(){
       var dateInput = $("#datepicker");
       var format = 'yy-mm-dd';
       dateInput.datepicker({dateFormat: format});
@@ -19,7 +19,6 @@
       });
 
   %script
-
     $(function() {
     $("input[type='text']:first").focus();
     });
@@ -37,6 +36,10 @@
     $(".row_color_group_2").removeClass("color_group_2");
     $(".row_color_group_3").removeClass("color_group_3");
     });
+    });
+    $(function(){
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
     });
 
   = csrf_meta_tag
