@@ -27,10 +27,10 @@
     %br/
     Group
     %br/
-    -if params[:group_id]
-      = f.hidden_field :group_id, :value => params[:group_id]
-    -else
-      = f.select :group_id, @groups #:required => false
+    -#if params[:group_id]
+      =# f.hidden_field :group_id, :value => params[:group_id]
+    -#else
+    = f.select :group_id, @groups #:required => false
     %br/
     %br/
     Date

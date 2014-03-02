@@ -76,7 +76,7 @@ class LinksController < ApplicationController
         flash[:notice] = 'Link was successfully created.'
         format.html { redirect_to(@link) }
       else
-        @groups = Group.find(:all)
+        @groups = Group.all.collect { |g| [g.group_name, g.id] }
         format.html { render :action => "new"}
       end
     end
@@ -90,7 +90,7 @@ class LinksController < ApplicationController
         flash[:notice] = 'Link was successfully updated.'
         format.html { redirect_to(@link.group) }
       else
-        @groups = Group.find(:all)
+        @groups = Group.all.collect { |g| [g.group_name, g.id] }
         format.html { render :action => "edit" }
       end
     end
