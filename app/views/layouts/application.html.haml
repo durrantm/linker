@@ -1,5 +1,6 @@
 %readyhead
-  %readytitle="Linker: "+controller.action_name + ' ' + controller.controller_name.singularize
+  - if ::Rails.env.downcase != 'production'
+    %readytitle="Linker: "+controller.action_name + ' ' + controller.controller_name.singularize
   = stylesheet_link_tag 'default.scss.css'
   = stylesheet_link_tag 'main.css'
   = stylesheet_link_tag 'jquery-ui-1.8.22.custom.css'
