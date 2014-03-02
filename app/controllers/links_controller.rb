@@ -45,6 +45,7 @@ class LinksController < ApplicationController
 
   def new
     @link = Link.new
+    @link.content_date=Time.new().strftime("%m/%d/%Y")
     @groups = Group.all.collect { |g| [g.group_name, g.id] }
     @group_name =
       if params[:group_id]
@@ -59,6 +60,7 @@ class LinksController < ApplicationController
 
   def edit
     @link = Link.find(params[:id])
+    @link.content_date=Time.new().strftime("%m/%d/%Y") if @link.content_date.nil?
     @groups = Group.all.collect { |g| [g.group_name, g.id] }
     @group_name =
       if params[:group_id]
@@ -66,11 +68,14 @@ class LinksController < ApplicationController
       else
         ''
       end
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
     @link = Link.new(params[:link])
-
+    @link.content_date=Time.new().strftime("%m/%d/%Y") if @link.content_date.nil?
     respond_to do |format|
       if @link.save
         flash[:notice] = 'Link was successfully created.'
