@@ -1,12 +1,10 @@
-%h3 Group
-%p
-  %b Name:.
+%h3
+  Group:
   = h @group.group_name
-  %br/
-  %b Description:.
-  = h @group.group_description
+%p
+  %b
+    = h @group.group_description
 Members:
-%br/
 %br/
 - if @members.count.zero?
   %br/
