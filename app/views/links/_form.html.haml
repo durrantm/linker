@@ -23,14 +23,14 @@
     %br/
     = f.text_field :version_number, :input_html => { :size => 6,  :maxlength => 25 }, :required => false
     %br/
-    %br/
-    Group
-    %br/
-    -#if params[:group_id]
-      =# f.hidden_field :group_id, :value => params[:group_id]
-    -#else
-    = f.select :group_id, @groups #:required => false
-    %br/
+    -if params[:group_id]
+      = f.hidden_field :group_id, :value => params[:group_id]
+    -else
+      %br/
+      Group
+      %br/
+      = f.select :group_id, @groups #:required => false
+      %br/
     %br/
     Date
     - if @link.content_date
@@ -38,10 +38,9 @@
       = f.text_field :content_date, id: 'datepicker', size: 10
       %br/
     - else
-      By default, today's date is used (helps to 'age' links).
+      \- by default, today's date is used (helps to 'age' links).
       %br/
       If the content has an older date, please change the date:
-      %br/
       %br/
       = f.text_field :content_date, id: 'datepicker', size:10
   %p
