@@ -43,6 +43,7 @@
       - if flash[:notice]
         %span#notice
           = flash[:notice]
+        %br
       - if @group
         - if @group.errors.any?
           %div.errorExplanation
@@ -51,6 +52,8 @@
               - @group.errors.full_messages.each do |msg|
                 %li
                   =msg
+        - else
+          %br
       - if @link
         - if @link.errors.any?
           %div.errorExplanation
@@ -59,6 +62,8 @@
               - @link.errors.full_messages.each do |msg|
                 %li
                   =msg
-      %br
-      %br
+        - else
+          %br
+      - if @link.nil? && @group.nil? && flash[:notice].nil?
+        %br
       = yield :layout
