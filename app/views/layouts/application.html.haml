@@ -40,8 +40,7 @@
       - else
         .alink= link_to 'Login', :controller => :ladmin, :action => 'login'
     #main
-      -#%p
-        - if flash[:notice]
-          %span#notice
-            = flash[:notice]
+      - if flash[:notice]
+        %span#notice
+          = flash[:notice]
       = yield :layout
