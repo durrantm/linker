@@ -6,16 +6,17 @@
 
   = javascript_include_tag "application"
   -#if action_name =~ /new|edit/ # TODO Did this due a js conflict not yet resolved mdd
-  %script
-    $(function() {
-    $( "#datepicker" ).datepicker();
-    });
-    $(function(){
-    var dateInput = $("#datepicker");
-    var format = 'yy-mm-dd';
-    dateInput.datepicker({dateFormat: format});
-    dateInput.datepicker('setDate', $.datepicker.parseDate(format, dateInput.val()));
-    });
+  = javascript_include_tag "date-picker"
+  -#%script
+  -#  $(function() {
+  -#  $( "#datepicker" ).datepicker();
+  -#  });
+  -#  $(function(){
+  -#  var dateInput = $("#datepicker");
+  -#  var format = 'yy-mm-dd';
+  -#  dateInput.datepicker({dateFormat: format});
+  -#  dateInput.datepicker('setDate', $.datepicker.parseDate(format, dateInput.val()));
+  -#  });
 
   = csrf_meta_tag
   %link(rel="shortcut icon" href="/images/link.ico" mce_href="http://www.rormd.com" type="image/vnd.microsoft.icon")
