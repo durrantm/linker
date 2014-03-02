@@ -5,42 +5,8 @@
   = stylesheet_link_tag 'jquery-ui-1.8.22.custom.css'
 
   = javascript_include_tag "application"
-
   -if action_name =~ /new|edit/ # TODO Did this due a js conflict not yet resolved mdd
-    %script
-      $(function() {
-      $( "#datepicker" ).datepicker();
-      });
-      $(function(){
-      var dateInput = $("#datepicker");
-      var format = 'yy-mm-dd';
-      dateInput.datepicker({dateFormat: format});
-      dateInput.datepicker('setDate', $.datepicker.parseDate(format, dateInput.val()));
-      });
-
-  %script
-    $(function() {
-    $("input[type='text']:first").focus();
-    });
-    $(function(){
-    $("a#row_colors_on").click(function(){
-    $(".row_color_group_1").addClass("color_group_1");
-    $(".row_color_group_2").addClass("color_group_2");
-    $(".row_color_group_3").addClass("color_group_3");
-    event.preventDefault();
-    });
-    });
-    $(function(){
-    $("a#row_colors_off").click(function(){
-    $(".row_color_group_1").removeClass("color_group_1");
-    $(".row_color_group_2").removeClass("color_group_2");
-    $(".row_color_group_3").removeClass("color_group_3");
-    });
-    });
-    $(function(){
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-    });
+    = javascript_include_tag "date-picker"
 
   = csrf_meta_tag
   %link(rel="shortcut icon" href="/images/link.ico" mce_href="http://www.rormd.com" type="image/vnd.microsoft.icon")
