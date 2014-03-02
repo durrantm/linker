@@ -1,6 +1,7 @@
 %readyhead
   - if ::Rails.env.downcase != 'production'
-    %readytitle="Linker: "+controller.action_name + ' ' + controller.controller_name.singularize
+    %readytitle="#{controller.controller_name} - #{controller.action_name}"
+    %h2= ::Rails.env.downcase.capitalize
   = stylesheet_link_tag 'default.scss.css'
   = stylesheet_link_tag 'main.css'
   = stylesheet_link_tag 'jquery-ui-1.8.22.custom.css'
@@ -23,7 +24,6 @@
 %body
   #banner
     %h1= link_to 'Linker', :controller => 'links'
-    %h2= ::Rails.env.downcase != 'production' ? ::Rails.env.downcase.capitalize : ''
   #columns
     #side
       .alink= link_to 'Links', links_path
