@@ -1,13 +1,4 @@
 = simple_form_for(@link) do |f|
-  -if @link.errors.any?
-    %div#error_explanation
-      %h2
-        =pluralize(@link.errors.count, "error")+' '
-        prohibited this link from being saved:
-      %ul
-      -@link.errors.full_messages.each do |msg|
-        %li
-          =msg 
   %p
     URL
     %br/

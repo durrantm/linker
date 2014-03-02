@@ -1,13 +1,4 @@
 = form_for(@group) do |f|
-  -if @group.errors.any?
-    %div#error_explanation
-      %h2
-        =pluralize(@group.errors.count, "error")+' '
-        prohibited this group from being saved:
-      %ul
-      -@group.errors.full_messages.each do |msg|
-        %li
-          =msg
   %p
     = f.label :group_name
     %br/

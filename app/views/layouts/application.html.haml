@@ -43,6 +43,22 @@
       - if flash[:notice]
         %span#notice
           = flash[:notice]
+      - if @group
+        - if @group.errors.any?
+          %div.errorExplanation
+            =pluralize(@group.errors.count, "error")+' prohibited this group from being saved:'
+            %ul
+              - @group.errors.full_messages.each do |msg|
+                %li
+                  =msg
+      - if @link
+        - if @link.errors.any?
+          %div.errorExplanation
+            =pluralize(@link.errors.count, "error")+' prohibited this link from being saved:'
+            %ul
+              - @link.errors.full_messages.each do |msg|
+                %li
+                  =msg
       %br
       %br
       = yield :layout
