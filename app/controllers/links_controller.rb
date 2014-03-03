@@ -30,7 +30,9 @@ class LinksController < ApplicationController
       @conditions = ''
     end
     @links = Link.all(:joins => :group, :include => :group, :order => 'groups.group_name, links.position', :conditions => @conditions)
-    session[:full_details] = (params[:full_details] == 'true') ? 'true' : 'false' rescue 'false'
+    if params[:full_details]
+      session[:full_details] = (params[:full_details] == 'true') ? 'true' : 'false' rescue 'false'
+    end
     respond_to do |format|
       format.html
     end
