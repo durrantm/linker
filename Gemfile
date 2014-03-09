@@ -25,6 +25,7 @@ group :development, :test do
   gem 'mysql2'
   gem 'capybara'
   gem "rspec-rails", "~> 2.0"
+  gem "autotest-standalone"
   gem "factory_girl_rails", "~> 3.0"
   gem "shoulda-matchers"
 end
