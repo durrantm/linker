@@ -12,13 +12,12 @@
     $(function() {
     $( "#datepicker" ).datepicker();
     });
-    $(function(){
+    $(function() {
     var dateInput = $("#datepicker");
     var format = 'yy-mm-dd';
     dateInput.datepicker({dateFormat: format});
     dateInput.datepicker('setDate', $.datepicker.parseDate(format, dateInput.val()));
     });
-
   = csrf_meta_tag
   %link(rel="shortcut icon" href="/images/link.ico" type="image/vnd.microsoft.icon")
 %body

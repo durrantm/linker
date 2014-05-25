@@ -15,8 +15,11 @@ module LinksHelper
   end
 
   def rotate_rows_color_group
-    cycle('row_color_group_1', 'row_color_group_2', 'row_color_group_3')
+    if session[:group_shading] == 'true' || params[:show]
+      cycle('row_color_group_1 color_group_1', 'row_color_group_2 color_group_2', 'row_color_group_3 color_group_3')
+    else
+      cycle('row_color_group_1', 'row_color_group_2', 'row_color_group_3')
+    end
   end
-
 
 end
