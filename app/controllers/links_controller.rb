@@ -7,6 +7,15 @@ class LinksController < ApplicationController
     @years = ((Date.today.year - 20)..Date.today.year).to_a
   end
 
+  def set_group_shading
+    if params[:show] == 'true'
+      session[:group_shading] = 'true'
+    else
+      session[:group_shading] = 'false'
+    end
+    render nothing: true
+  end
+
   # GET /links
   def index
     @from = PrepareSearch.start_date(params[:from] ||= '1991')

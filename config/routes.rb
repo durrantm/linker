@@ -9,6 +9,7 @@ Linker::Application.routes.draw do
       post 'order_links'
     end
   end
+
   match 'search' => 'links#index'
   match 'advanced_search' => 'links#advanced_search'
   resources :links do
@@ -16,6 +17,8 @@ Linker::Application.routes.draw do
       get 'groups'
     end
   end
+
+  match 'set_group_shading' => 'links#set_group_shading'
 
   root :to => "links#index"
 
