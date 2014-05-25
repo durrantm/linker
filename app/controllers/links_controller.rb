@@ -8,15 +8,10 @@ class LinksController < ApplicationController
   end
 
   def set_group_shading
-    if params[:show] == 'true'
-      session[:group_shading] = 'true'
-    else
-      session[:group_shading] = 'false'
-    end
+    session[:group_shading] = params[:show]
     render nothing: true
   end
 
-  # GET /links
   def index
     @from = PrepareSearch.start_date(params[:from] ||= '1991')
     @to = PrepareSearch.end_date(params[:to] ||= '2299')

@@ -2,9 +2,10 @@ Linker::Application.routes.draw do
 
   match 'ladmin/login' => 'ladmin#login'
   match 'ladmin/logout' => 'ladmin#logout'
+
   resources :users
   resources :groups do
-    resources :links # Added so that I can do group/:id/link/new ...
+    resources :links # Enables group/:id/link/new
     collection do
       post 'order_links'
     end
