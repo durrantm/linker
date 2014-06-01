@@ -13,16 +13,23 @@
       %th Group
       %th URL
       %th Ver.
-      %th Date
+      %th Added
+      %th &nbsp;Verified&nbsp;
       %th Alt Text
       %th &nbsp;
     - row_bg_color_group = 'row_color_group_1'
-    - for link in @links
+    - display_group = ''
+    - @links.each do |link|
       - construct_hyperlink(link.url_address, link.alt_text)
-      - if link.group.group_name != (current_group ||= '')
-        - display_group = current_group = link.group.group_name
+      - if link.group.group_name != display_group
+        - display_group = link.group.group_name
         - row_bg_color_group = rotate_rows_color_group
+      -# construct_hyperlink(link.url_address, link.alt_text)
+      -# if link.group.group_name != (current_group ||= '')
+        -# display_group = current_group = link.group.group_name
+        -# row_bg_color_group = rotate_rows_color_group
       - else
+        = "ooooooooooooooooooooooo"
         - display_group = ''
       %tr{:class => "#{row_bg_color_group}"}
         %td
@@ -31,8 +38,13 @@
           %span#mainLink
             = sanitize @address_url
         %td= link.version_number
-        %td
+        %td.column_align
           = session[:full_details] == 'true' ? link.content_date.strftime('%m/%d/%Y') : link.content_date.to_s.gsub('00:00:00 UTC','')[0,4] if link.content_date
+        %td.column_align
+          - if link.verified_date
+            = session[:full_details] == 'true' ? link.verified_date.strftime('%m/%d/%Y') : link.verified_date.to_s.gsub('00:00:00 UTC','')[0,4]
+          - else
+            = link_to 'verify', verify_link_path(:id => link.id, :table_row => 1),  class: 'verify', remote: true
         %td= h @new_link_alt_text
         %td
           = link_to 'Details', link, {"title" => link.alt_text}

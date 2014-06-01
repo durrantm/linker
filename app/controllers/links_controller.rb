@@ -12,6 +12,15 @@ class LinksController < ApplicationController
     render nothing: true
   end
 
+  def verify_link
+    @link = Link.find(params[:id])
+    @link.verified_date = Time.now
+    @link.save!
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def index
     @from = PrepareSearch.start_date(params[:from] ||= '1991')
     @to = PrepareSearch.end_date(params[:to] ||= '2299')
