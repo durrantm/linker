@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120805204340) do
+ActiveRecord::Schema.define(:version => 20140525175943) do
 
   create_table "groups", :force => true do |t|
     t.string   "group_name",        :null => false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20120805204340) do
     t.datetime "updated_at"
     t.string   "version_number"
     t.date     "content_date"
+    t.datetime "verified_date"
   end
 
   create_table "sessions", :force => true do |t|
