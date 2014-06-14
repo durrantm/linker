@@ -19,7 +19,8 @@
     dateInput.datepicker('setDate', $.datepicker.parseDate(format, dateInput.val()));
     });
   = csrf_meta_tag
-  %link(rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon")
+  -#%link(rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon")
+  = favicon_link_tag 'link.ico'
 %body
   #banner
     %h1= link_to 'Linker', root_path
