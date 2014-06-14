@@ -1,4 +1,4 @@
-%readyhead
+%head
   - if ::Rails.env.downcase != 'production'
     %readytitle="#{controller.controller_name} - #{controller.action_name}"
     %h2= ::Rails.env.downcase.capitalize
