@@ -1,6 +1,6 @@
 %head
+  %title="#{controller.controller_name.capitalize} - #{controller.action_name}"
   - if ::Rails.env.downcase != 'production'
-    %title="#{controller.controller_name.capitalize} - #{controller.action_name}"
     %h2= ::Rails.env.downcase.capitalize
   = stylesheet_link_tag 'default.scss.css'
   = stylesheet_link_tag 'main.css'
