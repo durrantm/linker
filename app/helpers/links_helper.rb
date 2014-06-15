@@ -22,4 +22,12 @@ module LinksHelper
     end
   end
 
+  def long_form(date)
+    date.strftime('%m/%d/%Y')
+  end
+
+  def short_form(date)
+    date.to_s.gsub('00:00:00 UTC','')[0,4]
+  end
+
 end

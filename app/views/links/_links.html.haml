@@ -7,4 +7,4 @@
   %a{:href => '#', :id => 'row_colors_off'}
     Off
 %span.spaced
-  = session[:full_details] == 'true' ? (link_to 'Summary', :full_details => 'false') : link_to('Full Details', :full_details => 'true')
+  = session[:full_details] == 'false' ? (link_to 'Full Details', :full_details => 'true') : link_to('Summary', :full_details => 'false')
