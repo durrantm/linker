@@ -1,7 +1,7 @@
 module LinksHelper
-  def construct_hyperlink(link_url, link_alt_text)
-    @www_max_length = session[:full_details] == 'true' ? 69 : 19
-    @alt_text_max_length = session[:full_details] == 'true' ? 85 : 35
+  def construct_hyperlink(link_url, link_alt_text, size)
+    @www_max_length = size == 'long' ? 69 : 19
+    @alt_text_max_length = size == 'long' ? 85 : 35
     link_url= link_url.gsub('http://','').gsub('https://','')
     link_url_no_www= link_url.gsub('http://','').gsub('https://','').gsub('www.','')
     new_url= '<a href="http://' + link_url +'" title="' + link_url + '">'
