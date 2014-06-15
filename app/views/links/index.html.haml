@@ -40,12 +40,12 @@
           %span{:id => "verify_link_#{index}"}
             - if link.verified_date
               - link_text = session[:full_details] == 'true' ? long_form(link.verified_date) : short_form(link.verified_date)
-              = link_to link_text, unverify_link_path(:id => link.id, :table_row => index), class: 'verify', remote:true
+              = link_to link_text, unverify_link_path(:id => link.id, :table_row => index), class: 'verify', title: 'UNverify link', remote:true
             - else
-              = link_to 'verify', verify_link_path(:id => link.id, :table_row => index),  class: 'verify', remote: true
+              = link_to 'verify', verify_link_path(:id => link.id, :table_row => index),  class: 'verify', title: 'Verify this link', remote: true
         %td= h @new_link_alt_text
         %td
-          = link_to 'Details', link, {"title" => link.alt_text}
+          = link_to 'Details', link, {"title" => link.alt_text}, title: 'Link details'
 %br/
 %span.mainLinks= render :partial => 'links'
 %br/
