@@ -21,6 +21,15 @@ class LinksController < ApplicationController
     end
   end
 
+  def unverify_link
+    @link = Link.find(params[:id])
+    @link.verified_date = nil
+    @link.save!
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def index
     @from = PrepareSearch.start_date(params[:from] ||= '1991')
     @to = PrepareSearch.end_date(params[:to] ||= '2299')
@@ -42,10 +51,12 @@ class LinksController < ApplicationController
     else
       @conditions = ''
     end
-    @links = Link.all(:joins => :group, :include => :group, :order => 'groups.group_name, links.position', :conditions => @conditions)
     if params[:full_details]
-      session[:full_details] = (params[:full_details] == 'true') ? 'true' : 'false' rescue 'false'
+      if params[:full_details] == 'true' or params[:full_details] == 'false'
+        session[:full_details] = params[:full_details]
+      end
     end
+    @links = Link.all(:joins => :group, :include => :group, :order => 'groups.group_name, links.position', :conditions => @conditions)
     respond_to do |format|
       format.html
     end

@@ -22,6 +22,7 @@ Linker::Application.routes.draw do
   match 'set_group_shading' => 'links#set_group_shading'
 
   get 'verify_link/:id', to: 'links#verify_link', as: :verify_link
+  get 'unverify_link/:id', to: 'links#unverify_link', as: :unverify_link
 
   root :to => "links#index"
 
