@@ -18,6 +18,9 @@
     dateInput.datepicker({dateFormat: format});
     dateInput.datepicker('setDate', $.datepicker.parseDate(format, dateInput.val()));
     });
+    function toggleMe() {
+    $("span.show_hide").toggleClass("shown hidden");
+    }
   = csrf_meta_tag
   = favicon_link_tag 'favicon.ico'
 %body

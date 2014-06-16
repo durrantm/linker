@@ -36,14 +36,14 @@
         %td
           %span#mainLink
             - if session[:full_details] == 'true'
-              %span{class: "shown"}
+              %span{class: "show_hide shown"}
                 = sanitize long_url
-              %span{class: "hidden"}
+              %span{class: "show_hide hidden"}
                 = sanitize short_url
             - else
-              %span{class: "shown"}
+              %span{class: "show_hide shown"}
                 = sanitize short_url
-              %span{class: "hidden"}
+              %span{class: "show_hide hidden"}
                 = sanitize long_url
         %td= link.version_number
         %td.column_align
