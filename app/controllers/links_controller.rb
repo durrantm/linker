@@ -12,11 +12,11 @@ class LinksController < ApplicationController
     render nothing: true
   end
 
-  def toggle_description_length
-    if session[:description_length] == 'long'
-      session[:description_length] = 'short'
+  def toggle_full_details
+    if session[:full_details] == 'true'
+      session[:full_details] = 'false'
     else
-      session[:description_length] = 'long'
+      session[:full_details] = 'true'
     end
     render nothing: true
   end
@@ -59,11 +59,6 @@ class LinksController < ApplicationController
       end
     else
       @conditions = ''
-    end
-    if params[:full_details]
-      if params[:full_details] == 'true' or params[:full_details] == 'false'
-        session[:full_details] = params[:full_details]
-      end
     end
     @links = Link.all(:joins => :group, :include => :group, :order => 'groups.group_name, links.position', :conditions => @conditions)
     respond_to do |format|
