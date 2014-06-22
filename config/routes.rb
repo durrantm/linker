@@ -20,6 +20,7 @@ Linker::Application.routes.draw do
   end
 
   match 'set_group_shading' => 'links#set_group_shading'
+  match 'toggle_full_details' => 'links#toggle_full_details'
 
   get 'verify_link/:id', to: 'links#verify_link', as: :verify_link
   get 'unverify_link/:id', to: 'links#unverify_link', as: :unverify_link
