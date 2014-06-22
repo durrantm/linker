@@ -10,3 +10,5 @@
   = session[:full_details] == 'false' ? (link_to 'Full Details', :full_details => 'true') : link_to('Summary', :full_details => 'false')
   %a{href: '#', onclick: "toggleMe()"}
     toggleMe
+  %a{href: '#', :data => {toggle_description_length: 'toggle'}}
+    toggleMeAjax

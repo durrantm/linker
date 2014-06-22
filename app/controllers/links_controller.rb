@@ -12,6 +12,15 @@ class LinksController < ApplicationController
     render nothing: true
   end
 
+  def toggle_description_length
+    if session[:description_length] == 'long'
+      session[:description_length] = 'short'
+    else
+      session[:description_length] = 'long'
+    end
+    render nothing: true
+  end
+
   def verify_link
     @link = Link.find(params[:id])
     @link.verified_date = Time.now
