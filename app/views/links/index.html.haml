@@ -1,14 +1,14 @@
 / Links:
 %span#main
   - tbl_width = session[:full_details] == "true" ? 1200 : 700
-  %table{:width => tbl_width}
+  %table{width: tbl_width}
     %tr
-      %td{:colspan => "6"}
+      %td{colspan: "6"}
         .nav_links
-          = render :partial => 'links'
-          = render :partial => 'search'
+          = render partial: 'links'
+          = render partial: 'search'
     %tr
-      %td{:colspan => "5"} &nbsp;
+      %td{colspan: "5"} &nbsp;
     %tr
       %th Group
       %th URL
@@ -19,35 +19,48 @@
       %th &nbsp;
     - row_bg_color_group = 'row_color_group_1'
     - current_group = ''
+    - size = session[:full_details] == 'true' ? 'long' : 'short'
     - @links.each_with_index do |link, index|
-      - construct_hyperlink(link.url_address, link.alt_text)
+      - construct_hyperlink(link.url_address, link.alt_text, 'long')
+      - long_url = @address_url
+      - construct_hyperlink(link.url_address, link.alt_text, 'short')
+      - short_url = @address_url
       - if link.group.group_name != (current_group ||= '')
         - display_group = current_group = link.group.group_name
         - row_bg_color_group = rotate_rows_color_group
       - else
         - display_group = ''
-      %tr{:class => "#{row_bg_color_group}"}
+      %tr{class: "#{row_bg_color_group}"}
         %td
-          = link_to display_group, link.group, {"title" => link.group.group_description}
+          = link_to display_group, link.group, {title: link.group.group_description}
         %td
           %span#mainLink
-            = sanitize @address_url
+            - if session[:full_details] == 'true'
+              %span{class: "shown"}
+                = sanitize long_url
+              %span{class: "hidden"}
+                = sanitize short_url
+            - else
+              %span{class: "shown"}
+                = sanitize short_url
+              %span{class: "hidden"}
+                = sanitize long_url
         %td= link.version_number
         %td.column_align
           - if link.content_date
             = session[:full_details] == 'true' ? long_form(link.content_date) : short_form(link.content_date)
         %td.column_align
-          %span{:id => "verify_link_#{index}"}
+          %span{id: "verify_link_#{index}"}
             - if link.verified_date
               - link_text = session[:full_details] == 'true' ? long_form(link.verified_date) : short_form(link.verified_date)
-              = link_to link_text, unverify_link_path(:id => link.id, :table_row => index), class: 'verify', title: 'UNverify link', remote:true
+              = link_to link_text, unverify_link_path(id: link.id, table_row: index), class: 'verify', title: 'UNverify link', remote:true
             - else
-              = link_to 'verify', verify_link_path(:id => link.id, :table_row => index),  class: 'verify', title: 'Verify this link', remote: true
+              = link_to 'verify', verify_link_path(id: link.id, table_row: index),  class: 'verify', title: 'Verify this link', remote: true
         %td= h @new_link_alt_text
         %td
-          = link_to 'Details', link, {"title" => link.alt_text}, title: 'Link details'
+          = link_to 'Details', link, {title: link.alt_text}, title: 'Link details'
 %br/
-%span.mainLinks= render :partial => 'links'
+%span.mainLinks= render partial: 'links'
 %br/
 %br/
 = "Total Links = #{@links.count}"
