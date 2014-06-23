@@ -29,7 +29,7 @@
         = 'From: '
         = select_tag "from", options_for_select(@years)
         %br
-        = 'To: &nbsp;&nbsp;&nbsp;&nbsp;'
+        = raw('To: &nbsp;&nbsp;&nbsp;&nbsp;')
         = select_tag "to", options_for_select(@years.reverse!)
         %br
         Include Blank Dates?

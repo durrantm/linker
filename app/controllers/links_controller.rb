@@ -52,9 +52,9 @@ class LinksController < ApplicationController
         @groups_comparison = PrepareSearch.groups(params[:groups])
         # @version_information = { :version => params[:version], :version_comparison => params[:version_comparison], :include_blank_version => params[:include_blank_version] }
         # @version_comparison = PrepareSearch.versions(@version_information)
-        @date_comparison = PrepareSearch.dates(@from, @to)
+        # @date_comparison = PrepareSearch.dates(@from, @to)
         # @conditions = '1=1' + @groups_comparison+ @version_comparison+ @date_comparison + @text_search
-        @conditions = '1=1' + @groups_comparison+ @date_comparison + @text_search
+        @conditions = '1=1' + @groups_comparison + @text_search
       else
         @conditions = PrepareSearch.basic_search(@words_1)
       end
