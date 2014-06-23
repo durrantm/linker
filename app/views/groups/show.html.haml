@@ -15,7 +15,7 @@ Members:
   %ul#sortable
     - @members.each do |loop|
       = content_tag_for :li, loop do
-        - construct_hyperlink(loop.url_address, loop.alt_text)
+        - construct_hyperlink(loop.url_address, loop.alt_text, 'long')
         = sanitize @address_url
         \- #{h @new_link_alt_text}            &nbsp;&nbsp;#{link_to 'details', link_path(loop), {"title" => loop.alt_text}}            &nbsp;&nbsp;#{link_to 'edit', edit_link_path(loop), {"title" => loop.alt_text}}
 
