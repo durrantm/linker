@@ -7,9 +7,10 @@
   %a{:href => '#', :id => 'row_colors_off'}
     Off
 %span.spaced
-  %a{href: '#', :data => {toggle_description_length: 'toggle'}}
-    - if session[:full_details] == 'true'
-      Summary / <b>Details</b>
-    - else
-      <b>Summary</b> / Details
+  - if session[:full_details] == 'true'
+    = render "toggle", :txt => "Summary / <b>Details</b>", :show_hide => 'shown'
+    = render "toggle", :txt => "<b>Summary</b> / Details", :show_hide => 'hidden'
+  - else
+    = render "toggle", :txt => "<b>Summary</b> / Details", :show_hide => 'shown'
+    = render "toggle", :txt => "Summary / <b>Details</b>", :show_hide => 'hidden'
 
