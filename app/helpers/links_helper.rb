@@ -1,5 +1,5 @@
 module LinksHelper
-  def construct_hyperlink(link_url, link_alt_text, size)
+  def construct_hyperlink(link_url, link_alt_text, size='long')
     @www_max_length = size == 'long' ? 69 : 19
     @alt_text_max_length = size == 'long' ? 85 : 35
     link_url= link_url.gsub('http://','').gsub('https://','')
