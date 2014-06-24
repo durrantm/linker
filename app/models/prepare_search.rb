@@ -29,7 +29,7 @@ class PrepareSearch
   def self.dates(from, to)
     @from= from
     @to= to
-     ' and ((content_date is NULL) or( (content_date >= "' + @from.to_s + '") and (content_date <= "' + @to.to_s + '") ) )'
+     " and ((content_date is NULL) or( (content_date >= '" + @from.to_s + "') and (content_date <= '" + @to.to_s + "') ) )"
   end
 
   def self.text_search(words_1,comparison_operator='',words_2='')
@@ -37,11 +37,11 @@ class PrepareSearch
     @words_2 = words_2
     @comparison_operator= comparison_operator
     if @words_2.length > 0
-      @text_search = ' and ( (url_address LIKE "%'+@words_1+'%" or alt_text LIKE "%'+@words_1+'%" or version_number LIKE "%'+@words_1+'%") '
+      @text_search = " and ( (url_address LIKE '%"+@words_1+"%' or alt_text LIKE '%"+@words_1+"%' or version_number LIKE '%"+@words_1+"%') "
       @text_search+= @comparison_operator
-      @text_search+= ' (url_address LIKE "%'+@words_2+'%" or alt_text LIKE "%'+@words_2+'%" or version_number LIKE "%'+@words_2+'%") )'
+      @text_search+= " (url_address LIKE '%"+@words_2+"%' or alt_text LIKE '%"+@words_2+"%' or version_number LIKE '%"+@words_2+"%') )"
     else
-      ' and (url_address LIKE "%'+@words_1+'%" or alt_text LIKE "%'+@words_1+'%" or version_number LIKE "%'+@words_1+'%")'
+      " and (url_address LIKE '%"+@words_1+"%' or alt_text LIKE '%"+@words_1+"%' or version_number LIKE '%"+@words_1+"%')"
     end
   end
 
