@@ -1,5 +1,4 @@
 class Link < ActiveRecord::Base
-  include HTTParty
 
   belongs_to :group
   validates_presence_of :url_address
