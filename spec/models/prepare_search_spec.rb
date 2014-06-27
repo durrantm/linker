@@ -25,10 +25,10 @@ describe "Prepare Search methods" do
 
   describe "PrepareSearch#versions" do
 
-    before(:each) do 
+    before(:each) do
       @versions= {:version => 0, :version_comparison => '>=', :include_blank_version => true}
     end
-    subject { PrepareSearch.versions(@versions) } 
+    subject { PrepareSearch.versions(@versions) }
     it { should == " and (version_number >= 0.0 or version_number is NULL or version_number = '' )" }
 
   end
@@ -36,7 +36,7 @@ describe "Prepare Search methods" do
   describe "PrepareSearch#dates" do
 
     subject { PrepareSearch.dates(Date.new(2009), Date.new(2012) ) }
-    it { should == " and ((content_date is NULL) or( (content_date >= \"2009-01-01\") and (content_date <= \"2012-01-01\") ) )" }
+    it { should == " and ((content_date is NULL) or( (content_date >= '2009-01-01') and (content_date <= '2012-01-01') ) )" }
 
   end
 
@@ -50,7 +50,7 @@ describe "Prepare Search methods" do
   describe "PrepareSearch#text_search" do
 
     subject { PrepareSearch.text_search("tests","or","rs") }
-    it { should == " and ( (url_address LIKE \"%tests%\" or alt_text LIKE \"%tests%\" or version_number LIKE \"%tests%\") or (url_address LIKE \"%rs%\" or alt_text LIKE \"%rs%\" or version_number LIKE \"%rs%\") )" }
+    it { should == " and ( (url_address LIKE '%tests%' or alt_text LIKE '%tests%' or version_number LIKE '%tests%') or (url_address LIKE '%rs%' or alt_text LIKE '%rs%' or version_number LIKE '%rs%') )" }
 
   end
 
