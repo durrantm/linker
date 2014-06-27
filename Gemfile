@@ -32,15 +32,7 @@ group :development, :test do
   gem "factory_girl_rails", "~> 3.0"
   gem "shoulda-matchers"
 end
-
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
