@@ -16,4 +16,14 @@ describe Link do
   it { should validate_presence_of :group_id}
   it { should ensure_length_of(:version_number).is_at_most(10) }
 
+  its "url check status code should be 2xx" do
+    link.url_address = 'http://www.ixgxgxgihghghggoogle.com'
+    expect(link.valid_get?).to be_false
+  end
+
+  its "url check status code should be 2xx" do
+    link.url_address = 'http://www.google.com'
+    expect(link.valid_get?).to be_true
+  end
+
 end

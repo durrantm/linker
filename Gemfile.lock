@@ -58,6 +58,9 @@ GEM
     haml (4.0.5)
       tilt
     hike (1.2.3)
+    httparty (0.13.1)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.6.9)
     journey (1.0.4)
     jquery-rails (3.1.0)
@@ -70,6 +73,7 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.2)
     multi_json (1.8.4)
+    multi_xml (0.5.5)
     mysql2 (0.3.15)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
@@ -150,6 +154,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   factory_girl_rails (~> 3.0)
   haml
+  httparty
   jquery-rails
   mysql2
   pg
