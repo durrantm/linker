@@ -1,6 +1,6 @@
 / Links:
 %span#main
-  - tbl_width = session[:full_details] == "true" ? 1200 : 700
+  - tbl_width = session[:full_details] == "true" ? 1200 : 800
   %table{width: tbl_width}
     %tr
       %td{colspan: "6"}
@@ -36,31 +36,31 @@
         %td
           %span#mainLink
             - if session[:full_details] == 'true'
-              = render :partial => 'details_toggle', :locals => { :urls => [long_url, short_url] }
+              = render :partial => 'content_toggle', :locals => { :content => [long_url, short_url] }
             - else
-              = render :partial => 'details_toggle', :locals => { :urls => [short_url, long_url] }
+              = render :partial => 'content_toggle', :locals => { :content => [short_url, long_url] }
         %td= link.version_number
         %td.column_align
           - if link.content_date
             - if session[:full_details] == 'true'
-              = render :partial => 'date_toggle', :locals => { :dates => [long_form(link.content_date), short_form(link.content_date)] }
+              = render :partial => 'content_toggle', :locals => { :content => [long_form(link.content_date), short_form(link.content_date)] }
             - else
-              = render :partial => 'date_toggle', :locals => { :dates => [short_form(link.content_date), long_form(link.content_date)] }
+              = render :partial => 'content_toggle', :locals => { :content => [short_form(link.content_date), long_form(link.content_date)] }
         %td.column_align
           %span{id: "verify_link_#{index}"}
             - if link.verified_date
               - link_text = session[:full_details] == 'true' ? long_form(link.verified_date) : short_form(link.verified_date)
               - if session[:full_details] == 'true'
-                = render :partial => 'date_toggle', :locals => { :dates => [long_form(link.verified_date), short_form(link.verified_date)] }
+                = render :partial => 'content_toggle', :locals => { :content => [long_form(link.verified_date), short_form(link.verified_date)] }
               - else
-                = render :partial => 'date_toggle', :locals => { :dates => [short_form(link.verified_date), long_form(link.verified_date)] }
+                = render :partial => 'content_toggle', :locals => { :content => [short_form(link.verified_date), long_form(link.verified_date)] }
             - else
               = link_to 'verify', verify_link_path(id: link.id, table_row: index),  class: 'verify', title: 'Verify this link', remote: true
         %td
           - if session[:full_details] == 'true'
-            = render :partial => 'alt_text_toggle', :locals => { :texts => [@new_link_alt_text, @new_link_alt_text[0..24]] }
+            = render :partial => 'content_toggle', :locals => { :content => [@new_link_alt_text, @new_link_alt_text[0..24]] }
           - else
-            = render :partial => 'alt_text_toggle', :locals => { :texts => [@new_link_alt_text[0..24], @new_link_alt_text] }
+            = render :partial => 'content_toggle', :locals => { :content => [@new_link_alt_text[0..24], @new_link_alt_text] }
         %td
           = link_to 'Details', link, {title: link.alt_text}, title: 'Link details'
 %br/
