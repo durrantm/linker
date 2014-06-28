@@ -37,5 +37,7 @@
 .column_align { text-align: center; }
 .shown { display: inline }
 .hidden { display: none }
+.shown_shading_link { display: inline }
+.hidden_shading_link { display: none }
 .wide { width: 1200 }
 .narrow { width: 800 }

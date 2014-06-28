@@ -7,10 +7,15 @@ class LinksController < ApplicationController
     @years = ((Date.today.year - 20)..Date.today.year).to_a
   end
 
-  def set_group_shading
-    session[:group_shading] = params[:show]
+  def toggle_row_shading
+    if session[:group_shading] == 'true'
+      session[:group_shading] = 'false'
+    else
+      session[:group_shading] = 'true'
+    end
     render nothing: true
   end
+
 
   def toggle_full_details
     if session[:full_details] == 'true'
