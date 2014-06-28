@@ -1,4 +1,10 @@
-%span{class: "show_hide shown"}
-  = sanitize content[0]
-%span{class: "show_hide hidden"}
-  = sanitize content[1]
+- if session[:full_details] == 'true'
+  %span{class: "show_hide shown"}
+    = sanitize content[0]
+  %span{class: "show_hide hidden"}
+    = sanitize content[1]
+- else
+  %span{class: "show_hide shown"}
+    = sanitize content[1]
+  %span{class: "show_hide hidden"}
+    = sanitize content[0]
