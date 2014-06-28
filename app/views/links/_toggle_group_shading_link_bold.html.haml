@@ -1,3 +1,20 @@
-%span{class: "show_hide #{show_hide}"}
+%span{class: "show_hide shown_shading_link"}
   %a{href: '#', :data => {toggle_group_row_shading: 'toggle'}}
-    = raw(txt)
+    - if flag == '0'
+      %b
+        Yes
+      \/ No
+    - else
+      Yes
+      %b
+        \/ No
+%span{class: "show_hide hidden_shading_link"}
+  %a{href: '#', :data => {toggle_group_row_shading: 'toggle'}}
+    - if flag == '1'
+      %b
+        Yes
+      \/No
+    - else
+      Yes
+      %b
+        \/ No

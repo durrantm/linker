@@ -3,11 +3,9 @@
 %span.spaced#shading_link
   Group Shading:
   - if session[:group_shading] == 'true'
-    = render "toggle_group_shading_link_bold", :txt => "<b>Yes</b> / No", :show_hide => 'shown_shading_link'
-    = render "toggle_group_shading_link_bold", :txt => "Yes / <b>No</b>", :show_hide => 'hidden_shading_link'
+    = render "toggle_group_shading_link_bold", :flag => '0'
   - else
-    = render "toggle_group_shading_link_bold", :txt => "Yes / <b>No</b>", :show_hide => 'shown_shading_link'
-    = render "toggle_group_shading_link_bold", :txt => "<b>Yes</b> / No", :show_hide => 'hidden_shading_link'
+    = render "toggle_group_shading_link_bold", :flag => '1'
 %span.spaced
   - if session[:full_details] == 'true'
     = render "toggle_details_link_bold", :txt => "Summary / <b>Details</b>", :show_hide => 'shown'
