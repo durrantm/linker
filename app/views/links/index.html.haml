@@ -1,7 +1,7 @@
 / Links:
 %span#main
-  - tbl_width = session[:full_details] == "true" ? 1200 : 800
-  %table{width: tbl_width}
+  - tbl_class = session[:full_details] == "true" ? 'wide' : 'narrow'
+  %table{class: tbl_class}
     %tr
       %td{colspan: "6"}
         .nav_links

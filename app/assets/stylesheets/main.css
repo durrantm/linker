@@ -37,3 +37,5 @@
 .column_align { text-align: center; }
 .shown { display: inline }
 .hidden { display: none }
+.wide { width: 1200 }
+.narrow { width: 800 }
