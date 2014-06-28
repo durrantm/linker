@@ -19,8 +19,9 @@ Linker::Application.routes.draw do
     end
   end
 
-  match 'set_group_shading' => 'links#set_group_shading'
+  match 'set_group_shading' => 'links#set_group_shading' # About to be obselete
   match 'toggle_full_details' => 'links#toggle_full_details'
+  match 'toggle_row_shading' => 'links#toggle_row_shading'
 
   get 'verify_link/:id', to: 'links#verify_link', as: :verify_link
   get 'unverify_link/:id', to: 'links#unverify_link', as: :unverify_link

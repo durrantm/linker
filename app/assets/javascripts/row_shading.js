@@ -1,18 +1,9 @@
 $(function(){
-$("a#row_colors_on").click(function(){
-$(".row_color_group_1").addClass("color_group_1");
-$(".row_color_group_2").addClass("color_group_2");
-$(".row_color_group_3").addClass("color_group_3");
-$.get('/set_group_shading?show=true');
-event.preventDefault();
+  $("a[data-toggle-group-row-shading]='toggle'").click(function(){
+    $(".row_color_group_1").toggleClass("color_group_1");
+    $(".row_color_group_2").toggleClass("color_group_2");
+    $(".row_color_group_3").toggleClass("color_group_3");
+    $("span#shading_link span.show_hide").toggleClass("shown_shading_link hidden_shading_link");
+    $.get('/toggle_row_shading');
+  });
 });
-});
-$(function(){
-$("a#row_colors_off").click(function(){
-$(".row_color_group_1").removeClass("color_group_1");
-$(".row_color_group_2").removeClass("color_group_2");
-$(".row_color_group_3").removeClass("color_group_3");
-$.get('/set_group_shading?show=false');
-});
-});
-
