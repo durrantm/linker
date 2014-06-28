@@ -19,7 +19,6 @@ Linker::Application.routes.draw do
     end
   end
 
-  match 'set_group_shading' => 'links#set_group_shading' # About to be obselete
   match 'toggle_full_details' => 'links#toggle_full_details'
   match 'toggle_row_shading' => 'links#toggle_row_shading'
 
