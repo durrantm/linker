@@ -8,9 +8,9 @@
     Off
 %span.spaced
   - if session[:full_details] == 'true'
-    = render "toggle", :txt => "Summary / <b>Details</b>", :show_hide => 'shown'
-    = render "toggle", :txt => "<b>Summary</b> / Details", :show_hide => 'hidden'
+    = render "toggle_details_link_bold", :txt => "Summary / <b>Details</b>", :show_hide => 'shown'
+    = render "toggle_details_link_bold", :txt => "<b>Summary</b> / Details", :show_hide => 'hidden'
   - else
-    = render "toggle", :txt => "<b>Summary</b> / Details", :show_hide => 'shown'
-    = render "toggle", :txt => "Summary / <b>Details</b>", :show_hide => 'hidden'
+    = render "toggle_details_link_bold", :txt => "<b>Summary</b> / Details", :show_hide => 'shown'
+    = render "toggle_details_link_bold", :txt => "Summary / <b>Details</b>", :show_hide => 'hidden'
 
