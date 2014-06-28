@@ -36,15 +36,9 @@
         %td
           %span#mainLink
             - if session[:full_details] == 'true'
-              %span{class: "show_hide shown"}
-                = sanitize long_url
-              %span{class: "show_hide hidden"}
-                = sanitize short_url
+              = render :partial => 'details_toggle', :locals => { :urls => [long_url, short_url] }
             - else
-              %span{class: "show_hide shown"}
-                = sanitize short_url
-              %span{class: "show_hide hidden"}
-                = sanitize long_url
+              = render :partial => 'details_toggle', :locals => { :urls => [short_url, long_url] }
         %td= link.version_number
         %td.column_align
           - if link.content_date
@@ -66,4 +60,3 @@
 = "Total Links = #{@links.count}"
 %br/
 %br/
-
