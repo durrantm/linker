@@ -4,7 +4,7 @@ ruby '2.0.0'
 
 gem 'rails', '3.2.17'
 gem 'httparty'
-gem 'rails_12factor' # Avoid deprecation warnings about 2.3 style plugins
+gem 'rails_12factor' # Avoid deprecation warnings
 
 # Gems used only for assets and not required
 # in production environments by default.
