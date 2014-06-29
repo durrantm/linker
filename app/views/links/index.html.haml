@@ -1,7 +1,7 @@
 / Links:
 %span#main
   - tbl_class = session[:full_details] == "true" ? 'wide' : 'narrow'
-  %table{class: tbl_class}
+  %table{class: tbl_class, data_links: 'true'}
     %tr
       %td{colspan: "6"}
         .nav_links
@@ -9,7 +9,7 @@
           = render partial: 'search'
     %tr
       %td{colspan: "5"} &nbsp;
-    %tr
+    %tr{data_header_row: 'true'}
       %th Group
       %th URL
       %th Ver.
@@ -55,6 +55,7 @@
 %span.mainLinks= render partial: 'links'
 %br/
 %br/
-= "Total Links = #{@links.count}"
+%span{data_total: ''}
+  = "Total Links = #{@links.count}"
 %br/
 %br/
