@@ -7,17 +7,6 @@
   = stylesheet_link_tag 'jquery-ui-1.8.22.custom.css'
 
   = javascript_include_tag "application"
-  -#if action_name =~ /new|edit/ # TODO Did this due a js conflict not yet resolved mdd
-  %script
-    $(function() {
-    $( "#datepicker" ).datepicker();
-    });
-    $(function() {
-    var dateInput = $("#datepicker");
-    var format = 'yy-mm-dd';
-    dateInput.datepicker({dateFormat: format});
-    dateInput.datepicker('setDate', $.datepicker.parseDate(format, dateInput.val()));
-    });
   = csrf_meta_tag
   = favicon_link_tag 'favicon.ico'
 %body
