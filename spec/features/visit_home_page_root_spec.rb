@@ -63,17 +63,21 @@ describe "Add and edit", :type => :feature do
 
   it "lets me add a group" do
     find('div#side div a', text: 'New Group').click
-    fill_in 'group[group_name]', with: 'group A'
+    fill_in 'group[group_name]', with: 'Group A'
     click_button 'Save'
     expect(page).to have_content('Group A')
   end
 
-  pending "lets me add a link" do
-    find('div#side div a', text: 'New Link').click
-    fill_in 'link[url_address]', with: 'www.abc12345'
-    find('select').find(:xpath, 'option[2]').select_option
+  pending "lets me edit a group" do
+    visit '/links'
+    find('div#side a', text: 'New Group').click
+    fill_in 'group[group_name]', with: 'Group A'
     click_button 'Save'
-    expect(page).to have_content('abc12345')
+    find('div#side a[text: "Groups"]').click
+    find('div#main td[text: "Group A"] td a[text: "Edit"]').click
+    fill_in 'group[group_name]', with: 'Group A changed'
+    click_button 'Save'
+    expect(page).to have_content('Group A changed')
   end
 end
 
