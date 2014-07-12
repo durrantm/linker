@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140525175943) do
+ActiveRecord::Schema.define(:version => 20140712180142) do
 
   create_table "groups", :force => true do |t|
     t.string   "group_name",        :null => false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20140525175943) do
     t.datetime "updated_at"
     t.string   "version_number"
     t.date     "content_date"
-    t.datetime "verified_date"
+    t.date     "verified_date"
   end
 
   create_table "sessions", :force => true do |t|
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20140525175943) do
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin"
   end
 
 end

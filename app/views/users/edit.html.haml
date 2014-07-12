@@ -13,6 +13,7 @@
     = f.label :username
     %br/
     = f.text_field :username
+  = render 'admin_section', :f => f
   %p
     = f.submit "Update"
 = link_to 'Show', @user

@@ -1,0 +1,7 @@
+%p
+  = f.label :admin?
+  %br/
+  - if session[:admin]
+    = f.check_box :admin
+  - else
+    = @user.is_admin

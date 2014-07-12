@@ -6,6 +6,7 @@ class LadminController < ApplicationController
   	  if user
         session[:user_id] = user.id
         session[:username] = user.username
+        session[:admin] = user.admin
         uri = session[:original_uri]
         session[:original_uri] = nil
         redirect_to(uri || {:action => "index", :controller => :links})

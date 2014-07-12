@@ -24,6 +24,7 @@
       = f.label :password_confirmation, 'Confirm'
       %br/
       = f.password_field :password_confirmation, :size => 40
+    = render 'admin_section', :f => f
     %p
       = f.submit "Create"
 = link_to 'Back', users_path
