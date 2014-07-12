@@ -1,5 +1,5 @@
 <%- if @link.verified_date %>
-  $("span#verify_link_<%=params['table_row']%>").text('Verified');
+  $("span#verify_link_<%=params['table_row']%>").html('<span class="done">Verified</span>');
 <%- else %>
-  $("span#verify_link_<%=params['table_row']%>").text('Unverified');
+  $("span#verify_link_<%=params['table_row']%>").html('<span class="undone">Unverified</span>');
 <%- end %>

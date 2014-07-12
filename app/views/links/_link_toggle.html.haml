@@ -1,10 +1,10 @@
 - if session[:full_details] == 'true'
   %span{class: "show_hide shown"}
-    = link_to content[0], url, remote: true
+    = link_to content[0], url, title: 'Reverify this link', remote: true
   %span{class: "show_hide hidden"}
-    = link_to content[1], url, remote: true
+    = link_to content[1], url, title: 'Reverify this link', remote: true
 - else
   %span{class: "show_hide shown"}
-    = link_to content[1], url, remote: true
+    = link_to content[1], url, title: 'Reverify this link', remote: true
   %span{class: "show_hide hidden"}
-    = link_to content[0], url, remote: true
+    = link_to content[0], url, title: 'Reverify this link', remote: true
