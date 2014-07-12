@@ -18,6 +18,8 @@ class LadminController < ApplicationController
 
   def logout
     session[:user_id] = nil
+    session[:username] = nil
+    session[:admin] = nil
     flash[:notice] = "Logged Out"
     redirect_to(:action => "index", :controller => :links)
   end
