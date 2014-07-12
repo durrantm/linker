@@ -28,7 +28,11 @@ class LinksController < ApplicationController
 
   def verify_link
     @link = Link.find(params[:id])
-    @link.verified_date = Time.now
+    if @link.valid_get?
+      @link.verified_date = Time.now
+    else
+      @link.verified_date = nil
+    end
     @link.save!
     respond_to do |format|
       format.js
