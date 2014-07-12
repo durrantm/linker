@@ -44,7 +44,7 @@
           %span{id: "verify_link_#{index}"}
             - if link.verified_date
               - link_text = session[:full_details] == 'true' ? long_form(link.verified_date) : short_form(link.verified_date)
-              = render :partial => 'content_toggle', :locals => { :content => [long_form(link.verified_date), short_form(link.verified_date)] }
+              = render :partial => 'link_toggle', :locals => { :content => [long_form(link.verified_date), short_form(link.verified_date)], :url => verify_link_path(id: link.id, table_row: index) }
             - else
               - if session[:user_id]
                 = link_to 'verify', verify_link_path(id: link.id, table_row: index),  class: 'verify', title: 'Verify this link', remote: true
