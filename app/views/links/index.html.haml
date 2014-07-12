@@ -54,6 +54,9 @@
           = render :partial => 'content_toggle', :locals => { :content => [@new_link_alt_text, @new_link_alt_text[0..24]] }
         %td
           = link_to 'Details', link, {title: link.alt_text}, title: 'Link details'
+        - if session[:admin]
+          %td
+            = link_to 'X', link_path(link), method: :delete, data: { :confirm => 'Are you sure?' }
 %br/
 %span.mainLinks= render partial: 'links'
 %br/
