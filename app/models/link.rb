@@ -7,15 +7,9 @@ class Link < ActiveRecord::Base
   acts_as_list
 
   def valid_get?
-    visit_url == 'ok'
-  end
-
-  def visit_url
-    HTTParty.get(url_address).code.between?(200,399) ? 'ok' : 'not ok'
-  rescue SocketError => error_detail
-    return "not available"
-  rescue NoMethodError => error_detail
-    return "not valid"
+    HTTParty.get(url_address).code.between?(200,399) ? true : false
+  rescue
+    false
   end
 
 end
