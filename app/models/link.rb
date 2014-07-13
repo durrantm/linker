@@ -7,7 +7,7 @@ class Link < ActiveRecord::Base
   acts_as_list
 
   def valid_get?
-    HTTParty.get(url_address).code.between?(200,399) ? true : false
+    HTTParty.get(url_address).code.between?(100,399) ? true : false
   rescue
     false
   end
