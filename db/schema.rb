@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20140712180142) do
     t.datetime "updated_at"
     t.string   "version_number"
     t.date     "content_date"
-    t.date     "verified_date"
+    t.datetime "verified_date"
   end
 
   create_table "sessions", :force => true do |t|
