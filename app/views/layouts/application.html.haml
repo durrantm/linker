@@ -3,7 +3,8 @@
   - if ::Rails.env.downcase != 'production'
     %h2= ::Rails.env.downcase.capitalize
   = stylesheet_link_tag 'application'
-  = javascript_include_tag "application"
+  -#= javascript_include_tag "application"
+  = javascript_include_tag :defaults
   = csrf_meta_tag
   = favicon_link_tag 'favicon.ico'
 %body
