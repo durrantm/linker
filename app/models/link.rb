@@ -12,4 +12,10 @@ class Link < ActiveRecord::Base
     false
   end
 
+  def verify_link
+    if valid_get?
+      verified_date = Time.now
+    end
+  end
+
 end

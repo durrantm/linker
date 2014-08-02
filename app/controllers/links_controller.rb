@@ -28,11 +28,7 @@ class LinksController < ApplicationController
 
   def verify_link
     @link = Link.find(params[:id])
-    if @link.valid_get?
-      @link.verified_date = Time.now
-    else
-      @link.verified_date = nil
-    end
+    @link.verfy_link
     @link.save!
     respond_to do |format|
       format.js
@@ -86,6 +82,7 @@ class LinksController < ApplicationController
   def new
     @link = Link.new
     @link.content_date=Time.new().strftime("%m/%d/%Y")
+    @link.url_address='http://'
     @groups = Group.all.collect { |g| [g.group_name, g.id] }
     @group_name =
       if params[:group_id]
@@ -117,10 +114,17 @@ class LinksController < ApplicationController
     @link = Link.new(params[:link])
     @link.content_date=Time.new().strftime("%m/%d/%Y") if @link.content_date.nil?
     respond_to do |format|
+      if @link.valid_get?
+        @link.verify_link
+        http_check_msg = 'and the url was verified as valid'
+      else
+        http_check_msg = 'however it was *not* possible to visit the url as given currently'
+      end
       if @link.save
-        flash[:notice] = 'Link was successfully created.'
+        flash[:notice] = 'Link was successfully created, ' + http_check_msg
         format.html { redirect_to(@link) }
       else
+        flash[:notice] = 'Error, Link was not created.'
         @groups = Group.all.collect { |g| [g.group_name, g.id] }
         format.html { render :action => "new"}
       end
