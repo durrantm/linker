@@ -1,20 +1,17 @@
 class User < ActiveRecord::Base
 require 'digest/sha1'
   attr_accessor :password_confirmation
-  attr_accessor :admin
+#  attr_accessor :admin
 
   validates_presence_of     :username
   validates_uniqueness_of   :username
   validates_confirmation_of :password
   validate :password_non_blank
 
-  def self.delete_me(user)
-    how_many_admins = User.where(admin: true).count
-    if how_many_admins > 1
-      puts "delete ok!"
+  def self.delete_one(user)
+    admin_count = User.where(admin: true).count
+    if admin_count > 1
       user.delete
-    else
-      puts "delete not ok!"
     end
   end
 

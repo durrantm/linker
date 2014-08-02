@@ -8,4 +8,8 @@ FactoryGirl.define do
     username "Admin Durrant"
   end
 
+  factory :user_admin, class: User do
+    admin true
+  end
+
 end

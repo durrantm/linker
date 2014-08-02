@@ -12,17 +12,15 @@ describe User do
 
 end
 
-describe "keep admin" do
+describe "how many admins" do
 
-  its "Can't delete the only admin" do
-    user1 = User.build(username: 'user1', password: 'abc123', admin: true)
-    user.save!
-    #user2 = User.create!(username: 'user2', password: 'def456', admin: true)
-    #user3 = User.create!(username: 'user3', password: 'ghi798', admin: true)
-    #User.delete_me(user1)
-    #User.delete_me(user2)
-    #User.delete_me(user3)
-    expect(User.where(admin: true).count).to eq 3
+  let!(:user1) { User.create(username: 'user100', password: 'abc123', admin: true) }
+  let!(:user2) { User.create(username: 'user200', password: 'abc123', admin: true) }
+
+  its "how many" do
+    User.delete_one(user1)
+    User.delete_one(user2)
+    expect(User.where(admin: true).count).to eq 1
   end
 
 end

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :authorize
-  
+
   # GET /users
   # GET /users.xml
   def index
@@ -80,11 +80,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     begin
       @user.destroy
+      #TODO change @user.destroy to User.delete_one(@user)
       flash[:notice] = "User #{@user.username} deleted"
     rescue Exception => e
         flash[:notice] = e.message
     end
-  
+
     respond_to do |format|
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
