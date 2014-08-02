@@ -9,4 +9,3 @@
 //= require long_or_short_details
 //= require sortable_hook
 //= require date-picker
-//= require_self
