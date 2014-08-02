@@ -10,6 +10,6 @@
  *
  *= require 'main'
  *= require 'default'
+*/
  *= require_self
  *= require_tree .
- */
