@@ -48,37 +48,3 @@ describe "Allows signin", :type => :feature do
     expect(page).to have_no_content 'Login'
   end
 end
-
-describe "Add and edit", :type => :feature do
-
-  before :all do
-    User.create(:username => 'rubdubdub@google.com', :password => 'esceptionalitynessish')
-    visit '/ladmin/login'
-    fill_in 'username', :with => 'rubdubdub@google.com'
-    fill_in 'password', :with => 'esceptionalitynessish'
-    find('input[value="Login"]').click
-    expect(page).to have_content 'Logout'
-    expect(page).to have_no_content 'Login'
-  end
-
-  it "lets me add a group" do
-    find('div#side div a', text: 'New Group').click
-    fill_in 'group[group_name]', with: 'Group A'
-    click_button 'Save'
-    expect(page).to have_content('Group A')
-  end
-
-  pending "lets me edit a group" do
-    visit '/links'
-    find('div#side a', text: 'New Group').click
-    fill_in 'group[group_name]', with: 'Group A'
-    click_button 'Save'
-    find('div#side a[text: "Groups"]').click
-    find('div#main td[text: "Group A"] td a[text: "Edit"]').click
-    fill_in 'group[group_name]', with: 'Group A changed'
-    click_button 'Save'
-    expect(page).to have_content('Group A changed')
-  end
-end
-
-
