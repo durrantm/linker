@@ -8,7 +8,7 @@ class Link < ActiveRecord::Base
 
   def valid_get?
     HTTParty.get(url_address).code.between?(100,399) ? true : false
-  rescue
+  rescue SocketError, URI::InvalidURIError
     false
   end
 
