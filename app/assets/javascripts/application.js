@@ -11,5 +11,6 @@
 //= require row_shading
 //= require long_or_short_details
 //= require sortable_hook
+//= require verifying_link
 //= require date-picker
 //= require_self

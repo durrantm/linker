@@ -14,7 +14,8 @@
       %th URL
       %th Ver.
       %th Added
-      %th &nbsp;Verified&nbsp;
+      %th &nbsp;&nbsp;Verified&nbsp;&nbsp;
+      // Extra spaces stops ajax bouncing with "verified..."
       %th Alt Text
       %th &nbsp;
     - row_bg_color_group = 'row_color_group_1'
@@ -47,7 +48,8 @@
               = render :partial => 'link_toggle', :locals => { :content => [long_form(link.verified_date), short_form(link.verified_date)], :url => verify_link_path(id: link.id, table_row: index) }
             - else
               - if session[:user_id]
-                = link_to 'verify', verify_link_path(id: link.id, table_row: index),  class: 'verify', title: 'Verify this link', remote: true
+                %a{href: "#", :data => {verifying_link: 'yes', id: link.id, table_row: index}}
+                  verify
               - else
                 No
         %td
