@@ -31,9 +31,11 @@ class LinksController < ApplicationController
     if @link.valid_get?
       if @link.update_attribute(:verified_date, Time.now)
         render nothing: true, status: 200
-     else
+      else
         render nothing: true, status: 422
       end
+    else
+      render nothing: true, status: 422
     end
   end
 
