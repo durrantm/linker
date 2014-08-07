@@ -58,7 +58,7 @@
           = link_to 'Details', link, {title: link.alt_text}, title: 'Link details'
         - if session[:admin]
           %td
-            = link_to 'X', link_path(link), method: :delete, data: { :confirm => 'Are you sure?' }
+            = link_to 'X', link_path(link), method: :delete, id: link.id, data: { confirm: 'Are you sure?', remote: true }
 %br/
 %span.mainLinks= render partial: 'links'
 %br/

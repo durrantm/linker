@@ -154,6 +154,7 @@ class LinksController < ApplicationController
     @link.destroy
     respond_to do |format|
       format.html { redirect_to(links_url) }
+      format.js
     end
   end
 end
