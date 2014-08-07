@@ -119,8 +119,9 @@ class LinksController < ApplicationController
     @link.content_date=Time.new().strftime("%m/%d/%Y") if @link.content_date.nil?
     respond_to do |format|
       if @link.valid_get?
-        @link.verify_link
+        #@link.verify_this_link
         http_check_msg = 'and the url was verified as valid'
+        @link.update_attribute(:verified_date, Time.now)
       else
         http_check_msg = 'however it was *not* possible to visit the url as given currently'
       end

@@ -1,5 +1,7 @@
 class Link < ActiveRecord::Base
 
+  attr_accessor :verified_date
+
   belongs_to :group
   validates_presence_of :url_address
   validates_presence_of :group_id
@@ -12,10 +14,8 @@ class Link < ActiveRecord::Base
     false
   end
 
-  def verify_link
-    if valid_get?
-      verified_date = Time.now
-    end
+  def verify_this_link
+    verified_date = Time.now
   end
 
 end
