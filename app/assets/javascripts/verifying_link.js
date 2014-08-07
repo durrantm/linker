@@ -1,5 +1,6 @@
 $(function(){
-  $("a[data-verifying-link]='yes'").click(function(){
+  $("a[data-verifying-link]='yes'").click(function(event){
+    event.preventDefault();
     // spinner here
     a=$(this).parent();
     a.html('verifying...');
