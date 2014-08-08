@@ -3,7 +3,8 @@ $(function(){
     event.preventDefault();
     // spinner here
     a=$(this).parent();
-    a.html('verifying...');
+    //a.html('verifying...');
+    a.html('<img src="assets/ajax-loader.gif">');
     var id= $(this).data("id");
     var row = $(this).data("tableRow");
     $.ajax({
