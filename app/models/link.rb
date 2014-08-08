@@ -1,7 +1,5 @@
 class Link < ActiveRecord::Base
 
-  attr_accessor :verified_date
-
   belongs_to :group
   validates_presence_of :url_address
   validates_presence_of :group_id
