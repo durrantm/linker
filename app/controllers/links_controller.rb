@@ -87,6 +87,7 @@ class LinksController < ApplicationController
     @link = Link.new
     @link.content_date=Time.new().strftime("%m/%d/%Y")
     @link.url_address='http://'
+    @link.verified_date = Time.new()
     @groups = Group.all.collect { |g| [g.group_name, g.id] }
     @group_name =
       if params[:group_id]
@@ -116,17 +117,18 @@ class LinksController < ApplicationController
 
   def create
     @link = Link.new(params[:link])
-    @link.content_date=Time.new().strftime("%m/%d/%Y") if @link.content_date.nil?
+    @link.content_date = Time.new().strftime("%m/%d/%Y") if @link.content_date.nil?
+    @link.verified_date = Time.new().strftime("%m/%d/%Y") if @link.verified_date.nil?
+#    if @link.valid_get?
+#      #@link.verify_this_link
+#      http_check_msg = 'and the url was verified as valid'
+#      @link.verified_date = Time.new()
+#    else
+#      http_check_msg = 'however it was *not* possible to visit the url as given currently'
+#    end
     respond_to do |format|
-      if @link.valid_get?
-        #@link.verify_this_link
-        http_check_msg = 'and the url was verified as valid'
-        @link.update_attribute(:verified_date, Time.now)
-      else
-        http_check_msg = 'however it was *not* possible to visit the url as given currently'
-      end
       if @link.save
-        flash[:notice] = 'Link was successfully created, ' + http_check_msg
+        flash[:notice] = 'Link was successfully created, '# + http_check_msg
         format.html { redirect_to(@link) }
       else
         flash[:notice] = 'Error, Link was not created.'
