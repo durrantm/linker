@@ -1,7 +1,8 @@
 %h3 Link
 %p
-  %b URL:
-  = h @link.url_address
+  %b URL:&nbsp;
+  %a{href: "#{@link.url_address}", target: "_blank"}
+    = h @link.url_address
 %p
   %b Version Number:
   = h @link.version_number
