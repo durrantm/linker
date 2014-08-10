@@ -11,10 +11,10 @@
   = h @link.alt_text
 %p
   %b Content Date:
-  = h !@link.content_date.nil? ? @link.content_date.strftime('%F') : ''
+  = long_form(@link.content_date) if @link.content_date
 %p
   %b Verified Date:
-  = h !@link.verified_date.nil? ? @link.verified_date.strftime('%F') : ''
+  = long_form(@link.verified_date) if @link.verified_date
 %p
   %b Group:
   = h @link.group.group_name

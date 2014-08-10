@@ -13,4 +13,5 @@
 //= require sortable_hook
 //= require verifying_link
 //= require date-picker
+//= require local_time
 //= require_self

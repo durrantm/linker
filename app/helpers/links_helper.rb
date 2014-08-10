@@ -23,11 +23,11 @@ module LinksHelper
   end
 
   def long_form(date)
-    date.strftime('%m/%d/%Y')
+    local_time(date, '%m/%d/%Y')
   end
 
   def short_form(date)
-    date.to_s.gsub('00:00:00 UTC','')[0,4]
+    local_time(date, '%Y')
   end
 
 end

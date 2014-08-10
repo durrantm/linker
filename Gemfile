@@ -23,6 +23,7 @@ gem 'jquery-rails'
 gem "acts_as_list"
 gem "simple_form"
 gem "haml"
+gem 'local_time'
 
 group :development, :test do
   gem 'mysql2'
