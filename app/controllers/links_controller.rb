@@ -117,14 +117,13 @@ class LinksController < ApplicationController
   def create
     @link = Link.new(params[:link])
     @link.content_date = Time.new().strftime("%m/%d/%Y") if @link.content_date.nil?
-    if @link.valid_get?
-      @link.verified_date = Time.new()
-      http_check_msg = 'and the url was verified as valid'
-    else
-      http_check_msg = 'however it was *not* possible to visit the url as given currently'
-    end
     respond_to do |format|
       if @link.save
+        unless @link.verified_date.nil?
+          http_check_msg = 'and the url was verified as valid'
+        else
+          http_check_msg = 'however it was *not* possible to visit the url as given currently'
+        end
         flash[:notice] = 'Link was successfully created, ' + http_check_msg
         format.html { redirect_to(@link) }
       else
