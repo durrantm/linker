@@ -4,6 +4,7 @@ class Link < ActiveRecord::Base
   validates_presence_of :url_address
   validates_presence_of :group_id
   validates_size_of :version_number, :maximum => 10 #, :allow_nil => true
+  validates_uniqueness_of :url_address, scope: :group_id, message: 'already exists in that group'
   before_save :verify_url, if: :url_address_changed?
   acts_as_list
 
