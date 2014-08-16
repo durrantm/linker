@@ -1,5 +1,6 @@
 $(function(){
-  $("a[data-toggle-group-row-shading]='toggle'").click(function(){
+  $("a[data-toggle-group-row-shading]='toggle'").click(function(event){
+    event.preventDefault();
     $(".row_color_group_1").toggleClass("color_group_1");
     $(".row_color_group_2").toggleClass("color_group_2");
     $(".row_color_group_3").toggleClass("color_group_3");
