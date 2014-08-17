@@ -12,6 +12,7 @@
 //= require long_or_short_details
 //= require sortable_hook
 //= require verifying_link
+//= require show_group_members
 //= require date-picker
 //= require local_time
 //= require_self

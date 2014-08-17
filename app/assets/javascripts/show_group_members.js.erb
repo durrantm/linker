@@ -1,0 +1,29 @@
+$(function(){
+  $("a[data-show-group-members]='true'").bind('click', function() {
+    var gid= $(this).data("id");
+    var gname= $(this).data("name");
+    $('<tr><td colspan="4">Members:</br><ul id="group-members"></ul>Delete the <b>'+gname+'</b> group and all its members: <b><a rel="nofollow" data-method="delete" data-confirm="Are you sure?" href=\'/groups/'+gid+'\'>Yes</a></b> <b><a href="groups" data-close-group="true">No</b></br></br>').insertAfter($(this).closest('tr'));
+    var the_links=
+      $.ajax({
+        type: "GET",
+        url: "/groups/"+gid,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+          DisplayListItems(result);
+        },
+        "error": function (result) {
+          var response = result.responseText;
+          alert('Error loading: ' + response);
+        }
+      });
+    function DisplayListItems(list) {
+      $.each(list, function(index, element) {
+        var itemHTML = ["<li>", element.url_address, ' ', element.group_description, "</li>"].join('\n');
+        $("ul#group-members").append(itemHTML);
+      });
+    }
+
+    $(this).html("");
+  });
+});

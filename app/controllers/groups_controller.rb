@@ -15,7 +15,8 @@ class GroupsController < ApplicationController
     @members = Link.find_all_by_group_id(params[:id], :order => 'position')
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @group }
+      format.xml  { render xml: @group }
+      format.json { render json: @members } # for ajax to show link members before deleting group.
     end
   end
 
@@ -69,21 +70,17 @@ class GroupsController < ApplicationController
   def destroy
     @group = Group.find(params[:id])
     respond_to do |format|
-      if @group.links.count == 0
-        if @group.destroy
-          flash[:notice] = 'Group was successfully deleted.'
-          format.html { redirect_to(groups_url) }
-          format.xml  { head :ok }
-        else
-          flash[:notice] = 'Error deleting group, not deleted.'
-          format.html { redirect_to(groups_url) }
-          format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
-        end
+      group_link_count= @group.links.count
+      if @group.destroy
+        flash[:notice] = "Group " + ((group_link_count > 0) ? "(and #{group_link_count} member links) " : "") + "was deleted"
+        format.html { redirect_to(groups_url) }
+        format.xml  { head :ok }
       else
-        flash[:notice] = 'Error deleting group because it is not empty.'
+        flash[:notice] = 'Error deleting group, not deleted.'
         format.html { redirect_to(groups_url) }
         format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
       end
     end
   end
+
 end
