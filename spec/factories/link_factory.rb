@@ -4,7 +4,7 @@ FactoryGirl.define do
 
   factory :link do
     group {FactoryGirl.create(:group)} #:group
-    url_address "http://test.com"
+    url_address {"http://test.com"+SecureRandom.uuid}
     alt_text "examples of common situations amnd solutions"
   end
 
