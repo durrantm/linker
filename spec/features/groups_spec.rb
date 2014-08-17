@@ -42,7 +42,7 @@ describe "Add and edit", :type => :feature do
     fill_in 'group[group_name]', with: 'Group DeleteDEF'
     click_button 'Save'
     find('div#side a', text: "Groups").click
-    find(:xpath, "//td[text()='Group DeleteDEF']/..//a[text()='Delete']").click
+    find(:xpath, "//td[text()='Group DeleteDEF']/..//a[text()='Delete empty group']").click
     visit '/groups'
     expect(page).to_not have_content('Group DeleteDEF')
   end
