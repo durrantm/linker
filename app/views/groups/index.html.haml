@@ -11,4 +11,4 @@
       -if group.links.count > 0
         %td= link_to 'Delete group with members', group, :remote => true, :data => {:show_group_members => true, :id => group.id, :name => group.group_name}
       -else
-        %td= link_to 'Delete empty group', group, :confirm => 'Are you sure?', :method => :delete
+        %td= link_to 'Delete empty group', group, :method => :delete, :data => {confirm: 'Are you sure?'}

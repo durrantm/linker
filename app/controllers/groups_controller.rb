@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_filter :authorize, :except => [:index, :show]
 
   def index
-    @groups = Group.find(:all, :order => 'group_name')
+    @groups = Group.all
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @groups }
@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @members = Link.find_all_by_group_id(params[:id], :order => 'position')
+    @members = Link.where(group_id: params[:id]).order(:position)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render xml: @group }
@@ -40,7 +40,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(params[:group])
+    @group = Group.new(group_params)
     respond_to do |format|
       if @group.save
         flash[:notice] = 'Group was successfully created.'
@@ -54,17 +54,11 @@ class GroupsController < ApplicationController
   end
 
   def update
-    @group = Group.find(params[:id])
-    respond_to do |format|
-      if @group.update_attributes(params[:group])
-        flash[:notice] = 'Group was successfully updated.'
-        format.html { redirect_to(@group) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
-      end
-    end
+
+    redirect_to Group.find(params[:id]).tap { |group|
+      group.update!(group_params)
+    }
+
   end
 
   def destroy
@@ -81,6 +75,12 @@ class GroupsController < ApplicationController
         format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  private
+
+  def group_params
+    params.require(:group).permit(:group_name, :group_description)
   end
 
 end

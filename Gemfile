@@ -2,16 +2,20 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
-gem 'rails', '3.2.17'
+#gem 'rails', '3.2.17'
+gem 'rails', '4.0.1'
 gem 'httparty'
+
+gem 'activeresource' # See if it's needed.  Maybe for json requests?
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-end
+# group :assets do
+# removed 'group :assets' for rails4
+  gem 'sass-rails'#,   '~> 3.2.3'
+  gem 'coffee-rails'#, '~> 3.2.1'
+  gem 'uglifier'#, '>= 1.0.3'
+#end
 
 group :production do
   gem "pg" # Used for Production for heroku.

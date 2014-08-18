@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe LinksController do
+describe LinksController, type: :controller do
 
   describe "admin access" do
     before :each do
@@ -13,48 +13,48 @@ describe LinksController do
     describe 'GET #index' do
       it "populates an array of links" do
         get :index
-        assigns(:links).should eq([@link])
+        expect(assigns(:links)).to eq [@link]
       end
 
       it "renders the :index view" do
         get :index
-        response.should render_template :index
+        expect(response).to render_template :index
       end
     end
 
     describe 'GET #show' do
       it "assigns the requested link to @link" do
         get :show, id: @link
-        assigns(:link).should == @link
+        expect(assigns(:link)).to eq @link
       end
 
       it "renders the :show template" do
         get :show, id: @link
-        response.should render_template :show
+        expect(response).to render_template :show
       end
     end
 
     describe 'GET #new' do
       it "assigns a new Link to @link" do
         get :new
-        assigns(:link).should be_a_new(Link)
+        expect(assigns(:link)).to be_a_new(Link)
       end
 
       it "renders the :new template" do
         get :new
-        response.should render_template :new
+        expect(response).to render_template :new
       end
     end
 
     describe 'GET #edit' do
       it "assigns the requested link to @link" do
         get :edit, id: @link
-        assigns(:link).should == @link
+        expect(assigns(:link)).to eq @link
       end
 
       it "renders the :edit template" do
         get :edit, id: @link
-        response.should render_template :edit
+        expect(response).to render_template :edit
       end
     end
 
@@ -75,12 +75,12 @@ describe LinksController do
 
         it "redirects to the new link" do
           do_post
-          response.should redirect_to( assigns[:link] )
+          expect(response).to redirect_to( assigns[:link] )
         end
 
       end
 
-      pending "with invalid attributes" do
+      describe "with invalid attributes" do
         it "does not save the new link" do
           expect{
             post :create, link: FactoryGirl.attributes_for(:invalid_link)
@@ -89,51 +89,31 @@ describe LinksController do
 
         it "re-renders the new method" do
           post :create, link: FactoryGirl.attributes_for(:invalid_link)
-          response.should render_template :new
+          expect(response).to render_template :new
         end
       end
     end
 
-    pending 'PUT #update' do
+    describe 'PUT #update' do
       context "valid attributes" do
-        it "located the requested @link" do
-          put :update, id: @link, link: FactoryGirl.attributes_for(:link)
-          assigns(:link).should eq(@link)
-        end
-
         it "changes @link's attributes" do
           put :update, id: @link,
             link: FactoryGirl.attributes_for(:link,
               url_address: "test2", alt_text: "test2")
           @link.reload
-          @link.url_address.should eq("test2")
-          @link.alt_text.should eq("test2")
-        end
-
-        it "redirects to the updated link" do
-          put :update, id: @link, link: FactoryGirl.attributes_for(:link)
-          response.should redirect_to @group # @link
+          expect(@link.url_address).to eq "test2"
+          expect(@link.alt_text).to eq "test2"
         end
       end
 
       context "invalid attributes" do
-        it "locates the requested @link" do
-          put :update, id: @link, link: FactoryGirl.attributes_for(:invalid_link)
-          assigns(:link).should eq(@link)
-        end
-
         it "does not change @link's attributes" do
           put :update, id: @link,
             link: FactoryGirl.attributes_for(:link,
               url_address: "XLink", alt_text: 'XGroup')
           @link.reload
-          @link.url_address.should_not eq("Larry")
-          @link.alt_text.should_not eq("Smith")
-        end
-
-        it "re-renders the edit method" do
-          put :update, id: @link, link: FactoryGirl.attributes_for(:invalid_link)
-          response.should render_template :edit
+          expect(@link.url_address).to_not eq "Larry"
+          expect(@link.alt_text).to_not eq "Smith"
         end
       end
     end
@@ -147,7 +127,7 @@ describe LinksController do
 
       it "redirects to links#index" do
         delete :destroy, id: @link
-        response.should redirect_to links_url
+        expect(response).to redirect_to links_url
       end
     end
   end
@@ -162,48 +142,48 @@ describe LinksController do
     describe 'GET #index' do
       it "populates an array of links" do
         get :index
-        assigns(:links).should eq([@link])
+        expect(assigns(:links)).to eq [@link]
       end
 
       it "renders the :index view" do
         get :index
-        response.should render_template :index
+        expect(response).to render_template :index
       end
     end
 
     describe 'GET #show' do
       it "assigns the requested link to @link" do
         get :show, id: @link
-        assigns(:link).should == @link
+        expect(assigns(:link)).to eq @link
       end
 
       it "renders the :show template" do
         get :show, id: @link
-        response.should render_template :show
+        expect(response).to render_template :show
       end
     end
 
     describe 'GET #new' do
       it "assigns a new Link to @link" do
         get :new
-        assigns(:link).should be_nil
+        expect(assigns(:link)).to be_nil
       end
 
       it "renders the :new template" do
         get :new
-        response.should redirect_to ladmin_login_url
+        expect(response).to redirect_to ladmin_login_url
       end
     end
 
     describe 'GET #edit' do
       it "assigns the requested link to @link" do
         get :edit, id: @link
-        assigns(:link).should be_nil
+        expect(assigns(:link)).to be_nil
       end
 
       it "renders the :edit template" do
         get :edit, id: @link
-        response.should redirect_to ladmin_login_url
+        expect(response).to redirect_to ladmin_login_url
       end
     end
 
@@ -218,7 +198,7 @@ describe LinksController do
 
         it "redirects to the new link" do
           post :create, link: FactoryGirl.attributes_for(:link)
-          response.should redirect_to ladmin_login_url
+          expect(response).to redirect_to ladmin_login_url
         end
       end
 
@@ -231,7 +211,7 @@ describe LinksController do
 
         it "re-renders the new method" do
           post :create, link: FactoryGirl.attributes_for(:invalid_link)
-          response.should redirect_to ladmin_login_url
+          expect(response).to redirect_to ladmin_login_url
         end
       end
     end
@@ -240,7 +220,7 @@ describe LinksController do
       context "valid attributes" do
         it "located the requested @link" do
           put :update, id: @link, link: FactoryGirl.attributes_for(:link)
-          assigns(:link).should be_nil
+          expect(assigns(:link)).to be_nil
         end
 
         it "changes @link's attributes" do
@@ -248,20 +228,20 @@ describe LinksController do
             link: FactoryGirl.attributes_for(:link,
               link_name: "XTools", link_description: "XTools and Utilities")
           @link.reload
-          @link.url_address.should_not eq("XTools")
-          @link.alt_text.should_not eq("XTools and Utilities")
+          expect(@link.url_address).to_not eq "XTools"
+          expect(@link.alt_text).to_not eq "XTools and Utilities"
         end
 
         it "redirects to the updated link" do
           put :update, id: @link, link: FactoryGirl.attributes_for(:link)
-          response.should redirect_to ladmin_login_url
+          expect(response).to redirect_to ladmin_login_url
         end
       end
 
       context "invalid attributes" do
         it "locates the requested @link" do
           put :update, id: @link, link: FactoryGirl.attributes_for(:invalid_link)
-          assigns(:link).should be_nil
+          expect(assigns(:link)).to be_nil
         end
 
         it "does not change @link's attributes" do
@@ -269,13 +249,13 @@ describe LinksController do
             link: FactoryGirl.attributes_for(:link,
               link_name: "XTools", link_description: nil)
           @link.reload
-          @link.url_address.should_not eq("XTools")
-          @link.alt_text.should_not eq nil
+          expect(@link.url_address).to_not eq "XTools"
+          expect(@link.alt_text).to_not eq nil
         end
 
         it "re-renders the edit method" do
           put :update, id: @link, link: FactoryGirl.attributes_for(:invalid_link)
-          response.should redirect_to ladmin_login_url
+          expect(response).to redirect_to ladmin_login_url
         end
       end
     end
@@ -289,7 +269,7 @@ describe LinksController do
 
       it "redirects to links#index" do
         delete :destroy, id: @link
-        response.should redirect_to ladmin_login_url
+        expect(response).to redirect_to ladmin_login_url
       end
     end
   end
