@@ -70,7 +70,7 @@ class LinksController < ApplicationController
     else
       @conditions = ''
     end
-    @links = Link.all(:joins => :group, :include => :group, :order => 'groups.group_name, links.position', :conditions => @conditions)
+    @links = Link.where(@conditions).joins(:group).order('groups.group_name') # (:joins => :group, :include => :group, :order => 'groups.group_name, links.position', :conditions => @conditions)
     respond_to do |format|
       format.html
     end
@@ -115,7 +115,7 @@ class LinksController < ApplicationController
   end
 
   def create
-    @link = Link.new(params[:link])
+    @link = Link.new(link_params)
     @link.content_date = Time.new().strftime("%m/%d/%Y") if @link.content_date.nil?
     respond_to do |format|
       if @link.save
@@ -135,17 +135,11 @@ class LinksController < ApplicationController
   end
 
   def update
-    @link = Link.find(params[:id])
 
-    respond_to do |format|
-      if @link.update_attributes(params[:link])
-        flash[:notice] = 'Link was successfully updated.'
-        format.html { redirect_to(@link.group) }
-      else
-        @groups = Group.all.collect { |g| [g.group_name, g.id] }
-        format.html { render :action => "edit" }
-      end
-    end
+    redirect_to Link.find(params[:id]).tap { |link|
+      link.update!(link_params)
+    }
+
   end
 
   def destroy
@@ -156,4 +150,11 @@ class LinksController < ApplicationController
       format.js
     end
   end
+
+  private
+
+  def link_params
+    params.require(:link).permit(:url_address, :group_id, :alt_text, :version_number, :position, :content_date, :verified_date)
+  end
+
 end

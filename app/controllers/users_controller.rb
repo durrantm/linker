@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     respond_to do |format|
       if @user.save
         flash[:notice] = 'User '+ @user.username+ ' was successfully created.'
@@ -45,17 +45,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        flash[:notice] = 'User '+ @user.username+ ' was successfully updated.'
-        format.html { redirect_to(:action => "index") }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
+
+    redirect_to User.find(params[:id]).tap { |user|
+      user.update!(user_params)
+    }
+
   end
 
   def destroy
@@ -79,6 +73,12 @@ class UsersController < ApplicationController
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:username, :password, :password_confirmationi, :admin)
   end
 
 end

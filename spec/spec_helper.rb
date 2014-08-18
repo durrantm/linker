@@ -2,7 +2,8 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
+# Removed require rspec/autorun for rails 4
+# require 'rspec/autorun'
 require 'capybara/rails'
 require 'capybara/rspec'
 

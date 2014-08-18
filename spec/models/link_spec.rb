@@ -16,14 +16,14 @@ describe Link do
   it { should validate_presence_of :group_id}
   it { should ensure_length_of(:version_number).is_at_most(10) }
 
-  its "Bad url should NOT be valid" do
+  it "Bad url should NOT be valid" do
     link.url_address = 'http://www.ixgxgxgihghghfhdsjkfjks.com'
-    expect(link.valid_get?).to be_false
+    expect(link.valid_get?).to be false
   end
 
-  its "Good url SHOULD be valid" do
+  it "Good url SHOULD be valid" do
     link.url_address = 'http://www.google.com'
-    expect(link.valid_get?).to be_true
+    expect(link.valid_get?).to be true
   end
 
 end
