@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 #gem 'rails', '3.2.17'
-gem 'rails', '4.0.1'
+gem 'rails', '4.0.2'
 gem 'httparty'
 
 gem 'activeresource' # See if it's needed.  Maybe for json requests?
