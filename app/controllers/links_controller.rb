@@ -115,7 +115,16 @@ class LinksController < ApplicationController
   end
 
   def create
+    puts "------link params: ----------->"
+    puts link_params
+    puts "==============================="
     @link = Link.new(link_params)
+    puts "------@link.url_address: ---->"
+    puts @link.url_address
+    puts "==============================="
+    puts "------@link.content_date: ---->"
+    puts @link.content_date
+    puts "==============================="
     @link.content_date = Time.new().strftime("%m/%d/%Y") if @link.content_date.nil?
     respond_to do |format|
       if @link.save
