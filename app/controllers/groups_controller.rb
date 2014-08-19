@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @members = Link.where(:group_id, params[:id]).order(:position)
+    @members = Link.where(group_id: params[:id]).order(:position)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render xml: @group }
