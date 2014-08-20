@@ -5,6 +5,7 @@ class Link < ActiveRecord::Base
   validates_presence_of :group_id
   validates_size_of :version_number, :maximum => 10 #, :allow_nil => true
   validates_uniqueness_of :url_address, scope: :group_id, message: 'already exists in that group'
+  validate :url_address_not_just_http
   before_save :verify_url, if: :url_address_changed?
   acts_as_list
 
@@ -20,4 +21,8 @@ class Link < ActiveRecord::Base
     end
   end
 
+end
+
+def url_address_not_just_http
+  errors.add(:url_address, "can't be just http://") if url_address == 'http://'
 end
