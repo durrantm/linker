@@ -22,7 +22,8 @@ group :production do
   gem 'rails_12factor' # Avoid deprecation warnings
 end
 
-# gem 'american_date' # trying without 8/17/2014
+# gem 'american_date' # trying without 8/19/2014
+
 gem 'jquery-rails'
 gem "acts_as_list"
 gem "simple_form"

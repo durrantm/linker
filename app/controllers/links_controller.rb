@@ -86,6 +86,7 @@ class LinksController < ApplicationController
   def new
     @link = Link.new
     @link.content_date=Time.new().strftime("%m/%d/%Y")
+    #@link.content_date=Time.new().to_s[0..10]
     @link.url_address='http://'
     @groups = Group.all.collect { |g| [g.group_name, g.id] }
     @group_name =
@@ -115,17 +116,14 @@ class LinksController < ApplicationController
   end
 
   def create
-    puts "------link params: ----------->"
-    puts link_params
-    puts "==============================="
     @link = Link.new(link_params)
-    puts "------@link.url_address: ---->"
-    puts @link.url_address
-    puts "==============================="
-    puts "------@link.content_date: ---->"
-    puts @link.content_date
-    puts "==============================="
-    @link.content_date = Time.new().strftime("%m/%d/%Y") if @link.content_date.nil?
+
+    if @link.content_date.nil?
+      @link.content_date = Time.new().strftime("%Y/%m/%d")
+    else
+      @link.content_date = @link.content_date.strftime("%Y/%m/%d")
+    end
+
     respond_to do |format|
       if @link.save
         unless @link.verified_date.nil?
@@ -144,11 +142,11 @@ class LinksController < ApplicationController
   end
 
   def update
-
-    redirect_to Link.find(params[:id]).tap { |link|
-      link.update!(link_params)
-    }
-
+    this_link = Link.find(params[:id])
+    this_link.tap { |link| link.update!(link_params) }
+    the_date = construct_date.to_date.strftime("%Y-%m-%d")
+    this_link.update!(:content_date => the_date)
+    redirect_to this_link
   end
 
   def destroy
@@ -161,6 +159,10 @@ class LinksController < ApplicationController
   end
 
   private
+
+  def construct_date
+    link_params[:content_date][6,4]+'-'+link_params[:content_date][0,2]+'-'+link_params[:content_date][3,2]
+  end
 
   def link_params
     params.require(:link).permit(:url_address, :group_id, :alt_text, :version_number, :position, :content_date, :verified_date)

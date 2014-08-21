@@ -3,7 +3,7 @@ $( "#datepicker" ).datepicker();
 });
 $(function(){
 var dateInput = $("#datepicker");
-var format = 'yy-mm-dd';
+var format = 'mm/dd/yyyy';
 dateInput.datepicker({dateFormat: format});
 dateInput.datepicker('setDate', $.datepicker.parseDate(format, dateInput.val()));
 });

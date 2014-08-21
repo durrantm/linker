@@ -23,7 +23,7 @@ module LinksHelper
   end
 
   def long_form(date)
-    local_time(date, '%m/%d/%Y')
+    date.strftime('%m/%d/%Y')
   end
 
   def short_form(date)
