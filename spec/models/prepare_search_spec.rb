@@ -36,7 +36,7 @@ describe "Prepare Search methods" do
   describe "PrepareSearch#dates" do
 
     subject { PrepareSearch.dates(Date.new(2009), Date.new(2012) ) }
-    it { should == " and ((content_date is NULL) or( (content_date >= '2009-01-01') and (content_date <= '2012-01-01') ) )" }
+    it { should == " and ((content_date is NULL) or( (content_date >= '01/01/2009') and (content_date <= '01/01/2012') ) )" }
 
   end
 

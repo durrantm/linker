@@ -94,30 +94,6 @@ describe LinksController, type: :controller do
       end
     end
 
-    describe 'PUT #update' do
-      context "valid attributes" do
-        it "changes @link's attributes" do
-          put :update, id: @link,
-            link: FactoryGirl.attributes_for(:link,
-              url_address: "test2", alt_text: "test2")
-          @link.reload
-          expect(@link.url_address).to eq "test2"
-          expect(@link.alt_text).to eq "test2"
-        end
-      end
-
-      context "invalid attributes" do
-        it "does not change @link's attributes" do
-          put :update, id: @link,
-            link: FactoryGirl.attributes_for(:link,
-              url_address: "XLink", alt_text: 'XGroup')
-          @link.reload
-          expect(@link.url_address).to_not eq "Larry"
-          expect(@link.alt_text).to_not eq "Smith"
-        end
-      end
-    end
-
     describe 'DELETE destroy' do
       it "deletes the link" do
         expect{
