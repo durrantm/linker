@@ -1,16 +1,16 @@
+- refocus = ((first_field_focus ||= 0) == 1) ? 1 : 0
 %span.spaced
   = link_to('New Link', new_link_path)
 %span.spaced#shading_link
   Group Shading:
   - if session[:group_shading] == 'true'
-    = render "toggle_group_shading_link_bold", :flag => '0'
+    = render partial: "toggle_group_shading_link_bold", :locals => {:flag => '0', :first_field_focus => refocus}
   - else
-    = render "toggle_group_shading_link_bold", :flag => '1'
+    = render partial: "toggle_group_shading_link_bold", :locals => {:flag => '1', :first_field_focus => refocus}
 %span.spaced
   - if session[:full_details] == 'true'
-    = render "toggle_details_link_bold", :txt => "Summary / <b>Details</b>", :show_hide => 'shown'
-    = render "toggle_details_link_bold", :txt => "<b>Summary</b> / Details", :show_hide => 'hidden'
+    = render partial: 'toggle_details_link_bold', :locals => {:txt => "Summary / <b>Details</b>", :show_hide => 'shown', :first_field_focus => refocus}
+    = render partial: 'toggle_details_link_bold', :locals => {:txt => "<b>Summary</b> / Details", :show_hide => 'hidden', :first_field_focus => refocus}
   - else
-    = render "toggle_details_link_bold", :txt => "<b>Summary</b> / Details", :show_hide => 'shown'
-    = render "toggle_details_link_bold", :txt => "Summary / <b>Details</b>", :show_hide => 'hidden'
-
+    = render partial: 'toggle_details_link_bold', :locals => {:txt => "<b>Summary</b> / Details", :show_hide => 'shown', :first_field_focus => refocus}
+    = render partial: 'toggle_details_link_bold', :locals => {:txt => "Summary / <b>Details</b>", :show_hide => 'hidden', :first_field_focus => refocus}

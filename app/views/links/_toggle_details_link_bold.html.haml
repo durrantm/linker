@@ -1,3 +1,7 @@
 %span{class: "show_hide #{show_hide}"}
-  %a{href: '#', :data => {toggle_description_length: 'toggle'}}
-    = raw(txt)
+  - if first_field_focus == 1 then
+    %a{href: '#', :data => {toggle_description_length_refocus: 'toggle'}}
+      = raw(txt)
+  - else
+    %a{href: '#', :data => {toggle_description_length: 'toggle'}}
+      = raw(txt)
