@@ -60,7 +60,7 @@
           %td
             = link_to 'X', link_path(link), method: :delete, id: link.id, data: { confirm: 'Are you sure?', remote: true }
 %br/
-%span.mainLinks= render partial: 'links'
+%span.mainLinks= render partial: 'links', :locals => {:first_field_focus => 0 }
 %br/
 %br/
 %span{data_total: ''}

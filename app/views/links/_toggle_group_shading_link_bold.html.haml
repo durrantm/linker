@@ -1,5 +1,9 @@
+- if first_field_focus == 1
+  - ending = "_refocus"
+- else
+  - ending = ""
 %span{class: "show_hide shown_shading_link"}
-  %a{href: '#', :data => {toggle_group_row_shading: 'toggle', first_field_focus: first_field_focus}}
+  %a{href: '#', :data => {"toggle_group_row_shading#{ending}" => 'toggle'}}
     - if flag == '0'
       %b
         Yes
@@ -9,7 +13,7 @@
       %b
         \/ No
 %span{class: "show_hide hidden_shading_link"}
-  %a{href: '#', :data => {toggle_group_row_shading: 'toggle'}}
+  %a{href: '#', :data => {"toggle_group_row_shading#{ending}" => 'toggle'}}
     - if flag == '1'
       %b
         Yes
