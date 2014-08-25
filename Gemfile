@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
-#gem 'rails', '3.2.17'
 gem 'rails', '4.0.2'
 gem 'httparty'
 
@@ -22,18 +21,14 @@ group :production do
   gem 'rails_12factor' # Avoid deprecation warnings
 end
 
-# gem 'american_date' # trying without 8/19/2014
-
 gem 'jquery-rails'
 gem "acts_as_list"
 gem "simple_form"
 gem "haml"
-gem 'local_time'
 
 group :development, :test do
   gem 'mysql2'
   gem 'capybara'
-  #gem "rspec-rails", "~> 2.0"
   gem "rspec-rails"
   gem "autotest-standalone"
   gem "factory_girl_rails", "~> 3.0"

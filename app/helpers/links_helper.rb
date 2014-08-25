@@ -27,7 +27,7 @@ module LinksHelper
   end
 
   def short_form(date)
-    local_time(date, '%Y')
+    date.strftime('%Y')
   end
 
 end
