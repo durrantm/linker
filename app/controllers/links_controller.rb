@@ -70,7 +70,7 @@ class LinksController < ApplicationController
     else
       @conditions = ''
     end
-    @links = Link.where(@conditions).joins(:group).order('groups.group_name') # (:joins => :group, :include => :group, :order => 'groups.group_name, links.position', :conditions => @conditions)
+    @links = Link.where(@conditions).by_group_and_position
     respond_to do |format|
       format.html
     end
@@ -79,14 +79,13 @@ class LinksController < ApplicationController
   def show
     @link = Link.find(params[:id])
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
     end
   end
 
   def new
     @link = Link.new
     @link.content_date=Time.new().strftime("%m/%d/%Y")
-    #@link.content_date=Time.new().to_s[0..10]
     @link.url_address='http://'
     @groups = Group.all.collect { |g| [g.group_name, g.id] }
     @group_name =
@@ -165,7 +164,9 @@ class LinksController < ApplicationController
   end
 
   def link_params
-    params.require(:link).permit(:url_address, :group_id, :alt_text, :version_number, :position, :content_date, :verified_date)
+    params
+    .require(:link)
+    .permit(:url_address, :group_id, :alt_text, :version_number, :position, :content_date, :verified_date)
   end
 
 end

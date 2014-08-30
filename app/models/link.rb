@@ -9,6 +9,10 @@ class Link < ActiveRecord::Base
   before_save :verify_url, if: :url_address_changed?
   acts_as_list
 
+  def self.by_group_and_position
+    joins(:group).order('groups.group_name, links.position')
+  end
+
   def valid_get?
     HTTParty.get(url_address).code.between?(100,399) ? true : false
   rescue SocketError, URI::InvalidURIError
