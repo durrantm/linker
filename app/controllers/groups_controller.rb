@@ -21,8 +21,8 @@ class GroupsController < ApplicationController
   end
 
   def order_links
-    params[:urlys].each_with_index do |id, index|
-      Link.update_all(['position=?', index+1], ['id=?', id])
+    params[:link].each_with_index do |id, index|
+      Link.where(id: id).update_all(['position = ?',index+1])
     end
     render :nothing => true
   end
