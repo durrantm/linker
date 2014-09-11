@@ -69,7 +69,7 @@ describe "Add and edit", :type => :feature do
 
 end
 
-describe "verification", :type => :feature do
+describe "verification", :js => true, :type => :feature do
 
   before :all do
     User.create(:username => 'rubdubdub@google.com', :password => 'esceptionalitynessish')
@@ -80,22 +80,24 @@ describe "verification", :type => :feature do
     fill_in 'username', :with => 'rubdubdub@google.com'
     fill_in 'password', :with => 'esceptionalitynessish'
     find('input[value="Login"]').click
+    find('div#side div a', text: 'New Group').click
+    fill_in 'group[group_name]', with: 'Group Add'
+    click_button 'Save'
+    find('div#side div a', text: 'New Link').click
+    fill_in 'link[url_address]', with: 'http://www.a.com/newtest9876link'
+    fill_in 'link[alt_text]', with: 'abcd9876'
+    click_button 'Save'
   end
 
   it "lets me verify a link" do
-    Link.delete_all
-    expect(Link.count).to eq 0
     this_year=Time.now.strftime('%Y')
-    visit links_path
-    expect(page).to_not have_content(this_year)
-    l=FactoryGirl.create(:valid_url_link)
-    l.save
-    l.update_column(:verified_date, nil)
+    l=Link.first
+    l.update_attribute(:verified_date, nil)
     expect(Link.count).to eq 1
     visit links_path
     find('a', text: "verify")
     click_link("verify", match: :first)
-    sleep(7)
+    sleep(3)
     expect(page).to have_content(this_year)
   end
 
