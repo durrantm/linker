@@ -80,6 +80,9 @@ describe "verification", :js => true, :type => :feature do
     fill_in 'username', :with => 'rubdubdub@google.com'
     fill_in 'password', :with => 'esceptionalitynessish'
     find('input[value="Login"]').click
+  end
+
+  it "lets me verify a link" do
     find('div#side div a', text: 'New Group').click
     fill_in 'group[group_name]', with: 'Group Add'
     click_button 'Save'
@@ -87,9 +90,6 @@ describe "verification", :js => true, :type => :feature do
     fill_in 'link[url_address]', with: 'http://www.a.com/newtest9876link'
     fill_in 'link[alt_text]', with: 'abcd9876'
     click_button 'Save'
-  end
-
-  it "lets me verify a link" do
     this_year=Time.now.strftime('%Y')
     l=Link.first
     l.update_attribute(:verified_date, nil)
@@ -99,6 +99,12 @@ describe "verification", :js => true, :type => :feature do
     click_link("verify", match: :first)
     sleep(3)
     expect(page).to have_content(this_year)
+    click_link('Details')
+    click_link('Delete')
+    page.driver.browser.switch_to.alert.accept
+    click_link('Groups')
+    click_link('Delete')
+    page.driver.browser.switch_to.alert.accept
   end
 
 end
