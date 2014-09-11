@@ -92,12 +92,10 @@ describe "verification", :type => :feature do
     l.save
     l.update_column(:verified_date, nil)
     expect(Link.count).to eq 1
-    sleep(4)
     visit links_path
-    find('a[text()="verify"]')
+    find('a', text: "verify")
     click_link("verify", match: :first)
-    sleep(9)
-    visit links_path
+    sleep(7)
     expect(page).to have_content(this_year)
   end
 
