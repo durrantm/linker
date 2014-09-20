@@ -3,10 +3,8 @@ $(function(){
       event.defaultPrevented;
       $("span.show_hide").toggleClass("shown hidden");
       $("table").toggleClass("wide narrow");
-      if (focus == 1) {
-        $("input[type='text']:first").focus();
-      }
-      $.get('/toggle_full_details');
+      if (focus == 1) { $("input[type='text']:first").focus(); }
+      toggle_server_details_flag_silently();
   };
 
   $("a[data-toggle-description-length]='toggle'").click(function(event){

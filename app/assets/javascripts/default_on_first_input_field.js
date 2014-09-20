@@ -1,3 +1,3 @@
 $(function(){
-$("input[type='text']:first").focus();
+  $("input[type='text']:first").focus();
 });
