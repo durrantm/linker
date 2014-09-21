@@ -85,7 +85,8 @@ class LinksController < ApplicationController
 
   def new
     @link = Link.new
-    @link.content_date=Time.new().strftime("%m/%d/%Y")
+    # @link.content_date=Time.new().strftime("%m/%d/%Y")
+    @link.content_date=Time.new().to_s[0,10]
     @link.url_address='http://'
     @groups = Group.all.collect { |g| [g.group_name, g.id] }
     @group_name =
@@ -101,12 +102,9 @@ class LinksController < ApplicationController
 
   def edit
     @link = Link.find(params[:id])
-    #if @link.content_date && @link.content_date.to_s[4,1] == '-' # Change format 2011-12-31 to format 12/31/2011 to allow for earlier date blunders
-    #  content_date = @link.content_date.strftime("%Y-%m-%d").to_s
-    #  reformatted_content_date = content_date[5,2]+'/'+content_date[8,2]+'/'+content_date[0,4]
-    #  @link.content_date = reformatted_content_date
-    #end
-    @link.content_date=(Time.new().to_s)[0,10] if @link.content_date.nil?
+    if @link.content_date.nil?
+      @link.content_date=(Time.new().to_s)[0,10]
+    end
     @groups = Group.all.collect { |g| [g.group_name, g.id] }
     @group_name =
       if params[:group_id]
@@ -122,15 +120,22 @@ class LinksController < ApplicationController
   def create
     @link = Link.new(link_params)
 
-    if @link.content_date.nil?
-      if Rails.env == 'test'
-        @link.content_date = Time.new().strftime("%Y/%m/%d") # %m/%d/%Y makes tests fail.
-      else
-        @link.content_date = Time.new().strftime("%m/%d/%Y")
-      end
-    else
-      @link.content_date = @link.content_date.strftime("%m/%d/%Y")
+    unless link_params[:content_date].nil?
+
+      the_date = construct_date.to_date.strftime("%Y-%m-%d") # %Y-%m-%d Date format required for date to save correctly.
+      @link.update!(:content_date => the_date)
+
     end
+
+#    if link_params[:content_date].nil?
+#      if Rails.env == 'test'
+#        @link.content_date = Time.new().strftime("%Y/%m/%d") # %m/%d/%Y makes tests fail.
+#      else
+#        @link.content_date = Time.new().strftime("%Y-%m-%d")
+#      end
+#    else
+#      @link.content_date = link_params[:content_date][0,4] + '-' + link_params[:content_date][5,2] + '-' + link_params[:content_date][8,2] #   @link.content_date.strftime("%Y-%m-%d")
+#    end
 
     respond_to do |format|
       if @link.save
@@ -151,8 +156,9 @@ class LinksController < ApplicationController
 
   def update
     this_link = Link.find(params[:id])
+    this_link.update(link_params)
     this_link.tap { |link| link.update!(link_params) }
-    the_date = construct_date.to_date.strftime("%m/%d/%Y")
+    the_date = construct_date #.to_date.strftime("%Y-%m-%d") # %Y-%m-%d Date format required for date to save correctly.
     this_link.update!(:content_date => the_date)
     redirect_to this_link
   end
@@ -166,10 +172,12 @@ class LinksController < ApplicationController
     end
   end
 
-  private
+  #private
 
   def construct_date
-    link_params[:content_date][6,4]+'-'+link_params[:content_date][0,2]+'-'+link_params[:content_date][3,2]
+    link_params[:content_date].to_s[6,4]+ '-' +
+    link_params[:content_date].to_s[0,2]+ '-' +
+    link_params[:content_date].to_s[3,2]
   end
 
   def link_params
