@@ -101,6 +101,11 @@ class LinksController < ApplicationController
 
   def edit
     @link = Link.find(params[:id])
+    if @link.content_date && @link.content_date.to_s[4,1] == '-' # Change format 2011-12-31 to format 12/31/2011 to allow for earlier date blunders
+      content_date = @link.content_date.strftime("%Y-%m-%d").to_s
+      reformatted_content_date = content_date[5,2]+'/'+content_date[8,2]+'/'+content_date[0,4]
+      @link.content_date = reformatted_content_date
+    end
     @link.content_date=Time.new().strftime("%m/%d/%Y") if @link.content_date.nil?
     @groups = Group.all.collect { |g| [g.group_name, g.id] }
     @group_name =
