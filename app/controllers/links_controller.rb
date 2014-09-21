@@ -29,13 +29,16 @@ class LinksController < ApplicationController
   def verify_link
     @link = Link.find(params[:id])
     if @link.valid_get?
-      @link.update_attribute(:verified_date, Time.now)
+      @link.update({:verified_date => Time.now})
       respond_to do |format|
-        format.html { render :action => "show"}
+        format.html { render :action => "show", flash[:notice] => 'Valid URL'}
         format.js { render nothing: true }
       end
     else
-      render nothing: true, status: 422
+      respond_to do |format|
+        format.html { render :action => "show", flash[:alert] => 'invalid URL', status: 422}
+        format.js { render nothing: true }
+      end
     end
   end
 
