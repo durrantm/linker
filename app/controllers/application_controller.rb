@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 protected
   def authorize
-    unless User.find_by_id(session[:user_id])
+    unless User.find_by({:id => session[:user_id]})
       if request.get? && !request.xhr?
         session[:original_uri] = request.url
       end

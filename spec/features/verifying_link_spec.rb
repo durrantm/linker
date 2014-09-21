@@ -23,7 +23,7 @@ describe "verification", :js => true, :type => :feature do
     click_button 'Save'
     this_year=Time.now.strftime('%Y')
     l=Link.first
-    l.update_attribute(:verified_date, nil)
+    l.update({:verified_date => nil})
     expect(Link.count).to eq 1
     visit links_path
     find('a', text: "verify")
