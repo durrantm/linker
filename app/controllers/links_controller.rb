@@ -118,7 +118,7 @@ class LinksController < ApplicationController
     @link = Link.new(link_params)
 
     if @link.content_date.nil?
-      @link.content_date = Time.new().strftime("%Y/%m/%d")
+      @link.content_date = Time.new().strftime("%Y/%m/%d") # %m/%d/%Y makes tests fail.
     else
       @link.content_date = @link.content_date.strftime("%m/%d/%Y")
     end
