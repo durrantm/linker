@@ -120,7 +120,7 @@ class LinksController < ApplicationController
     if @link.content_date.nil?
       @link.content_date = Time.new().strftime("%Y/%m/%d")
     else
-      @link.content_date = @link.content_date.strftime("%Y/%m/%d")
+      @link.content_date = @link.content_date.strftime("%m/%d/%Y")
     end
 
     respond_to do |format|
