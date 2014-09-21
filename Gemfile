@@ -17,6 +17,8 @@ gem 'activeresource' # See if it's needed.  Maybe for json requests?
   gem 'uglifier'#, '>= 1.0.3'
 #end
 
+gem 'database_cleaner'
+
 group :production do
   gem "pg" # Used for Production for heroku.
   gem 'rails_12factor' # Avoid deprecation warnings
