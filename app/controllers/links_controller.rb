@@ -29,10 +29,10 @@ class LinksController < ApplicationController
   def verify_link
     @link = Link.find(params[:id])
     if @link.valid_get?
-      if @link.update_attribute(:verified_date, Time.now)
-        render nothing: true, status: 200
-      else
-        render nothing: true, status: 422
+      @link.update_attribute(:verified_date, Time.now)
+      respond_to do |format|
+        format.html { render :action => "show"}
+        format.js { render nothing: true }
       end
     else
       render nothing: true, status: 422

@@ -19,6 +19,10 @@
     &nbsp;
     - if session[:admin]
       = link_to 'Unverify', unverify_link_path(@link)
+- else
+  %p
+    - if session[:user_id]
+      = link_to 'Verify', verify_link_path(@link)
 %p
   %b Group:
   = h @link.group.group_name
