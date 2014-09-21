@@ -44,7 +44,7 @@ class LinksController < ApplicationController
     @link.verified_date = nil
     @link.save!
     respond_to do |format|
-      format.js
+      format.html { render :action => "show"}
     end
   end
 

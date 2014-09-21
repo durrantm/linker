@@ -12,9 +12,13 @@
 %p
   %b Content Date:
   = long_form(@link.content_date) if @link.content_date
-%p
-  %b Verified Date:
-  = long_form(@link.verified_date) if @link.verified_date
+- if @link.verified_date
+  %p
+    %b Verified Date:
+    = long_form(@link.verified_date)
+    &nbsp;
+    - if session[:admin]
+      = link_to 'Unverify', unverify_link_path(@link)
 %p
   %b Group:
   = h @link.group.group_name
