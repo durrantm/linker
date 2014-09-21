@@ -147,7 +147,7 @@ class LinksController < ApplicationController
   def update
     this_link = Link.find(params[:id])
     this_link.tap { |link| link.update!(link_params) }
-    the_date = construct_date.to_date.strftime("%Y-%m-%d")
+    the_date = construct_date.to_date.strftime("%m/%d/%Y")
     this_link.update!(:content_date => the_date)
     redirect_to this_link
   end
