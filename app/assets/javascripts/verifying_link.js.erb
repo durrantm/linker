@@ -1,5 +1,5 @@
 $(function(){
-  $("a[data-verifying-link]='yes'").click(function(event){
+  $(document).on('click', "a[data-verifying-link]='yes'", function(event){
     event.preventDefault();
     a=$(this).parent();
     a.html('<%= image_tag "ajax-loader.gif" %>');
@@ -9,11 +9,11 @@ $(function(){
       url: "/verify_link/"+id+"&table_row="+row,
        type: 'GET',
        success: function(r) {
-                $("span#verify_link_"+row).html('<span class="done">Verified</span>');
-             },
+         $("span#verify_link_"+row).html('<span class="done">Verified</span>');
+       },
        error: function(r) {
-           $("span#verify_link_"+row).html('<span class="undone">Unverified</span>');
-        }
+         $("span#verify_link_"+row).html('<span class="undone"><a data-verifying-link="yes" data-table-row="' + row + '" data-id="' + id + '" href="#">Unverified</a></span>');
+       }
     });
   });
 });
