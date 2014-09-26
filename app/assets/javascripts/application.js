@@ -7,7 +7,6 @@
 //= require jquery-1.7.2.min
 //= require jquery-ui-1.8.22.custom.min
 //= require jquery_ujs
-//= require default_on_first_input_field
 //= require toggle_server_details_flag_silently
 //= require long_or_short_details
 //= require row_shading

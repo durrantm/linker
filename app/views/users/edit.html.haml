@@ -10,7 +10,7 @@
         %li
           =msg
   %p
-    = f.label :username
+    = f.label :username, options = {:autofocus => true}
     %br/
     = f.text_field :username
   = render 'admin_section', :f => f

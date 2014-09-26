@@ -2,7 +2,7 @@
   %p
     URL
     %br/
-    = f.text_field :url_address, :label => 'URL Address: ', :input_html => { :size => 40, :maxlength => 140 }, :required => false
+    = f.text_field(:url_address, options = { :size => 40, :maxlength => 140, :autofocus => true, :required => false })
     %br/
     %br/
     Alt Text

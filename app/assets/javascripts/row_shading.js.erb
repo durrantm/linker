@@ -1,10 +1,10 @@
 $(function(){
   $("a[data-toggle-group-row-shading]='toggle'").click(function(event){
-    color_groups(event, focus = 0);
+    color_groups(event);
   });
 
   $("a[data-toggle-group-row-shading-refocus]='toggle'").click(function(event){
-    color_groups(event, focus = 1);
+    color_groups(event);
   });
 
   var color_groups = function(event) {
@@ -14,9 +14,6 @@ $(function(){
     $(".row_color_group_3").toggleClass("color_group_3");
     $("span#shading_link span.show_hide").toggleClass("shown_shading_link hidden_shading_link");
     $.get('<%= Rails.application.routes.url_helpers.toggle_row_shading_path %>');
-    if (focus == 1) {
-      $("input[type='text']:first").focus();
-    }
   }
 
 });

@@ -6,7 +6,7 @@
       %tr
         %td
           %label{:for => "name"} Name:
-        %td= text_field_tag :username, params[:username]
+        %td= text_field_tag :username, params[:username], options = {:autofocus => true}
       %tr
         %td
           %label{:for => "password"} Password:
