@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :authorize
 
   def index
-    @users = User.find(:all, :order => :username)
+    @users = User.all.order(username: :asc)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
