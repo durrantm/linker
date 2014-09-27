@@ -9,7 +9,7 @@ class LadminController < ApplicationController
         session[:admin] = user.admin
         uri = session[:original_uri]
         session[:original_uri] = nil
-        redirect_to(uri || {:action => "index", :controller => :links})
+        redirect_to(uri || {action: "index", controller: :links})
   	  else
     		flash.now[:notice] = "Invalid username/password combination"
   	  end
@@ -21,7 +21,7 @@ class LadminController < ApplicationController
     session[:username] = nil
     session[:admin] = nil
     flash[:notice] = "Logged Out"
-    redirect_to(:action => "index", :controller => :links)
+    redirect_to(action: "index", controller: :links)
   end
 
   def index

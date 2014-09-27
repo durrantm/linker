@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
 
-  let(:user) { FactoryGirl.create(:user, username: 'user1', password: 'abc123', admin: true)}
+  let(:user) { FactoryGirl.create(:user, username: 'user1', admin: true)}
 
   subject { user }
   it { should be_valid }

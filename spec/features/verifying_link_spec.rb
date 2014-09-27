@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe "verification", :js => true, :type => :feature do
+describe "verification", js: true, type: :feature do
 
   before :all do
-    User.create(:username => 'rubdubdub@google.com', :password => 'esceptionalitynessish')
+    User.create(username: 'rubdubdub@google.com', password: 'esceptionalitynessish')
   end
 
   before :each do
     visit '/ladmin/login'
-    fill_in 'username', :with => 'rubdubdub@google.com'
-    fill_in 'password', :with => 'esceptionalitynessish'
+    fill_in 'username', with: 'rubdubdub@google.com'
+    fill_in 'password', with: 'esceptionalitynessish'
     find('input[value="Login"]').click
   end
 
@@ -23,7 +23,7 @@ describe "verification", :js => true, :type => :feature do
     click_button 'Save'
     this_year=Time.now.strftime('%Y')
     l=Link.first
-    l.update({:verified_date => nil})
+    l.update({verified_date: nil})
     expect(Link.count).to eq 1
     visit links_path
     find('a', text: "verify")

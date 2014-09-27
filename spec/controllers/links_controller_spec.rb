@@ -63,8 +63,8 @@ describe LinksController, type: :controller do
       context "with valid attributes" do
 
         def do_post #( format = 'html' )
-          attributes = FactoryGirl.build(:link).attributes.merge( :group_id => @group.id )
-          post :create, :link => attributes, :format => 'html'
+          attributes = FactoryGirl.build(:link).attributes.merge(group_id: @group.id )
+          post :create, link: attributes, format: 'html'
         end
 
         it "creates a new link" do

@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe "Add and edit", :type => :feature do
+describe "Add and edit", type: :feature do
 
   before :all do
-    User.create(:username => 'rubdubdub@google.com', :password => 'esceptionalitynessish')
+    User.create(username: 'rubdubdub@google.com', password: 'esceptionalitynessish')
   end
 
   before :each do
     visit '/ladmin/login'
-    fill_in 'username', :with => 'rubdubdub@google.com'
-    fill_in 'password', :with => 'esceptionalitynessish'
+    fill_in 'username', with: 'rubdubdub@google.com'
+    fill_in 'password', with: 'esceptionalitynessish'
     find('input[value="Login"]').click
     expect(page).to have_content 'Logout'
     expect(page).to have_no_content 'Login'

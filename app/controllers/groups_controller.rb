@@ -1,12 +1,12 @@
 class GroupsController < ApplicationController
 
-  before_filter :authorize, :except => [:index, :show]
+  before_filter :authorize, except: [:index, :show]
 
   def index
     @groups = Group.all
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @groups }
+      format.xml  { render xml: @groups }
     end
   end
 
@@ -24,14 +24,14 @@ class GroupsController < ApplicationController
     params[:link].each_with_index do |id, index|
       Link.where(id: id).update_all(['position = ?',index+1])
     end
-    render :nothing => true
+    render nothing: true
   end
 
   def new
     @group = Group.new
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @group }
+      format.xml  { render xml: @group }
     end
   end
 
@@ -45,10 +45,10 @@ class GroupsController < ApplicationController
       if @group.save
         flash[:notice] = 'Group was successfully created.'
         format.html { redirect_to(@group) }
-        format.xml  { render :xml => @group, :status => :created, :location => @group }
+        format.xml  { render xml: @group, status: :created, location: @group }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.xml  { render xml: @group.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -72,7 +72,7 @@ class GroupsController < ApplicationController
       else
         flash[:notice] = 'Error deleting group, not deleted.'
         format.html { redirect_to(groups_url) }
-        format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
+        format.xml  { render xml: @group.errors, status: :unprocessable_entity }
       end
     end
   end

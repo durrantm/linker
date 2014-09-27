@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
 
-  before_filter :authorize, :except => :login # Whitelisting method - best approach.
+  before_filter :authorize, except: :login # Whitelisting method - best approach.
 
   helper :all # include all helpers, all the time
 
@@ -17,12 +17,12 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 protected
   def authorize
-    unless User.find_by({:id => session[:user_id]})
+    unless User.find_by({id: session[:user_id]})
       if request.get? && !request.xhr?
         session[:original_uri] = request.url
       end
       flash[:notice] = "Please Log In!"
-      redirect_to :controller => 'ladmin', :action => 'login'
+      redirect_to controller: 'ladmin', action: 'login'
     end
   end
 

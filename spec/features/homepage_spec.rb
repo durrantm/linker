@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Home Page", :type => :feature do
+describe "Home Page", type: :feature do
 
   it "Visit the home page" do
     visit '/'
@@ -11,7 +11,7 @@ describe "Home Page", :type => :feature do
 
 end
 
-describe "Show all the links", :type => :feature do
+describe "Show all the links", type: :feature do
 
   it "Shows me all links" do
     visit '/'
@@ -23,7 +23,7 @@ describe "Show all the links", :type => :feature do
   end
 end
 
-describe "Shows all the groups", :type => :feature do
+describe "Shows all the groups", type: :feature do
 
   it "Shows me all groups" do
     visit '/'
@@ -33,16 +33,16 @@ describe "Shows all the groups", :type => :feature do
   end
 end
 
-describe "Allows signin", :type => :feature do
+describe "Allows signin", type: :feature do
 
   before :each do
-    User.create(:username => 'rubdubdub@google.com', :password => 'esceptionalitynessish')
+    User.create(username: 'rubdubdub@google.com', password: 'esceptionalitynessish')
   end
 
   it "signs me in" do
     visit '/ladmin/login'
-    fill_in 'username', :with => 'rubdubdub@google.com'
-    fill_in 'password', :with => 'esceptionalitynessish'
+    fill_in 'username', with: 'rubdubdub@google.com'
+    fill_in 'password', with: 'esceptionalitynessish'
     find('input[value="Login"]').click
     expect(page).to have_content 'Logout'
     expect(page).to have_no_content 'Login'

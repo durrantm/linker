@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe "Add and edit", :type => :feature do
+describe "Add and edit", type: :feature do
 
   before :all do
-    User.create(:username => 'rubdubdub@google.com', :password => 'esceptionalitynessish')
+    User.create(username: 'rubdubdub@google.com', password: 'esceptionalitynessish')
   end
 
   before :each do
     visit '/ladmin/login'
-    fill_in 'username', :with => 'rubdubdub@google.com'
-    fill_in 'password', :with => 'esceptionalitynessish'
+    fill_in 'username', with: 'rubdubdub@google.com'
+    fill_in 'password', with: 'esceptionalitynessish'
     find('input[value="Login"]').click
     find('div#side div a', text: 'New Group').click
     fill_in 'group[group_name]', with: 'Group Add'

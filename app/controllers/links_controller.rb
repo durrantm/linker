@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
 
-  before_filter :authorize, :except => [:index, :show, :advanced_search]
+  before_filter :authorize, except: [:index, :show, :advanced_search]
 
   def advanced_search
     @groups = Group.all
@@ -29,14 +29,14 @@ class LinksController < ApplicationController
   def verify_link
     @link = Link.find(params[:id])
     if @link.valid_get?
-      @link.update({:verified_date => Time.now})
+      @link.update({verified_date: Time.now})
       respond_to do |format|
-        format.html { render :action => "show", flash[:notice] => 'Valid URL'}
+        format.html { render action: "show", flash[:notice] => 'Valid URL'}
         format.js { render nothing: true }
       end
     else
       respond_to do |format|
-        format.html { render :action => "show", flash[:alert] => 'invalid URL', status: 422}
+        format.html { render action: "show", flash[:alert] => 'invalid URL', status: 422}
         format.js { render nothing: true }
       end
     end
@@ -47,7 +47,7 @@ class LinksController < ApplicationController
     @link.verified_date = nil
     @link.save!
     respond_to do |format|
-      format.html { render :action => "show"}
+      format.html { render action: "show"}
     end
   end
 
@@ -62,7 +62,7 @@ class LinksController < ApplicationController
         @words_2 = params[:search_text_2nd_phrase]
         @text_search = PrepareSearch.text_search(@words_1, @join_operator, @words_2)
         @groups_comparison = PrepareSearch.groups(params[:groups])
-        @version_information = { :version => params[:version].to_i, :version_comparison => params[:version_comparison], :include_blank_version => params[:include_blank_version] }
+        @version_information = { version: params[:version].to_i, version_comparison: params[:version_comparison], include_blank_version: params[:include_blank_version] }
         @version_comparison = PrepareSearch.versions(@version_information)
         @date_comparison = PrepareSearch.dates(@from, @to)
         @conditions = '1=1' + @groups_comparison+ @date_comparison + @text_search
@@ -125,20 +125,11 @@ class LinksController < ApplicationController
 
     unless link_params[:content_date].nil?
 
-      the_date = construct_date.to_date.strftime("%Y-%m-%d") # %Y-%m-%d Date format required for date to save correctly.
-      @link.update!(:content_date => the_date)
+      the_date = construct_date.to_date.strftime("%Y-%m-%d")
+# %Y-%m-%d Date format required for date to save correctly AND tests not to fail !!! @link.content_date = Time.new().strftime("%Y/%m/%d") # %m/%d/%Y makes tests fail.
+      @link.update!(content_date: the_date)
 
     end
-
-#    if link_params[:content_date].nil?
-#      if Rails.env == 'test'
-#        @link.content_date = Time.new().strftime("%Y/%m/%d") # %m/%d/%Y makes tests fail.
-#      else
-#        @link.content_date = Time.new().strftime("%Y-%m-%d")
-#      end
-#    else
-#      @link.content_date = link_params[:content_date][0,4] + '-' + link_params[:content_date][5,2] + '-' + link_params[:content_date][8,2] #   @link.content_date.strftime("%Y-%m-%d")
-#    end
 
     respond_to do |format|
       if @link.save
@@ -152,7 +143,7 @@ class LinksController < ApplicationController
       else
         flash[:notice] = 'Error, The link was not created.'
         @groups = Group.all.collect { |g| [g.group_name, g.id] }
-        format.html { render :action => "new"}
+        format.html { render action: "new"}
       end
     end
   end
@@ -162,7 +153,7 @@ class LinksController < ApplicationController
     this_link.update(link_params)
     this_link.tap { |link| link.update!(link_params) }
     the_date = construct_date #.to_date.strftime("%Y-%m-%d") # %Y-%m-%d Date format required for date to save correctly.
-    this_link.update!(:content_date => the_date)
+    this_link.update!(content_date: the_date)
     redirect_to this_link
   end
 
@@ -175,7 +166,7 @@ class LinksController < ApplicationController
     end
   end
 
-  #private
+  private
 
   def construct_date
     link_params[:content_date].to_s[6,4]+ '-' +

@@ -1,7 +1,5 @@
 FactoryGirl.define do
 
- # @group = Group.new(:group_name => 'g', :group_description => 'g')
-
   factory :link do
     group {FactoryGirl.create(:group)} #:group
     url_address {"http://test.com"+SecureRandom.uuid}
