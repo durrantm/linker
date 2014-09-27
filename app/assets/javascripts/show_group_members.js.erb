@@ -19,9 +19,11 @@ $(function(){
       });
     function DisplayListItems(list) {
       $.each(list, function(index, element) {
-        var itemHTML = ["<li>", element.url_address, ' ', element.group_description, "</li>"].join('\n');
+        var verified_or_link = element.verified_date ? '<span class="done">&nbsp;Verified</span>' : '<span class="undone">&nbsp;<a href="/verify" data-link-id=$element.id >Verify</a></span>'
+        var itemHTML = ["<li>", element.url_address, ' ', verified_or_link, "</li>"].join('\n');
         $("ul#group-members").append(itemHTML);
       });
+      $("ul#group-members").append('<br><a href="verify_group">Verify All</a>');
     }
 
     $(this).html("");
