@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   require 'digest/sha1'
-  attr_accessor :password_confirmation
 
   validates_presence_of     :username
   validates_uniqueness_of   :username
