@@ -52,6 +52,10 @@ class LinksController < ApplicationController
   end
 
   def index
+    if (FeatureSwitch.where(name: 'links_index_scrollable_table', status: 'on').count) > 0
+      @thead_scroller = "thead_scroller"
+      @tbody_scrolling = "tbody_scrolling"
+    end
     @from = PrepareSearch.start_date(params[:from] ||= '1991')
     @to = PrepareSearch.end_date(params[:to] ||= '2299')
 

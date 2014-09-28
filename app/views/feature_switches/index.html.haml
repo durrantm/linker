@@ -5,20 +5,18 @@
     %tr
       %th Status
       %th Name
-      %th Description
       %th Conditions
-      %th
-      %th
-      %th
+      %th Description
+      %th{span: "3"}
   %tbody
     - @feature_switches.each do |feature_switch|
       %tr
         %td= feature_switch.status
         %td= feature_switch.name
-        %td= feature_switch.description
         %td= feature_switch.conditions
+        %td= feature_switch.description
         %td= link_to 'Show', feature_switch
         %td= link_to 'Edit', edit_feature_switch_path(feature_switch)
         %td= link_to 'Destroy', feature_switch, method: :delete, data: { confirm: 'Are you sure?' }
-          %br/
-          = link_to 'New Feature switch', new_feature_switch_path
+%br/
+= link_to 'New Feature switch', new_feature_switch_path
