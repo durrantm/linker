@@ -8,7 +8,7 @@ $(function(){
     scroll: true,
     update: function(){
       $.ajax({
-        url: '<%= Linker::Application.routes.url_helpers.order_links_groups_path %>',
+        url: '<%= Rails.application.routes.url_helpers.order_links_groups_path %>',
         type: 'post',
         data: $('#sortable').sortable('serialize'),
         dataType: 'script'
