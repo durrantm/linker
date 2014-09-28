@@ -1,0 +1,33 @@
+<h3>Feature Switches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Conditions</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @feature_switches.each do |feature_switch| %>
+      <tr>
+        <td><%= feature_switch.status %></td>
+        <td><%= feature_switch.name %></td>
+        <td><%= feature_switch.description %></td>
+        <td><%= feature_switch.conditions %></td>
+        <td><%= link_to 'Show', feature_switch %></td>
+        <td><%= link_to 'Edit', edit_feature_switch_path(feature_switch) %></td>
+        <td><%= link_to 'Destroy', feature_switch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Feature switch', new_feature_switch_path %>

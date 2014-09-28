@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @feature_switch.status %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @feature_switch.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @feature_switch.description %>
+</p>
+
+<p>
+  <strong>Conditions:</strong>
+  <%= @feature_switch.conditions %>
+</p>
+
+<%= link_to 'Edit', edit_feature_switch_path(@feature_switch) %> |
+<%= link_to 'Back', feature_switches_path %>

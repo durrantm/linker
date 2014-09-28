@@ -9,19 +9,28 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140712180142) do
+ActiveRecord::Schema.define(version: 20140928183433) do
 
-  create_table "groups", :force => true do |t|
-    t.string   "group_name",        :null => false
+  create_table "feature_switches", force: true do |t|
+    t.text     "status"
+    t.text     "name"
+    t.text     "description"
+    t.text     "conditions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", force: true do |t|
+    t.string   "group_name",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "group_description"
   end
 
-  create_table "links", :force => true do |t|
-    t.string   "url_address",    :null => false
+  create_table "links", force: true do |t|
+    t.string   "url_address",    null: false
     t.string   "alt_text"
     t.integer  "group_id"
     t.integer  "position"
@@ -32,17 +41,17 @@ ActiveRecord::Schema.define(:version => 20140712180142) do
     t.datetime "verified_date"
   end
 
-  create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
+  create_table "sessions", force: true do |t|
+    t.string   "session_id", null: false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
-  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
-  create_table "users", :force => true do |t|
+  create_table "users", force: true do |t|
     t.string   "username"
     t.string   "pwd_hashed"
     t.string   "salt"

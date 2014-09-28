@@ -1,0 +1,2 @@
+module FeatureSwitchesHelper
+end

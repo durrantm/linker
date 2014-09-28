@@ -1,5 +1,7 @@
 Linker::Application.routes.draw do
 
+  resources :feature_switches
+
   match 'ladmin/login' => 'ladmin#login', via: [:get, :post]
   match 'ladmin/logout' => 'ladmin#logout', via: [:get, :post]
 
