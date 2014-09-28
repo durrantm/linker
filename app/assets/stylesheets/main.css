@@ -44,3 +44,5 @@
 .narrow { width: 800 }
 .done {color: lightgreen }
 #main .undone a {color: tan }
+thead.scroller {display: block;}
+tbody.scrolling {height: 960px; overflow-y: scroll; display: block;}

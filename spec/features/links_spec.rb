@@ -29,7 +29,7 @@ describe "Add and edit", type: :feature do
     fill_in 'link[alt_text]', with: 'abcd9876'
     click_button 'Save'
     visit links_path
-    find(:xpath, "//span[@id='main']//tr[4]//td//a[text()='Details']").click
+    find(:xpath, "//span[@id='main']//tbody//tr[1]//td//a[text()='Details']").click
     expect(page).to have_content('http://www.a.com/newtest9876link')
   end
 
