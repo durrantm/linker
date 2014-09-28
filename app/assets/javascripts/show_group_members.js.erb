@@ -6,7 +6,7 @@ $(function(){
     var the_links=
       $.ajax({
         type: "GET",
-        url: "/groups/"+gid,
+        url: "<%= Rails.application.routes.url_helpers.groups_path %>" + "/" + gid,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (result) {

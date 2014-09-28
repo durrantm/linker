@@ -43,4 +43,4 @@
 .wide { width: 1200 }
 .narrow { width: 800 }
 .done {color: lightgreen }
-.undone {color: #F8C899 }
+#main .undone a {color: tan }
