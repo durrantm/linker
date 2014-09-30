@@ -46,3 +46,6 @@
 #main .undone a {color: tan }
 .thead_scroller {display: block;}
 .tbody_scrolling {height: 960px; overflow-y: scroll; display: block;}
+thead.data th {padding-right: 30px; padding-bottom: 5px}
+tbody.data td {padding-right: 30px; padding-bottom: 5px}
+tfoot.data td {padding-top: 20px}
