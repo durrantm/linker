@@ -1,4 +1,6 @@
 class FeatureSwitchesController < ApplicationController
+
+  before_action :authorize_admin
   before_action :set_feature_switch, only: [:show, :edit, :update, :destroy]
 
   # GET /feature_switches

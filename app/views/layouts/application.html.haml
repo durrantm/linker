@@ -31,8 +31,12 @@
         .alink= link_to 'Login', :controller => :ladmin, :action => 'login'
     #main
       - if flash[:notice]
-        %span#notice
+        %span.notice
           = flash[:notice]
+        %br
+      - if flash[:warning]
+        %span.warning
+          = flash[:warning]
         %br
       - [@group,@link].compact.each do |model|
         - if model.errors.any?

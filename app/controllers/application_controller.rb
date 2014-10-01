@@ -26,4 +26,13 @@ protected
     end
   end
 
+  def authorize_admin
+    if session[:user_id] && User.find(session[:user_id]).admin
+      true
+    else
+      flash[:warning] = 'You are not authorized for that function'
+      redirect_to links_path
+    end
+  end
+
 end

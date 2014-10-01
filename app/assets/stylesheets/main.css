@@ -22,7 +22,8 @@
   font-style: italic;
   }
 #side .alink { padding: 0 0 20px 0 }
-#notice { color: lightgreen; }
+.notice { color: lightgreen; }
+.warning { color: orange; }
 #username { color: #010101; } /* For the FORM login boxes */
 #username_display { color: #ff9; font-style: italic; } /* Once logged in */
 #logout a { color: #ff9; font-style: italic; text-decoration: none;}
@@ -49,3 +50,4 @@
 thead.data th {padding-right: 30px; padding-bottom: 5px}
 tbody.data td {padding-right: 30px; padding-bottom: 5px}
 tfoot.data td {padding-top: 20px}
+.warning
