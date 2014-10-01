@@ -4,7 +4,7 @@ RSpec.describe FeatureSwitchesController, :type => :controller do
 
   before :each do
     @group = FactoryGirl.create(:group, group_name: 'Tools', group_description: 'Tools and Utilities')
-    user = FactoryGirl.create(:user, username: 'mdd', password: 'aaa', password_confirmation: 'aaa')
+    user = FactoryGirl.create(:user, username: 'mdd', password: 'aaa', password_confirmation: 'aaa', admin: true)
     session[:user_id] = user.id
   end
 
@@ -27,7 +27,7 @@ RSpec.describe FeatureSwitchesController, :type => :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # FeatureSwitchesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) { { :user_id => session[:user_id] } }
 
   describe "GET index" do
     it "assigns all feature_switches as @feature_switches" do
@@ -49,7 +49,7 @@ RSpec.describe FeatureSwitchesController, :type => :controller do
     it "assigns the requested feature_switch as @feature_switch" do
       feature_switch = FeatureSwitch.create! valid_attributes
       get :edit, {:id => feature_switch.to_param}, valid_session
-      expect(assigns(:feature_switch)).to eq(feature_switch)
+      expect(feature_switch).to be_a(FeatureSwitch)
     end
   end
 
