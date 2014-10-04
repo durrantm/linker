@@ -77,7 +77,9 @@ class LinksController < ApplicationController
     else
       @conditions = ''
     end
-    @links = Link.where(@conditions).by_group_and_position
+    #@links = Link.where(@conditions).by_group_and_position
+    #@links = Link.includes(:group).where(@conditions).references(:group).order('groups.group_name, links.position')
+    @links = Link.joins(:group).where(@conditions).references(:group).order('groups.group_name, links.position')
     respond_to do |format|
       format.html
     end
