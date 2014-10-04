@@ -1,6 +1,6 @@
 %span{class: "show_hide shown_shading_link"}
   %a{href: '#', :data => {"toggle_group_row_shading" => 'toggle'}}
-    - if flag == '0'
+    - if toggle_row_shading == '0'
       %b
         Yes
       \/ No
@@ -10,7 +10,7 @@
         \/ No
 %span{class: "show_hide hidden_shading_link"}
   %a{href: '#', :data => {"toggle_group_row_shading" => 'toggle'}}
-    - if flag == '1'
+    - if toggle_row_shading == '1'
       %b
         Yes
       \/ No

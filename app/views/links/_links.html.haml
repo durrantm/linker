@@ -1,9 +1,9 @@
 %span.spaced#shading_link
   Group Shading:
   - if session[:group_shading] == 'true'
-    = render partial: "toggle_group_shading_link_bold", :locals => {:flag => '0'}
+    = render partial: "toggle_group_shading_link_bold", :locals => {:toggle_row_shading => '0'}
   - else
-    = render partial: "toggle_group_shading_link_bold", :locals => {:flag => '1'}
+    = render partial: "toggle_group_shading_link_bold", :locals => {:toggle_row_shading => '1'}
 %span.spaced
   - if session[:full_details] == 'true'
     = render partial: 'toggle_details_link_bold', :locals => {:txt => "Summary / <b>Details</b>", :show_hide => 'shown'}
