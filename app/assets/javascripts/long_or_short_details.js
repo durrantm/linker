@@ -10,7 +10,4 @@ $(function(){
     updateUi(event);
   });
 
-  $("a[data-toggle-description-length-refocus]='toggle'").click(function(event){
-    updateUi(event);
-  });
 });

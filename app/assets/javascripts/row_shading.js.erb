@@ -3,10 +3,6 @@ $(function(){
     color_groups(event);
   });
 
-  $("a[data-toggle-group-row-shading-refocus]='toggle'").click(function(event){
-    color_groups(event);
-  });
-
   var color_groups = function(event) {
     event.preventDefault();
     $(".row_color_group_1").toggleClass("color_group_1");

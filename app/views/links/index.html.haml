@@ -9,7 +9,7 @@
       %tr
         %td{colspan: "7"}
           .nav_links
-            = render partial: 'links', :locals => {:first_field_focus => 1 }
+            = render partial: 'links'
             = render partial: 'search'
       %tr{data_header_row: 'true'}
         %td Groups
@@ -62,7 +62,7 @@
             %td
               = link_to 'X', link_path(link), method: :delete, id: link.id, data: { confirm: 'Are you sure?', remote: true }
 %br/
-%span.mainLinks= render partial: 'links', :locals => {:first_field_focus => 0 }
+%span.mainLinks= render partial: 'links'
 %br/
 %br/
 %span{data_total: ''}
