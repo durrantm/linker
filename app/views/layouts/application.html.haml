@@ -1,6 +1,8 @@
 %head
   %title="#{controller.controller_name.capitalize} - #{controller.action_name}"
   = stylesheet_link_tag 'application'
+  - if FeatureSwitch.where(name: 'display_demo_feature_switch_image', status: 'on').count > 0
+    = stylesheet_link_tag 'on_off_switch'
   = javascript_include_tag "application"
   = csrf_meta_tag
   = favicon_link_tag 'favicon.ico'
