@@ -2,7 +2,7 @@ $(function(){
   $(document).on('click', "a[data-verifying-link]='yes'", function(event){
     event.preventDefault();
     a=$(this).parent();
-    a.html('<%= image_tag "ajax-loader.gif" %>');
+    a.html('<%= image_tag "ajax-loader.gif", alt: '' %>');
     var id= $(this).data("id");
     $.ajax({
       url: "/verify_link/"+id,
