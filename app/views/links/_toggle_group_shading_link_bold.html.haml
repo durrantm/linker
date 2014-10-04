@@ -8,3 +8,13 @@
       Yes
       %b
         \/ No
+%span{class: "show_hide hidden_shading_link"}
+  %a{href: '#', :data => {"toggle_group_row_shading" => 'toggle'}}
+    - if flag == '1'
+      %b
+        Yes
+      \/ No
+    - else
+      Yes
+      %b
+        \/ No
