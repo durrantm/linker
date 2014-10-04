@@ -11,10 +11,16 @@
       %td{colspan: 5}
         = link_to 'New Feature switch', new_feature_switch_path
   %tbody.data
-    - @feature_switches.each do |feature_switch|
+    - @feature_switches.each_with_index do |feature_switch,i|
       %tr
         %td= feature_switch.status
         %td= feature_switch.name
         %td= link_to 'Show', feature_switch
         %td= link_to 'Edit', edit_feature_switch_path(feature_switch)
         %td= link_to 'Destroy', feature_switch, method: :delete, data: { confirm: 'Are you sure?' }
+- num=1
+%div{class: "onoffswitch"}
+  %input{type: "checkbox", name: "onoffswitch", class: "onoffswitch-checkbox", id: "myonoffswitch"}
+  %label{class: "onoffswitch-label", for: "myonoffswitch"}
+    %span{class: "onoffswitch-inner"}
+    %span{class: "onoffswitch-switch"}
