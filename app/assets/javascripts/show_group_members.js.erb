@@ -20,7 +20,10 @@ $(function(){
     function DisplayListItems(list) {
       $.each(list, function(index, element) {
         var verified_text = '<span class="done">&nbsp;Verified</span>'
-        var verify_link = '<span id="verify_link_' + element.id + '" class="undone">&nbsp;<a href="#" data-verifying-link="yes" data-id="' + element.id + '" data-table-row="' + element.id + '">Verify</a></span>'
+        var link = '<a href="#" data-verifying-link="yes" data-id="' + element.id + '" data-table-row="' + element.id + '">Verify</a>'
+        var logged_in = $('h2 span#logout:contains("Logout")').length > 0
+        var link_or_no_link = ( logged_in ) ? link : '';
+        var verify_link = '<span id="verify_link_' + element.id + '" class="undone">&nbsp;' + link_or_no_link + '</span>'
         var details_link = '&nbsp; <a href="links/' + element.id + '">Details</a>'
         var verified_or_link = element.verified_date ? verified_text : verify_link
         var itemHTML = ["<li>", element.url_address, ' ', verified_or_link, details_link, "</li>"].join('\n');
