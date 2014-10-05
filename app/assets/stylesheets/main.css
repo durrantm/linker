@@ -25,8 +25,9 @@
 .notice { color: lightgreen }
 .warning { color: orange }
 #username { color: #010101; } /* For the FORM login boxes */
-#username_display { color: #ff9; font-style: italic; } /* Once logged in */
-#logout a { color: #ff9; font-style: italic; text-decoration: none;}
+#username_display { color: #E0FF99; font-style: italic; } /* Once logged in */
+#logout a { color: #E0FF99; font-style: italic; text-decoration: none; } /* Once logged in */
+#logout a:hover { color: #DD9; font-style: italic; text-decoration: none; } /* Once logged in */
 #divider { color: #fff; }
 .form_inputs { margin-left: 2em; }
 .nav_links { float: left}
