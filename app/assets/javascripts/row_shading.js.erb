@@ -1,9 +1,9 @@
 $(function(){
   $("a[data-toggle-group-row-shading]='toggle'").click(function(event){
-    color_groups(event);
+    Linker.color_groups(event);
   });
 
-  var color_groups = function(event) {
+  Linker.color_groups = function(event) {
     event.preventDefault();
     $(".row_color_group_1").toggleClass("color_group_1");
     $(".row_color_group_2").toggleClass("color_group_2");
