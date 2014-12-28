@@ -1,5 +1,5 @@
 $(function(){
-  var updateUi = function (event) {
+  Linker.updateUi = function (event) {
       event.defaultPrevented;
       $("span.show_hide").toggleClass("shown hidden");
       $("table").toggleClass("wide narrow");
@@ -7,7 +7,7 @@ $(function(){
   };
 
   $("a[data-toggle-description-length]='toggle'").click(function(event){
-    updateUi(event);
+   Linker.updateUi(event);
   });
 
 });
