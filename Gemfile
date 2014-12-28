@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
-
 gem 'rails', '4.0.2'
 gem 'httparty' # For URL verification methods.
 gem 'selenium-webdriver'#  For rspec capybara javascript tests
