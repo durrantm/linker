@@ -3,7 +3,7 @@ $(function(){
     var gid= $(this).data("id");
     var gname= $(this).data("name");
     $('<tr><td colspan="4">Members:</br><ul id="group-members"></ul>Delete the <b>'+gname+'</b> group and all its members: <b><a rel="nofollow" data-method="delete" data-confirm="Are you sure?" href=\'/groups/'+gid+'\'>Yes</a></b> <b><a href="groups" data-close-group="true">No</b></br></br>').insertAfter($(this).closest('tr'));
-    var the_links=
+    Linker.the_links=
       $.ajax({
         type: "GET",
         url: "<%= Rails.application.routes.url_helpers.groups_path %>" + "/" + gid,
@@ -19,17 +19,16 @@ $(function(){
       });
     function DisplayListItems(list) {
       $.each(list, function(index, element) {
-        var verified_text = '<span class="done">&nbsp;Verified</span>'
-        var link = '<a href="#" data-verifying-link="yes" data-id="' + element.id + '" data-table-row="' + element.id + '">Verify</a>'
-        var logged_in = $('h2 span#logout:contains("Logout")').length > 0
-        var link_or_no_link = ( logged_in ) ? link : '';
-        var verify_link = '<span id="verify_link_' + element.id + '" class="undone">&nbsp;' + link_or_no_link + '</span>'
-        var details_link = '&nbsp; <a href="links/' + element.id + '">Details</a>'
-        var verified_or_link = element.verified_date ? verified_text : verify_link
-        var itemHTML = ["<li>", element.url_address, ' ', verified_or_link, details_link, "</li>"].join('\n');
-        $("ul#group-members").append(itemHTML);
+        Linker.verified_text = '<span class="done">&nbsp;Verified</span>'
+        Linker.link = '<a href="#" data-verifying-link="yes" data-id="' + element.id + '" data-table-row="' + element.id + '">Verify</a>'
+        Linker.logged_in = $('h2 span#logout:contains("Logout")').length > 0
+        Linker.link_or_no_link = ( Linker.logged_in ) ? Linker.link : '';
+        Linker.verify_link = '<span id="verify_link_' + element.id + '" class="undone">&nbsp;' +Linker.link_or_no_link + '</span>'
+        Linker.details_link = '&nbsp; <a href="links/' + element.id + '">Details</a>'
+        Linker.verified_or_link = element.verified_date ? Linker.verified_text : Linker.verify_link
+        Linker.itemHTML = ["<li>", element.url_address, ' ', Linker.verified_or_link, Linker.details_link, "</li>"].join('\n');
+        $("ul#group-members").append(Linker.itemHTML);
       });
-      //$("ul#group-members").append('<br><a href="verify_group">Verify All</a>');
     }
 
     $(this).html("");
