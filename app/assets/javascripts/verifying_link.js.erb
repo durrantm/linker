@@ -1,17 +1,17 @@
 $(function(){
   $(document).on('click', "a[data-verifying-link]='yes'", function(event){
     event.preventDefault();
-    a=$(this).parent();
-    a.html('<%= image_tag "ajax-loader.gif", alt: '' %>');
-    var id= $(this).data("id");
+    Linker.anchor=$(this).parent();
+    Linker.anchor.html('<%= image_tag "ajax-loader.gif", alt: '' %>');
+    Linker.id= $(this).data("id");
     $.ajax({
-      url: "/verify_link/"+id,
+      url: "/verify_link/"+Linker.id,
       type: 'GET',
       success: function(r) {
-        $("span#verify_link_"+id).html('<span class="done">Verified</span>');
+        $("span#verify_link_"+Linker.id).html('<span class="done">Verified</span>');
       },
       error: function(r) {
-        $("span#verify_link_"+id).html('<span class="undone"><a data-verifying-link="yes" data-id="' + id + '" href="#">Unverified</a></span>');
+        $("span#verify_link_"+Linker.id).html('<span class="undone"><a data-verifying-link="yes" data-id="' + Linker.id + '" href="#">Unverified</a></span>');
       }
     });
   });
