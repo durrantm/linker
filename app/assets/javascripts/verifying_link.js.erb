@@ -1,5 +1,5 @@
 $(function(){
-  $(document).on('click', "a[data-verifying-link]='yes'", function(event){
+  $(document).on('click', "a[data-verifying-link='yes']", function(event){
     event.preventDefault();
     Linker.anchor=$(this).parent();
     Linker.anchor.html('<%= image_tag "ajax-loader.gif", alt: '' %>');

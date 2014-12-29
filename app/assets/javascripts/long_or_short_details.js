@@ -6,7 +6,7 @@ $(function(){
       toggle_server_details_flag_silently();
   };
 
-  $("a[data-toggle-description-length]='toggle'").click(function(event){
+  $("a[data-toggle-description-length='toggle']").click(function(event){
    Linker.updateUi(event);
   });
 
