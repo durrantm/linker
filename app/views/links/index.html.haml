@@ -31,11 +31,13 @@
         - if link.group.group_name != (current_group ||= '')
           - display_group = current_group = link.group.group_name
           - row_bg_color_group = rotate_rows_color_group
+          - show_group_name = true
         - else
-          - display_group = ''
+          - show_group_name = false
         %tr{class: "#{row_bg_color_group}"}
           %td
-            = link_to display_group, link.group, {title: link.group.group_description}
+            - if show_group_name
+              = link_to display_group, link.group, {title: link.group.group_description}
           %td
             %span#mainLink
               = render :partial => 'content_toggle', :locals => { :content => [long_url, short_url] }
@@ -57,7 +59,7 @@
           %td
             = render :partial => 'content_toggle', :locals => { :content => [@new_link_alt_text, @new_link_alt_text[0..24]] }
           %td
-            = link_to 'Details', link, {title: link.alt_text}
+            = link_to 'Details', link, {title: link.alt_text_or_url}
           - if session[:admin]
             %td
               = link_to 'X', link_path(link), method: :delete, id: link.id, data: { confirm: 'Are you sure?', remote: true }

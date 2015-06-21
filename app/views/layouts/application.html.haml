@@ -4,18 +4,19 @@
   = javascript_include_tag "application"
   = csrf_meta_tag
   = favicon_link_tag 'favicon.ico'
-%body
-  %h2
-    - if ::Rails.env.downcase != 'production'
-      =::Rails.env.downcase.capitalize
-    - if session[:username]
-      %span#divider
-        |
-      %span#username_display= session[:username]
-      %span#divider
-        |
-      %span#logout
-        = link_to 'Logout', :controller => :ladmin, :action => 'logout'
+%body{lang:'en'}
+  - if (::Rails.env.downcase != 'production') or (session[:username])
+    %h2
+      - if ::Rails.env.downcase != 'production'
+        =::Rails.env.downcase.capitalize
+      - if session[:username]
+        %span#divider
+          |
+        %span#username_display= session[:username]
+        %span#divider
+          |
+        %span#logout
+          = link_to 'Logout', :controller => :ladmin, :action => 'logout'
   #banner
     %h1= link_to 'Linker', root_path
   #columns

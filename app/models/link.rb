@@ -21,6 +21,13 @@ class Link < ActiveRecord::Base
     end
   end
 
+  def alt_text_or_url
+    if alt_text == ''
+      alt_text_or_url_address = url_address
+    else
+      alt_text_or_url_address = alt_text
+    end
+  end
 end
 
 def url_address_not_just_http
