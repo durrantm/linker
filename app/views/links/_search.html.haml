@@ -1,5 +1,6 @@
 =form_tag(search_path, :method => "get") do
-  = text_field_tag('search_text_1st_phrase', params[:search_text], options = {:type => 'search', :autofocus => true, :placeholder => 'Enter search term', :title => 'search'} )
+  %label
+    = text_field_tag('search_text_1st_phrase', params[:search_text], options = {:type => 'search', :autofocus => true, :placeholder => 'Enter search term', :title => 'search'} )
   = submit_tag("Search")
   &nbsp;
 =link_to('Advanced Search', advanced_search_path)
